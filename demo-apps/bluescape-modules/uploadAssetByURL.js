@@ -19,8 +19,8 @@
  * 
 */
 
-import runGraphqlRequest from './bluescapeApis.js';
-import { getMutationValuesGraphql } from './uploadUtils.js';
+import runGraphqlRequest, { runRestRequest } from './bluescapeApis.js';
+import { getMutationValuesGraphql, getUploadValuesRest } from './uploadUtils.js';
 
 /**
     * Checks upload by URL ingestion status.
@@ -270,3 +270,247 @@ export default async function uploadAssetByUrlIntoCanvasGraphql(bluescapeApiPara
 
     return assetCreationRequest.data;
 }
+
+/** 
+    * Checks upload by URL ingestion status,using REST APIs
+    * @param {Object} bluescapeApiParams - Object containing the data for executing Bluescape APIs:
+    * @param {string} bluescapeApiParams.token -  Access Token (oauth2 token, see https://api.apps.us.bluescape.com/docs/page/app-auth)
+    * @param {string} bluescapeApiParams.apiPortalUrl - URL to the portal to execute the APIs, e.g. "https://api.apps.us.bluescape.com/api"
+    * @param {string} bluescapeApiParams.apiVersion - Version of the APIs to be executed, e.g.: "v3". Current version: v3
+    *    
+    * @param {Object} functionParams - Object with the parameters of the request to run
+    * @param {string} functionParams.workspaceId - Workspace Id where we are uploading assets
+    * @param {string} functionParams.newElementId - ID of the new element that was created by the upload
+    * 
+    * @returns {Object} Object with the results of the function execution  
+    * @returns {Boolean} object.isUploadSuccessful - true if the upload finished with a successful status, false if not
+    * @returns {string} object.errorMessage - Error message in case the upload was not successful 
+*/
+export async function checkUrlUploadIngestionStatusRest(bluescapeApiParams, functionParams) {
+
+    let isUploadFinished = false;
+    let errorMessage = `The object was not uploaded correctly, the upload operation timed out.`; // Default value
+    let isUploadSuccessful = false;
+
+    const requestParamsCheckIngestionStatus = {
+        'apiEndpoint': `/workspaces/${functionParams.workspaceId}/elements/${functionParams.newElementId}`,
+        'requestMethod': 'GET',
+        'dataLoad': {}
+    }
+
+    // Example of failure for file too big:
+    // "data": {
+    //     "elements": [
+    //       {
+    //         "ingestionState": "complete_failure",
+    //         "traits": {
+    //           "http://bluescape.dev/zygote/v1/searchTitle": "testVideo.mp4",
+    //           "http://bluescape.dev/zygote/v1/title": "testVideo.mp4",
+    //           "http://bluescape.dev/zygote/v1/thumbExt": "png",
+    //           "http://bluescape.dev/zygote/v1/originalUrl": "https://s3.amazonaws.com/webclienttest.bluescape.com/share/big_images_videos/bad-lands.192.4Mb.mp4",
+    //           "http://bluescape.dev/zygote/v1/ext": "mp4",
+    //           "http://bluescape.dev/zygote/v1/ingestionState": {
+    //             "http://bluescape.dev/zygote/v1/ingestionState/timestamp": 1643759202120,
+    //             "http://bluescape.dev/zygote/v1/ingestionState/stage": "complete_failure",
+    //             "http://bluescape.dev/zygote/v1/ingestionState/errorCode": "ASSET_PROCESSING_UNSUPPORTED_SIZE",
+    //             "http://bluescape.dev/zygote/v1/ingestionState/errorMessage": "Video size greater than maximum"
+    //           }
+    //         }
+    //       }
+    //     ]
+    //   }
+    // }
+
+    do {
+        const checkIngestionStatus = await runRestRequest(bluescapeApiParams, requestParamsCheckIngestionStatus);
+
+        const ingestionStatusData = checkIngestionStatus?.['data']?.['data'] ?? undefined;
+
+        if (ingestionStatusData) {
+
+            // ingestionStatusData Values:
+            // processing
+            // complete_success
+            // complete_failure
+            // transferring
+            const ingestionStatusValue = ingestionStatusData.ingestionState;
+
+            if (ingestionStatusValue.match('success')) {
+                isUploadFinished = true;
+                isUploadSuccessful = true;
+            } else if (ingestionStatusValue.match('failure')) {
+                isUploadFinished = true
+                // Get the error message, to return it
+                const traitsData = ingestionStatusData['traits'];
+
+                errorMessage = traitsData?.['http://bluescape.dev/zygote/v1/ingestionState']?.['http://bluescape.dev/zygote/v1/ingestionState/errorMessage'] ?? undefined;
+
+            } else {
+                // Still processing the upload, pause and query again            
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        } else {
+            return (false, 'Error reading ingestion status from API response');
+        }
+
+    } while (!isUploadFinished);
+
+    const functionReturnValues = {
+        'isUploadSuccessful': isUploadSuccessful,
+        'errorMessage': errorMessage
+    }
+
+    return functionReturnValues;
+}
+
+/** 
+    * Returns the values for the zygote's asset format type, for REST APIs
+    * @param {Object} functionParams - Object with the parameters of the request to run
+    * @param {string} functionParams.assetType - Type of the asset to upload
+    * @param {string} functionParams.assetExtension - Extension of the asset to upload
+    * @param {Object} functionParams.zygoteBody - Object with the zygote properties
+    *  
+    * @returns {Object} zygoteBody - Modified zygoteBody object, with the new <assetType> format value
+*/
+export async function getZygoteValuesRest(functionParams) {
+
+    const zygoteValues = functionParams;
+    switch (zygoteValues.assetType) {
+        case 'Image':
+            zygoteValues.zygoteBody.imageFormat = zygoteValues.assetExtension
+            break
+        case 'Document':
+            zygoteValues.zygoteBody.documentFormat = zygoteValues.assetExtension
+            break
+        case 'Video':
+            zygoteValues.zygoteBody.videoFormat = zygoteValues.assetExtension
+            break
+        default:
+            console.error(`Asset type "${zygoteValues.assetType}" is not recognized, check its name.`)
+    }
+
+    return zygoteValues.zygoteBody;
+
+}
+
+/*
+    * Uploads an asset by URL, to the position (x,y) using REST APIs
+    * @param bluescapeApiParams: object containing the data for executing Bluescape APIs:
+    *   {
+    *       token: Access Token (oauth2 token, see https://api.apps.us.bluescape.com/docs/page/app-auth)
+    *       apiPortal: URL to the portal to execute the APIs, e.g. "https://api.apps.us.bluescape.com/api"
+    *       apiVersion: Version of the APIs to be executed, e.g.: "v3"
+    *   } 
+    * @param assetToUploadData: object containing the data for the asset to upload by URL:
+    *   { 
+    *       workspaceId: workspace Id where the asset will be uploaded
+    *       assetURL : URL of the asset to upload
+    *       assetData : object with width and height of the asset to upload
+    *       assetType : type of the asset to upload 
+    *       assetExtension : extension of the asset to upload 
+    *       assetTitle : title of the asset to upload 
+    *       canvasId : ID of the Canvas where we will upload the asset
+    *       x : X coordinate for position where the asset will be uploaded
+    *       y : Y coordinate for position where the asset will be uploaded
+    *   }
+    * @returns assetCreationRequest.data : object with the result from the API call to upload the asset
+*/
+export async function uploadAssetByUrlIntoCanvasRest(bluescapeApiParams, assetToUploadData) {
+
+    // Generic zygote for upload by URL
+    const zygoteBodyInputParams = {
+        'type': assetToUploadData.assetType,
+        'title': assetToUploadData.assetTitle,
+        'transform': {
+            'x': assetToUploadData.x,
+            'y': assetToUploadData.y,
+            'scale': 1
+        },
+        'sourceUrl': assetToUploadData.assetURL,
+        'width': assetToUploadData.assetData.width,
+        'height': assetToUploadData.assetData.height,
+    };
+
+    const uploadValuesParams = {
+        'assetType': assetToUploadData.assetType,
+        'assetExtension': assetToUploadData.assetExtension,
+        'assetCreationParams': zygoteBodyInputParams
+    }
+
+    const zygoteBody = await getUploadValuesRest(uploadValuesParams);
+
+
+
+    // // Add the specific fields for the upload of each type of asset
+    // switch (assetToUploadData.assetType) {
+    //     case 'Image':
+    //         zygoteBodyInputParams.imageFormat = assetToUploadData.assetExtension;
+    //         break
+    //     case 'Document':
+    //         zygoteBodyInputParams.documentFormat = assetToUploadData.assetExtension;
+    //         break
+    //     case 'Video':
+    //         zygoteBodyInputParams.videoFormat = assetToUploadData.assetExtension;
+    //         break
+    //     default:
+    //         console.error(`Asset type "${zygoteBody.assetType}" is not recognized, check its name.`)
+    // }
+
+    const requestParamsCreateAndUploadAsset = {
+        'apiEndpoint': `/workspaces/${assetToUploadData.workspaceId}/elements`,
+        'requestMethod': 'POST',
+        'dataLoad': zygoteBody
+    }
+
+    console.log(` Starting upload of: ${assetToUploadData.assetURL}`);
+    const assetCreationRequest = await runRestRequest(bluescapeApiParams, requestParamsCreateAndUploadAsset);
+
+    if (assetCreationRequest.status === 200) {
+
+        // Check ingestion Status, to verify if the asset uploaded correctly or reported an upload error 
+        const newElementId = assetCreationRequest?.['data']?.['data']?.[assetToUploadData.assetType.toLowerCase()]?.['id'] ?? undefined;
+
+        if (!newElementId) throw `Could not get the newElementId value for ${assetToUploadData.assetURL}`;
+
+        // using shorthand notation for 'newElementId': newElementId -> newElementId
+        const checkUrlUploadParams = {
+            'workspaceId': assetToUploadData.workspaceId,
+            newElementId
+        }
+
+        const ingestionStatusCheckValues = await checkUrlUploadIngestionStatusRest(bluescapeApiParams, checkUrlUploadParams);
+
+        const uploadResult = {
+            'newAsset': {
+                [assetToUploadData.assetType]: {
+                    "id": newElementId
+                },
+                'uploadResult': {}
+            }
+        };
+
+        if (ingestionStatusCheckValues.isUploadSuccessful === true) {
+            console.log(`  Finished successful upload of ${assetToUploadData.assetURL}`);
+
+            // Label the upload as a sucess
+            uploadResult.newAsset.uploadResult = {
+                'result': 'success',
+                'assetPath': assetToUploadData.assetURL
+            }
+        } else {
+            console.error(`  Failure uploading ${assetToUploadData.assetURL}. Error reported: ${ingestionStatusCheckValues.errorMessage}`);
+
+            // Label the upload as a failure
+            uploadResult.newAsset.uploadResult = {
+                'result': 'failure',
+                'assetPath': assetToUploadData.assetURL
+            }
+
+        }
+
+        return uploadResult;
+    }
+
+    return assetCreationRequest.data;
+}
+
