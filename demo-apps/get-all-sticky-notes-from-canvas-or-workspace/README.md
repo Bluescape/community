@@ -3,6 +3,9 @@ One great use case for Bluescape is to have a brainstorming session, and use sti
 
 This app will retrieve the text from all sticky notes in the Workspace or in a specific Canvas and output the results to a file in either comma separated value (CSV) or Javascript Object Notation (JSON) format.
 
+## Requirements
+
+Run `npm install` to install all the needed libraries.
 ## Details
 In this application, you will get all the Sticky Notes from a workspace. Please keep in mind that for the purpose of the APIs, there are 2 types of Sticky Notes:
 1. Legacy Sticky Notes: notes created by API or in the workspace before Release 21.01.1
