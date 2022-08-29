@@ -121,7 +121,7 @@ async function runExportAllStickyNoteText() {
         const response = await runGraphqlRequest(bluescapeApiParams, { requestQuery: query });
         const elements = response.data.data.elements;
 
-        writeNotesToFile(workspace, canvas, elements);
+        await writeNotesToFile(workspace, canvas, elements);
     }
     catch (error) {
         const buildErrorMessage = (e) => 
@@ -210,7 +210,7 @@ async function getCanvasById() {
  * @param {*} canvas The canvas that the notes belong to (optional).
  * @param {*} noteElements The notes retrieved from the workspace / canvas.
  */
-function writeNotesToFile(workspace, canvas, noteElements) {
+async function writeNotesToFile(workspace, canvas, noteElements) {
 
     if (outputFormat == "CSV") {
         writeNotesToCsv(workspace, canvas, noteElements);
@@ -273,7 +273,7 @@ function writeNotesToCsv(workspace, canvas, noteElements) {
  * @param {*} canvas The canvas that the notes belong to (optional).
  * @param {*} noteElements The notes retrieved from the workspace / canvas.
  */
-function writeNotesToJson(workspace, canvas, noteElements) {
+async function writeNotesToJson(workspace, canvas, noteElements) {
 
     // Shape the data for ouput
     let data = {
