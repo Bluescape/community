@@ -1,242 +1,220 @@
 type Query {
-  # Returns a broadcast message by id
-  broadcastMessage(broadcastMessageId: String!): BroadcastMessage!
+  #  Get availability of custom link
+  customLinkAvailability(
+    #  Custom link availability
+    input: CustomLinkAvailabilityInput!
+  ): CustomLinkAvailability!
 
-  # Returns broadcast messages in a paged collection
-  broadcastMessages(
-    active: Boolean!
+  #  Get custom link by name
+  customLinkByName(
+    #  Get custom link by name
+    input: GetCustomLinkByNameInput!
+  ): CustomLinkAnonymous!
+
+  #  Gets a listing of custom links
+  customLinks(
+    #  cursor
     cursor: String
-    filtering: BroadcastMessageFilters
-    ordering: [BroadcastMessageOrdering!]
+
+    #  filtering
+    filtering: CustomLinkFilters
+
+    #  ordering
+    ordering: [CustomLinkOrdering!]
+
+    #  pagination
     pagination: PaginationArgs
-  ): BroadcastMessagesPaged!
+  ): CustomLinksPaged!
 
-  # Get a help menu
-  helpMenu(
-    # help menu Id
-    id: String!
-  ): HelpMenu!
-
-  # Returns Help Menu in a paged collection
-  helpMenus(
-    cursor: String
-    filtering: HelpMenuFilters
-    ordering: [HelpMenuOrdering!]
-    pagination: PaginationArgs
-  ): HelpMenuPaged!
-
-  # public: Returns an identity provider by id.
+  #  Returns an identity provider by id.
   identityProvider(
-    # public: Identity provide id
+    #  Identity provide id
     identityProviderId: String!
   ): IdentityProvider!
 
-  # public: Returns a paginated collection of identity providers.
+  #  Returns a paginated collection of identity providers.
   identityProviders(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: IdentityProviderFilters
 
-    # public: ordering
+    #  ordering
     ordering: [IdentityProviderOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): IdentityProvidersPaged!
 
-  # public: Get current user
+  #  Get current user
   me: Me!
 
-  # public: Get organization by Id
+  #  Get organization by Id
   organization(
-    # public: Organization Id
+    #  Organization Id
     organizationId: String!
   ): Organization!
 
-  # public: Get Organization list
+  #  Get Organization list
   organizations(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: OrganizationFilters
 
-    # public: ordering
+    #  ordering
     ordering: [OrganizationOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): OrganizationsPaged!
 
-  # public: A permission group selected by ID.
+  #  A permission group selected by ID.
   permissionGroup(
-    # public: Permission group ID
+    #  Permission group ID
     permissionGroupId: String!
   ): PermissionGroup!
 
-  # public: Pages list of permission groups.
+  #  Pages list of permission groups.
   permissionGroups(
-    # public: Cursor
+    #  Cursor
     cursor: String
 
-    # public: Filtering
+    #  Filtering
     filtering: PermissionGroupFilters
 
-    # public: Ordering
+    #  Ordering
     ordering: [PermissionGroupOrdering!]
 
-    # public: Pagination
+    #  Pagination
     pagination: PaginationArgs
   ): PermissionGroupsPaged!
 
-  # Returns permissions
-  permissions(
-    cursor: String
-    filtering: PermissionFilters
-    ordering: [PermissionOrdering!]
-    pagination: PaginationArgs
-  ): PermissionsPaged!
-
-  # public: Get a role by Id.
+  #  Get a role by Id.
   role(
-    # public: Role Id
+    #  Role Id
     roleId: String!
   ): Role!
 
-  # public: Gets a listing of roles
+  #  Gets a listing of roles
   roles(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: RoleFilters
 
-    # public: ordering
+    #  ordering
     ordering: [RoleOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): RolesPaged!
 
-  # Get all scratch workspaces belonging to the current user
+  #  Get all scratch workspaces belonging to the current user
   scratchWorkspaces(
-    # cursor
+    #  cursor
     cursor: String
 
-    # filtering
+    #  filtering
     filtering: ScratchWorkspaceFilters
 
-    # ordering
+    #  ordering
     ordering: [ScratchWorkspaceOrdering!]
 
-    # pagination
+    #  pagination
     pagination: PaginationArgs
   ): ScratchWorkspacesPaged!
 
-  # Returns a template by id
-  template(templateId: String!): Template!
-
-  # Returns templates in a paged collection
-  templates(
-    cursor: String
-    filtering: TemplateFilters
-    ordering: [TemplateOrdering!]
-    organizationId: ID!
-    pagination: PaginationArgs
-  ): TemplatePaged!
-
-  # public: Get user by Id or email
+  #  Get user by Id or email
   user(
-    # public: Email
+    #  Email
     email: String
 
-    # public: User Id
+    #  User Id
     userId: String
   ): User!
 
-  # public: Get users list
+  #  Get users list
   users(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: last loggedin date
+    #  last loggedin date
     filtering: UserFilters
 
-    # public: ordering
+    #  ordering
     ordering: [UserOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): UsersPaged!
 
-  # Returns a wall based upon the id
-  wall(wallId: String!): Wall!
-
-  # public: A paginated list of walls.
+  #  A paginated list of walls.
   walls(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filters
+    #  filters
     filtering: WallFilters
 
-    # public: ordering options
+    #  ordering options
     ordering: [WallOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): WallsPaged!
 
-  # public: Get workspace by Id
+  #  Get workspace by Id
   workspace(
-    # public: Workspace Id
+    #  Workspace Id
     workspaceId: String!
   ): Workspace!
 
-  # public: Get workspace access request by ID
+  #  Get workspace access request by ID
   workspaceAccessRequest(
-    # public: The access request ID
+    #  The access request ID
     requestId: String!
 
-    # public: The workspace ID
+    #  The workspace ID
     workspaceId: String!
   ): WorkspaceAccessRequest!
 
-  # public: Get workspace access request as a paginated list
+  #  Get workspace access request as a paginated list
   workspaceAccessRequests(
-    # public: Cursor
+    #  Cursor
     cursor: String
 
-    # public: Filters
+    #  Filters
     filtering: WorkspaceAccessRequestFilters
 
-    # public: Ordering
+    #  Ordering
     ordering: [WorkspaceAccessRequestOrdering!]
 
-    # public: Pagination
+    #  Pagination
     pagination: PaginationArgs
 
-    # public: The workspace ID
+    #  The workspace ID
     workspaceId: String!
   ): WorkspaceAccessRequestPaged!
 
-  # public: Get workspace lists
+  #  Get workspace lists
   workspaces(
-    # public: archived
+    #  archived
     archived: Boolean
 
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering Organization Id
+    #  filtering Organization Id
     filtering: WorkspaceFilters
 
-    # public: ordering
+    #  ordering
     ordering: [WorkspaceOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): WorkspacesPaged!
   workspaceState(
@@ -318,175 +296,129 @@ type Query {
     # Direction to move in during the search for available area (up, down, left, right)
     direction: FindAvailableAreaDirection = right
   ): Box
-  _version: String
-
-  # Retrieves invoice information
-  invoices(organizationId: String!, sortOrder: SortOrder): [InvoiceInfo!]!
-
-  # Retrieves invoice PDF link
-  invoicePDF(organizationId: String!, invoiceId: String!): InvoicePDF!
-
-  # Retrieves payment card information for an Organization from Chargebee
-  paymentCard(organizationId: String!): PaymentCardInfo!
-
-  # Retrieves plan information
-  planInformation(
-    planType: PlanTypeEnt!
-    currency: CurrencyEnt = USD
-  ): PlanInfo!
-
-  # Retrieves estimated subscription plan price
-  estimate(
-    organizationId: String!
-    planType: PlanTypeEnt!
-    billingPeriod: SubscriptionIntervalEnt!
-    licenseCount: Int!
-    currency: CurrencyEnt = USD
-  ): PriceEstimateResponse!
-
-  # Retrieves estimated plan price for a new (non-existing) organization. Returns only the nextTermEstimate (preview of the estimated cost).
-  estimateForNewOrganization(
-    planType: PlanTypeEnt!
-    billingPeriod: SubscriptionIntervalEnt!
-    licenseCount: Int!
-    billingAddress: AddressInput
-    currency: CurrencyEnt = USD
-  ): PriceEstimateNewOrganizationResponse!
+  getIconLibraries(cursor: String, pagination: PaginationArgs): LibrariesPaged
+  searchIcons(
+    cursor: String
+    pagination: PaginationArgs
+    queryString: String
+    library: String
+    category: String
+    variantName: String
+  ): IconsPaged
 }
 
 type Mutation {
-  # public: Add a member to Organization
+  #  Add a member to Organization
   addMember(
-    # public: AddMemberInput
+    #  AddMemberInput
     input: AddMemberInput!
 
-    # public: Organization Id
+    #  Organization Id
     organizationId: String!
   ): Member!
 
-  # public: Add a permission group to the role.
+  #  Add a permission group to the role.
   addPermissionGroupsToRole(
-    # public: Role Id
+    #  Role Id
     RoleId: String!
 
-    # public: AddPermissionGroupsToRoleInput
+    #  AddPermissionGroupsToRoleInput
     input: AddPermissionGroupsToRoleInput!
   ): Role!
 
-  # public: Add collaborator to workspace
+  #  Add collaborator to workspace
   addWorkspaceCollaborator(
-    # public: Add collaborator input
+    #  Add collaborator input
     input: AddCollaboratorInput!
 
-    # public: workspaceId
+    #  workspaceId
     workspaceId: String!
   ): Collaborator!
 
-  # Turn a scratch workspace into a workspace. Requires can_create_workspace permission in the organization and the email in the JWT token must match the email in the database
+  #  Turn a scratch workspace into a workspace. Requires can_create_workspace permission in the organization and the email in the JWT token must match the email in the database
   claimScratchWorkspace(
-    # public: Id of the organization to put the scratch workspace
-    organizationId: String!
+    #  Id of the organization to put the scratch workspace
+    organizationId: ID!
 
-    # Scratch workspace id
-    scratchWorkspaceId: String!
+    #  Scratch workspace id
+    scratchWorkspaceId: ID!
   ): Workspace!
 
-  # Creates a new broadcast message
-  createBroadcastMessage(input: CreateBroadcastMessageInput!): BroadcastMessage!
+  #  Creates a new custom link.
+  createCustomLink(
+    #
+    input: CreateCustomLinkInput!
+  ): CustomLink!
 
-  # Creates a new org domain filter
-  createDomainFilter(
-    input: CreateOrgDomainFilterInput!
-    organizationId: ID!
-  ): [OrgDomainFilter!]!
-
-  # public: Create favorite workspace
+  #  Create favorite workspace
   createFavoriteWorkspace(
-    # public: User Id
+    #  User Id
     userId: String!
 
-    # public: Workspace Id
+    #  Workspace Id
     workspaceId: String!
   ): Workspace!
 
-  # Creates a new Helpmenu
-  createHelpMenu(input: CreateHelpMenuInput!): HelpMenu!
-
-  # public: Creates a new identity provider.
+  #  Creates a new identity provider.
   createIdentityProvider(
-    # public: CreateIdentityProviderInput
+    #  CreateIdentityProviderInput
     input: CreateIdentityProviderInput!
   ): IdentityProvider!
 
-  # Creates a new organization.
-  createOrganization(input: CreateOrganizationInput!): Organization!
-
-  # Creates a new verfication code
-  createProvisioning(input: CreateVerficationCodeInput!): Provisioning!
-
-  # public: Creates a new role.
+  #  Creates a new role.
   createRole(
-    # public: createRole
+    #  createRole
     input: CreateRoleInput!
   ): Role!
 
-  # Creates a new template.
-  createTemplate(
-    disableNameCheck: Boolean = false
-    input: CreateTemplateInput!
-  ): Template!
+  #  Creates a new scratch workspace
+  createScratchWorkspace(
+    #  Scratch workspace name (can be optional)
+    name: String
+  ): ScratchWorkspace!
 
-  # public: Create a new user
+  #  Create a new user
   createUser(
-    # public: createUser
+    #  createUser
     input: CreateUserInput!
   ): User!
 
-  # Creates a new wall
-  createWall(input: CreateWallInput!): Wall!
-
-  # public: Create new workspace
+  #  Create new workspace
   createWorkspace(
-    # public: createWorkspace
+    #  createWorkspace
     input: CreateWorkspaceInput!
   ): Workspace!
 
-  # public: Creates a workspace access request.
+  #  Creates a workspace access request.
   createWorkspaceAccessRequest(
-    # public: The workspace ID
+    #  The workspace ID
     workspaceId: String!
   ): WorkspaceAccessRequest!
 
-  # Deletes a broadcast message
-  deleteBroadcastMessage(broadcastMessageId: ID!): Boolean!
-
-  # Deletes Domain Filters.
-  deleteDomainFilters(
-    input: DeleteOrgDomainFilterInput!
-    organizationId: String!
+  #  Delete custom link.
+  deleteCustomLink(
+    #  customLinkId
+    customLinkId: String!
   ): Boolean!
 
-  # public: Delete favorite workspace
+  #  Delete favorite workspace
   deleteFavoriteWorkspace(
-    # public: User Id
+    #  User Id
     userId: String!
 
-    # public: Workspace Id
+    #  Workspace Id
     workspaceId: String!
   ): Boolean!
 
-  # Delete Help menu
-  deleteHelpMenu(helpMenuId: String!): Boolean!
-
-  # public: Deletes an identity provider.
+  #  Deletes an identity provider.
   deleteIdentityProvider(
-    # public: Identity provider id
+    #  Identity provider id
     identityProviderId: String!
   ): Boolean!
 
-  # public: Delete Organization
+  #  Delete Organization
   deleteOrganization(
-    # public: When "isPermanentDelete" is true,
+    #  When "isPermanentDelete" is true,
     #       1) A request to Collab to Delete Workspaces of the Organization is initiated
     #       2) The Organization and its relationships are Hard Deleted.
     #       When "isPermanentDelete" is false,
@@ -495,195 +427,190 @@ type Mutation {
     #       3) Organization is Soft Deleted.
     isPermanentDelete: Boolean!
 
-    # public: ID of organization to delete.
+    #  ID of organization to delete.
     organizationId: String!
   ): Boolean!
 
-  # public: Delete Organization Guests
+  #  Delete Organization Guests
   deleteOrganizationGuests(
-    # public: Organization ID of organization to delete
+    #  Organization ID of organization to delete
     organizationId: String!
   ): Boolean!
 
-  # public: Delete Organization Member
+  #  Delete Organization Member
   deleteOrganizationMember(
-    # public: DeleteMemberInput
+    #  DeleteMemberInput
     input: DeleteMemberInput!
 
-    # public: ID of organization.
+    #  ID of organization.
     organizationId: String!
   ): Boolean!
 
-  # public: Deletes a permission group from a role.
+  #  Deletes a permission group from a role.
   deletePermissionGroupFromRole(
-    # public: Permission GroupId
+    #  Permission GroupId
     PermissionGroupId: String!
 
-    # public: Role Id
+    #  Role Id
     RoleId: String!
   ): Boolean!
 
-  # public: Deletes a role.
+  #  Deletes a role.
   deleteRole(
-    # public: Role Id
+    #  Role Id
     RoleId: String!
   ): Boolean!
 
-  # Delete the specified scratch workspace
+  #  Delete the specified scratch workspace
   deleteScratchWorkspace(
-    # Scratch workspace id
-    scratchWorkspaceId: String!
+    #  permanent delete flag
+    isPermanentDelete: Boolean
+
+    #  Scratch workspace id
+    scratchWorkspaceId: ID!
   ): Boolean!
 
-  # Deletes a template.
-  deleteTemplate(templateId: ID!): Boolean!
-
-  # public: Delete the user
+  #  Delete the user
   deleteUser(
-    # public: Reassign the ownership of workspaces from the user being deleted to this user
+    #  Reassign the ownership of workspaces from the user being deleted to this user
     newWorkspaceOwnerId: ID
 
-    # public: Delete all references to the user. This cannot be undone
+    #  Delete all references to the user. This cannot be undone
     permanentDelete: Boolean
 
-    # public: The id of the user to be deleted
+    #  The id of the user to be deleted
     userId: ID!
   ): Boolean!
 
-  # Deleted the specified wall
-  deleteWall(deleteToken: String = null, wallId: String!): Boolean!
+  #  Delete workspace
+  deleteWorkspace(
+    #  Providing false soft deletes the workspace. It is recoverable by support. Providing true deletes all aspects of the workspace. It is not recoverable by support.
+    isPermanentDelete: Boolean!
 
-  # public: Delete workspace collaborator
+    #  WorkspaceId
+    workspaceId: ID!
+  ): Boolean!
+
+  #  Delete workspace collaborator
   deleteWorkspaceCollaborator(
-    # public: collaboratorId
+    #  collaboratorId
     collaboratorId: String!
 
-    # public: WorkspaceId
+    #  WorkspaceId
     workspaceId: String!
   ): Boolean!
 
-  # public: Workspace access request denied.
+  #  Workspace access request denied.
   denyWorkspaceAccessRequest(
-    # public: The access request ID
+    #  The access request ID
     requestId: String!
 
-    # public: The workspace ID
+    #  The workspace ID
     workspaceId: String!
   ): WorkspaceAccessRequest!
 
-  # Creates a new verfication code
-  getExchangeToken(
-    input: VerificationCodeExchangeInput!
-  ): VerificationCodeExchange!
-
-  # Link an external subscription to the organization. This mutation should be called only when the external subscription is a Free Trial subscription.
-  linkExternalFreeTrialSubscription(
-    input: LinkExternalFreeTrialSubscriptionInput!
-    organizationId: ID!
-  ): FreeTrialSubscriptionInfo!
-
-  # Link an external subscription to the organization. This mutation should be called only when the external subscription is a Paid Self Serve subscription.
-  linkExternalSelfServeSubscription(
-    input: LinkExternalSelfServeSubscriptionInput!
-    organizationId: ID!
-  ): SelfServeSubscriptionInfo!
-
-  # Resend the verification code
-  resendVerificationCode(
-    input: ResendVerificationCodeExchangeInput!
-  ): ResendVerificationCodeExchange!
-
-  # Updates a broadcast message
-  updateBroadcastMessage(
-    broadcastMessageId: ID!
-    input: UpdateBroadcastMessageInput!
-  ): Boolean!
-
-  # public: Update Collaborator Role
+  #  Update Collaborator Role
   updateCollaboratorRole(
-    # public: Default Role Id
+    #  Default Role Id
     defaultRoleId: String!
 
-    # public: User Id
+    #  User Id
     userId: String!
 
-    # public: Workspace Id
+    #  Workspace Id
     workspaceId: String!
   ): Role!
 
-  # Update Help menu
-  updateHelpMenu(helpMenuId: String!, input: UpdateHelpMenuInput!): HelpMenu!
+  #  Update Custom Link
+  updateCustomLink(
+    #  customLinkId
+    customLinkId: String!
 
-  # public: Updates an identity provider.
+    #  Update Custom Link Input
+    input: UpdateCustomLinkInput!
+  ): CustomLink!
+
+  #  Updates an identity provider.
   updateIdentityProvider(
-    # public: Identity Provider Id
+    #  Identity Provider Id
     identityProviderId: String!
 
-    # public: UpdateIdentityProviderInput
+    #  UpdateIdentityProviderInput
     input: UpdateIdentityProviderInput!
   ): IdentityProvider!
 
-  # public: Update member's role
+  #  Update member's role
   updateMemberRole(
-    # public: UpdateMemberRoleInput
+    #  UpdateMemberRoleInput
     input: UpdateMemberRoleInput!
 
-    # public: Member Id
+    #  Member Id
     memberId: ID!
 
-    # public: Organization Id
+    #  Organization Id
     organizationId: ID!
   ): Member!
 
-  # public: Update the Organization
+  #  Update the Organization
   updateOrganization(
-    # public: UpdateOrganizationInput
+    #  UpdateOrganizationInput
     input: UpdateOrganizationInput!
 
-    # public: Organization Id
+    #  Organization Id
     organizationId: String!
   ): Organization!
 
-  # public: Updates a role.
+  #  Add,Update,Delete Organization Avatar
+  updateOrganizationAvatar(
+    #  Organization unique ID
+    organizationId: ID!
+  ): Organization!
+
+  #  Updates a role.
   updateRole(
-    # public: Role Id
+    #  Role Id
     RoleId: String!
 
-    # public: UpdateRoleInput
+    #  UpdateRoleInput
     input: UpdateRoleInput!
   ): Role!
 
-  # Updates a subscription
-  updateSubscription(
-    externalSubscriptionId: String!
-    input: UpdateSubscriptionInput!
-  ): SubscriptionUnionType!
+  #  Updates a scratch workspace with name (optional) and email
+  updateScratchWorkspace(
+    #  Email of the user that is saving the scratch workspace)
+    email: String!
 
-  # Updates a template.
-  updateTemplate(
-    disableNameCheck: Boolean = false
-    input: UpdateTemplateInput!
-    templateId: ID!
-  ): Template!
+    #  Scratch workspace name (can be optional)
+    name: String
 
-  # public: Update the user
+    #  Scratch workspace id
+    scratchWorkspaceId: ID!
+  ): ScratchWorkspace!
+
+  #  Update the user
   updateUser(
-    # public: UpdateUserInput
+    #  UpdateUserInput
     input: UpdateUserInput!
 
-    # public: User Id
+    #  User Id
     userId: String!
   ): User!
 
-  # Update a wall
-  updateWall(input: UpdateWallInput!, wallId: String!): Wall!
+  #  Add or Update and Delete User Avatar
+  updateUserAvatar: User!
 
-  # public: Update workspace
+  #  Update User Password
+  updateUserPassword(
+    #  UpdateUserPasswordInput
+    input: UpdateUserPasswordInput!
+  ): Boolean!
+
+  #  Update workspace
   updateWorkspace(
-    # public: Update Workspace Input
+    #  Update Workspace Input
     input: UpdateWorkspaceInput!
 
-    # public: WorkspaceId
+    #  WorkspaceId
     workspaceId: String!
   ): Workspace!
   delete(id: String!, workspaceId: String!): Boolean!
@@ -863,213 +790,137 @@ type Mutation {
     id: String!
     input: UpdateLineInput!
   ): UpdateElementResponse!
-
-  # Cancel subscription for an organization.
-  cancelSelfServeSubscription(
-    organizationId: String!
-  ): SelfServeSubscriptionInfoEnt!
-
-  # Forces end of a trial period. Charges the customer for selected billing period and moves subscription to the active status
-  convertToSelfServeSubscription(
-    organizationId: String!
-    licenseQuantity: Int!
-    interval: SubscriptionIntervalEnt!
-  ): SelfServeSubscriptionInfoEnt!
-
-  # Add payment card using token for an organization
-  updatePaymentCard(
-    organizationId: String!
-    paymentCardTokenId: String!
-  ): PaymentCardInfo!
-
-  # Provisions new free trial organization
-  createFreeTrial(
-    organizationName: String!
-    teamName: String!
-    intent: Intent!
-
-    # Hubspot Info
-    hubSpot: HubSpotInput
-    planType: PlanTypeEnt!
-  ): CreateFreeTrialResponse!
-
-  # Create a Paid Subscription directly
-  createSelfServeSubscription(
-    organizationName: String!
-    teamName: String!
-    intent: Intent!
-    planType: PlanTypeEnt!
-    interval: SubscriptionIntervalEnt!
-    licenseQuantity: Int!
-    paymentCardTokenId: String!
-    billingAddress: AddressInput!
-    shippingAddress: AddressInput
-
-    # Hubspot Info
-    hubSpot: HubSpotInput
-  ): CreateSelfServeSubscriptionResponse!
-
-  # Obtains subscription info from CB and updates it in ISAM
-  sync(organizationId: String!): SubscriptionUnionTypeEnt!
-
-  # Update billing and shipping addresses. If shipping address is not provided, it is filled by the same fields as a billing one. Returns billing address.
-  updateAddress(
-    organizationId: String!
-    billingAddress: AddressInput!
-    shippingAddress: AddressInput
-  ): Address!
-
-  # Update subscription [Deprecated] - please use updateSelfServeSubscriptionLicenseQuantity mutation instead
-  updateSelfServeSubscription(
-    organizationId: String!
-    licenseQuantity: Int
-  ): SelfServeSubscriptionInfoEnt!
-
-  # Update subscription license quantity
-  updateSelfServeSubscriptionLicenseQuantity(
-    organizationId: String!
-    licenseQuantity: Int!
-  ): SelfServeSubscriptionInfoEnt!
-
-  # Update subscription billing cycle
-  updateSelfServeSubscriptionBillingCycle(
-    organizationId: String!
-    billingCycle: SubscriptionIntervalEnt!
-  ): SelfServeSubscriptionInfoEnt!
-
-  # Recovers a Free Trial by linking an ISAM subscription to an already created Org, and submits the necessary tracking info to CB/SF + Hubspot
-  recoverFreeTrial(
-    organizationId: String!
-    organizationName: String!
-    ownerId: String!
-
-    # Hubspot Info
-    hubSpot: HubSpotInput!
-    planType: PlanTypeEnt!
-  ): Boolean!
-
-  # Reactivate subscription (only FreeTrial so far) for an organization.
-  reactivateSubscription(organizationId: String!): SelfServeSubscriptionInfoEnt!
+  createIcon(
+    # Id of the origin element. When specified the coordinates of a new element will be treated as relative to the origin point of that element
+    relativeToOriginOf: String
+    workspaceId: String!
+    input: CreateIconInput!
+  ): Icon!
+  updateIcon(
+    workspaceId: String!
+    id: String!
+    input: UpdateIconInput!
+  ): UpdateElementResponse!
 }
 
 type Subscription {
-  # public: Returns an event when an identity provider is created
+  #  Returns an event when an identity provider is created
   IdentityProviderCreated: IdentityProviderPayloadCreated!
 
-  # public: Returns an event when an identity provider is deleted
+  #  Returns an event when an identity provider is deleted
   IdentityProviderDeleted: IdentityProviderPayloadDeleted!
 
-  # public: Returns an event when an identity provider is updated
+  #  Returns an event when an identity provider is updated
   IdentityProviderUpdated: IdentityProviderPayloadUpdated!
 
-  # public: Collaborator added event.
+  #  Collaborator added event.
   addCollaborator(
-    # public: Collaborator Added Subscription Options
+    #  Collaborator Added Subscription Options
     subscriptionOptions: CollaboratorAddedSubscriptionOptions
   ): CollaboratorAdded!
 
-  # public: Organization member added events.
+  #  Organization member added events.
   addMember(
-    # public: Member added subscription
+    #  Member added subscription
     subscriptionOptions: MemberAddedSubscriptionOptions
   ): MemberAdded!
 
-  # public: Role created events
+  #  Role created events
   createRole(
-    # public: Create role subscription
+    #  Create role subscription
     subscriptionOptions: RoleCreatedSubscriptionOptions
   ): RoleCreated!
 
-  # public: Workspace created events.
+  #  Workspace created events.
   createWorkspace: WorkspaceCreated!
 
-  # public: Create workspace access request events.
+  #  Create workspace access request events.
   createWorkspaceAccessRequest(
-    # public: Subscription options for create workspace access request events.
+    #  Subscription options for create workspace access request events.
     subscriptionOptions: WorkspaceAccessRequestCreatedSubscriptionOptions
   ): WorkspaceAccessRequestCreated!
 
-  # public: Role deleted events.
+  #  Role deleted events.
   deleteRole(
-    # public: Role delete subscription
+    #  Role delete subscription
     subscriptionOptions: RoleDeletedSubscriptionOptions
   ): RoleDeleted!
 
-  # public: Workspace duplication events.
+  #  Workspace duplication events.
   duplicateWorkspace(
-    # public: Workspace duplicated subscription
+    #  Workspace duplicated subscription
     subscriptionOptions: WorkspaceDuplicatedSubscriptionOptions
   ): WorkspaceDuplicated!
 
-  # public: User login events.
+  #  User login events.
   login(
-    # public: Login event subscription
+    #  Login event subscription
     subscriptionOptions: UserLoginSubscriptionOptions
   ): UserLogin!
 
-  # public: Workspace reassigned events
+  #  Workspace reassigned events
   reassignWorkspace(
-    # public: Workspace reassigned event
+    #  Workspace reassigned event
     subscriptionOptions: WorkspaceReassignedSubscriptionOptions
   ): WorkspaceReassigned!
 
-  # public: User registration events.
+  #  User registration events.
   registerUser: UserRegistered!
 
-  # public: Collaborator Removed
+  #  Collaborator Removed
   removeCollaborator(
-    # public: collaborator Removed Event
+    #  collaborator Removed Event
     subscriptionOptions: CollaboratorRemovedSubscriptionOptions
   ): CollaboratorRemoved!
 
-  # public: Organization member removed events.
+  #  Organization member removed events.
   removeMember(
-    # public: Member removed event subscription
+    #  Member removed event subscription
     subscriptionOptions: MemberRemovedSubscriptionOptions
   ): MemberRemoved!
 
-  # public: User resend activation events.
+  #  User resend activation events.
   resendActivation: UserResendActivation!
 
-  # public: User passwors reset events.
+  #  User passwors reset events.
   resetPassword: UserResetPassword!
 
-  # public: Token revoke events.
+  #  Token revoke events.
   tokenRevoke: TokenRevoked!
 
-  # public: Update collaborator role events
+  #  Update collaborator role events
   updateCollaboratorRole(
-    # public: subscriptionOptions
+    #  subscriptionOptions
     subscriptionOptions: CollaboratorRoleChangedSubscriptionOptions
   ): CollaboratorRoleChanged!
 
-  # public: Organization member role updated events.
+  #  Organization member role updated events.
   updateMemberRole(
-    # public: Member role updated event
+    #  Member role updated event
     subscriptionOptions: MemberRoleUpdatedSubscriptionOptions
   ): MemberRoleUpdated!
 
-  # public: Role updated events.
+  #  Role updated events.
   updateRole(
-    # public: Role update subsription
+    #  Role update subsription
     subscriptionOptions: RoleUpdatedSubscriptionOptions
   ): RoleUpdated!
 
-  # public: User update events.
+  #  User update events.
   updateUser(
-    # public: Role Created Event Subscription
+    #  Role Created Event Subscription
     subscriptionOptions: UserUpdatedSubscriptionOptions
   ): UserUpdated!
 
-  # public: Workspace updated events
+  #  Workspace updated events
   updateWorkspace(
-    # public: Workspace updated event
+    #  Workspace updated event
     subscriptionOptions: WorkspaceUpdatedSubscriptionOptions
   ): WorkspaceUpdated!
 
-  # public: Update workspace access request events.
+  #  Update workspace access request events.
   updateWorkspaceAccessRequest(
-    # public: Subscription options for update workspace access request events.
+    #  Subscription options for update workspace access request events.
     subscriptionOptions: WorkspaceAccessRequestUpdateSubscriptionOptions
   ): WorkspaceAccessRequestUpdate!
   commands(
@@ -1086,4286 +937,3604 @@ type Subscription {
     # the cursor ID of last known command
     cursor: ID
   ): RawCommand!
-  changeMeetingHost(
-    subscriptionOptions: MeetingHostChangedSubscriptionOptions
-  ): MeetingHostChanged!
-  workspaceMeetingAttendanceChange(
-    subscriptionOptions: WorkspaceMeetingAttendanceChangedSubscriptionOptions
-  ): WorkspaceMeetingAttendanceChanged!
-  updateWaitingRoomStatus(
-    subscriptionOptions: WaitingRoomStatusUpdatedSubscriptionOptions
-  ): WaitingRoomStatusUpdated!
-  reachRecordingFileLimit(
-    subscriptionOptions: RecordingFileLimitReachedSubscriptionOptions
-  ): RecordingFileLimitReached!
-  recordingError(
-    subscriptionOptions: RecordingErrorOccurredSubscriptionOptions
-  ): RecordingErrorOccurred!
 }
 
-# public: Add collaborator input
+#  Add collaborator input
 input AddCollaboratorInput {
-  # public: The Id of the User or Group to be added to this workspace
+  #  The Id of the User or Group to be added to this workspace
   id: String!
 
-  # public: The role Id the of User to be added to this workspace
+  #  The role Id the of User to be added to this workspace
   workspaceRoleId: String!
 }
 
-# public: Add Member Input
+#  Add Member Input
 input AddMemberInput {
-  # public: The User Id of the Organization member
+  #  The User Id of the Organization member
   id: ID!
 
-  # public: Organization Role Id
+  #  Organization Role Id
   organizationRoleId: ID!
 
-  # public: The Role Type of the Organization member
+  #  The Role Type of the Organization member
   type: String
 }
 
-# public: Add Permission group role input
+#  Add Permission group role input
 input AddPermissionGroupsToRoleInput {
-  # display order of the role
-  displayOrder: Int
-
-  # public: Permission GroupIds
+  #  Permission GroupIds
   permissionGroupIds: [ID!]!
 }
 
-# public: BluescapeGroupJoinType
+#  BluescapeGroupJoinType
 enum BluescapeGroupJoinType {
-  # public: Any user can join the group.
+  #  Any user can join the group.
   Anyone
 
-  # public: New group members must be invited by the group owner.
+  #  New group members must be invited by the group owner.
   ByInvite
 
-  # public: Users that want to join a group can request that the group owner add them.
+  #  Users that want to join a group can request that the group owner add them.
   OnRequest
 }
 
-# public: Boolean Filter
+#  Boolean Filter
 input BooleanFilter {
-  # public: equals
+  #  equals
   eq: Boolean
 
-  # public: not equals
+  #  not equals
   ne: Boolean
 }
 
-# The type reflecting a broadcast message
-type BroadcastMessage {
-  # The body of the broadcast message
-  body: String!
-  createdAt: DateTime
-  endAt: DateTime
-  id: ID!
-
-  # Is the broadcast message can be dismissible
-  isDismissable: Boolean!
-  startAt: DateTime
-
-  # The type of broadcast message
-  type: BroadcastMessageType!
-  updatedAt: DateTime
-
-  # User details
-  user: User
-}
-
-input BroadcastMessageFilters {
-  and: [BroadcastMessageFilters!]
-  not: [BroadcastMessageFilters!]
-  or: [BroadcastMessageFilters!]
-  type: StringFilter
-}
-
-enum BroadcastMessageOrderByField {
-  updatedAt
-}
-
-input BroadcastMessageOrdering {
-  field: BroadcastMessageOrderByField!
-  order: OrderBy = Asc
-}
-
-# Type of broadcast message
-enum BroadcastMessageType {
-  # Internal broadcast message
-  Internal
-
-  # Public broadcast message
-  Public
-}
-
-union BroadcastMessageUnion = BroadcastMessage | SimpleBroadcastMessage
-
-# A paginated collection of broadcast messages.
-type BroadcastMessagesPaged {
-  next: String
-  prev: String
-  results: [BroadcastMessageUnion!]
-  totalItems: Int
-}
-
-# Subscription cancellation reason.
-enum CancellationReason {
-  # Currency incompatible with Gateway.
-  CurrencyIncompatibleWithGateway
-
-  # Fraud Review Failed.
-  FraudReviewFailed
-
-  # No Card.
-  NoCard
-
-  # Non Compliant Customer.
-  NonCompliantCustomer
-
-  # Non Compliant EU Customer.
-  NonCompliantEuCustomer
-
-  # Not Paid.
-  NotPaid
-
-  # Client has chosen not to renew their subscription.
-  NotRenewing
-
-  # Tax Calculation Failed.
-  TaxCalculationFailed
-}
-
-# public: A collaborator is user who can access a workspace.
+#  A collaborator is user who can access a workspace.
 type Collaborator {
-  # public: The User or Group this workspace is associated with
+  #  The User or Group this workspace is associated with
   collaborator: CollaboratorUnion!
 
-  # public: The Role this workspace is associated with
+  #  The Role this workspace is associated with
   workspaceRole: Role!
 }
 
-# public: Collaborator added event.
+#  Collaborator added event.
 type CollaboratorAdded {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Data
+  #  Data
   data: CollaboratorAddedPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Collaborator added event payload.
+#  Collaborator added event payload.
 type CollaboratorAddedPayload {
-  # public: Id
+  #  Id
   id: ID!
 
-  # public: Type
+  #  Type
   type: String!
 
-  # public: Workspace role
+  #  Workspace role
   workspaceRole: CollaboratorRolePayload!
 }
 
-# public: Collaborator Added Subscription
+#  Collaborator Added Subscription
 input CollaboratorAddedSubscriptionOptions {
-  # public: Collaborator Id
+  #  Collaborator Id
   collaboratorId: ID!
 
-  # public: Workspace Id
+  #  Workspace Id
   workspaceId: ID!
 }
 
-# public: Collaborator filter
+#  Collaborator filter
 input CollaboratorFilters {
-  # public: and filter
+  #  and filter
   and: [CollaboratorFilters!]
 
-  # public: group filter
+  #  group filter
   group: CollaboratorGroupFilters
 
-  # public: not filter
+  #  not filter
   not: [CollaboratorFilters!]
 
-  # public: or filter
+  #  or filter
   or: [CollaboratorFilters!]
 
-  # public: user filter
+  #  user filter
   user: CollaboratorUserFilters
 
-  # public: workspace role filter
+  #  workspace role filter
   workspaceRole: CollaboratorRoleFilters
 }
 
-# public: Collaborator group filter
+#  Collaborator group filter
 input CollaboratorGroupFilters {
-  # public: and filter
+  #  and filter
   and: [CollaboratorGroupFilters!]
 
-  # public: Bluescape join type
+  #  Bluescape join type
   bluescapeGroupJoinType: GroupJoinTypeFilter
 
-  # public: Description
+  #  Description
   description: StringFilter
 
-  # public: Id
+  #  Id
   id: StringFilter
 
-  # public: Name
+  #  Name
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [CollaboratorGroupFilters!]
 
-  # public: or filter
+  #  or filter
   or: [CollaboratorGroupFilters!]
 
-  # public: type
+  #  type
   type: StringFilter
 }
 
-# public: CollaboratorOrderByField
+#  CollaboratorOrderByField
 enum CollaboratorOrderByField {
-  # public: Order by the creation date
+  #  Order by the creation date
   createdAt
 
-  # public: Order by name
+  #  Order by name
   name
 
-  # public: Order by the date of the last update
+  #  Order by the date of the last update
   updatedAt
 }
 
-# public: Collaborator ordering
-input CollaboratorOrdering {
-  # public: sort field
-  field: CollaboratorOrderByField!
+#  Collaborator ordering options.
+input CollaboratorOrderedFields {
+  #
+  createdAt: OrderBy
 
-  # public: order field
-  order: OrderBy = Asc
+  #
+  name: OrderBy
+
+  #
+  updatedAt: OrderBy
 }
 
-# public: Collaborator removal event payload.
+#  Collaborator ordering
+input CollaboratorOrdering {
+  #  sort field
+  field: CollaboratorOrderByField
+
+  #  order field
+  order: OrderBy = Asc
+
+  #
+  orderedField: CollaboratorOrderedFields
+}
+
+#  Collaborator removal event payload.
 type CollaboratorRemovalPayload {
-  # public: Id
+  #  Id
   id: ID!
 
-  # public: type
+  #  type
   type: String!
 
-  # public: Workspace role
+  #  Workspace role
   workspaceRole: CollaboratorRolePayload!
 }
 
-# public: Collaborator removed event.
+#  Collaborator removed event.
 type CollaboratorRemoved {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Collaborator Removed
+  #  Collaborator Removed
   data: CollaboratorRemovalPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Collaborator Remove Subscription
+#  Collaborator Remove Subscription
 input CollaboratorRemovedSubscriptionOptions {
-  # public: Collaborator Id
+  #  Collaborator Id
   collaboratorId: ID!
 
-  # public: Workspace Id
+  #  Workspace Id
   workspaceId: ID!
 }
 
-# public: Collaborator role changed event
+#  Collaborator role changed event
 type CollaboratorRoleChanged {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: RolePayloadChanged!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Collaborator changed subscription
+#  Collaborator changed subscription
 input CollaboratorRoleChangedSubscriptionOptions {
-  # public: User Id
+  #  User Id
   userId: ID!
 
-  # public: Workspace Id
+  #  Workspace Id
   workspaceId: ID!
 }
 
-# public: Collaborator Role Filter
+#  Collaborator Role Filter
 input CollaboratorRoleFilters {
-  # public: and filter
+  #  and filter
   and: [CollaboratorRoleFilters!]
 
-  # public: description
+  #  description
   description: StringFilter
 
-  # public: Id
+  #  Id
   id: StringFilter
 
-  # public: is custom role
+  #  is custom role
   isCustom: BooleanFilter
 
-  # public: Name
+  #  Name
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [CollaboratorRoleFilters!]
 
-  # public: or filter
+  #  or filter
   or: [CollaboratorRoleFilters!]
 
-  # public: resource type
+  #  resource type
   resourceType: StringFilter
 
-  # public: type
+  #  type
   type: StringFilter
 }
 
-# public: Collaborator role event payload.
+#  Collaborator role event payload.
 type CollaboratorRolePayload {
-  # public: Id
+  #  Id
   id: ID!
 
-  # public: name
+  #  name
   name: String!
 }
 
-# public: Collaborator Union
+#  Collaborator Union
 union CollaboratorUnion = Group | User
 
-# public: Collaborator User Filters
+#  Collaborator User Filters
 input CollaboratorUserFilters {
-  # public: and filter
+  #  and filter
   and: [CollaboratorUserFilters!]
 
-  # public: Avatar URL
+  #  Avatar URL
   avatarUrl: StringFilter
 
-  # public: Email
+  #  Email
   email: StringFilter
 
-  # public: First name
+  #  First name
   firstName: StringFilter
 
-  # public: Id
+  #  Id
   id: StringFilter
 
-  # public: Last name
+  #  Last name
   lastName: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [CollaboratorUserFilters!]
 
-  # public: or filter
+  #  or filter
   or: [CollaboratorUserFilters!]
 }
 
-# public: A paginated collection of collaborators.
+#  A paginated collection of collaborators.
 type CollaboratorsPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [Collaborator!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-input CreateBroadcastMessageInput {
-  # The body of the broadcast message
-  body: String!
-  endAt: String
-
-  # Is the broadcast message can be dismissible
-  isDismissable: Boolean
-  startAt: String
-
-  # The type of broadcast message
-  type: BroadcastMessageType = Public
-}
-
-input CreateHelpMenuInput {
-  # Display order of the menu
-  displayOrder: Int
-
-  # Help Menu link/URL
-  link: String!
-
-  # Title of the Help menu
-  title: String!
-}
-
-# public: create identity provider input
-input CreateIdentityProviderInput {
-  # public: The email address of the provider administrator
-  adminEmail: String
-
-  # public: State of sp-initiated SAML single logout support
-  isSamlSpSloEnabled: Boolean
-
-  # public: URL of the SAML metadata file. It is required if the new identity provider is one of the SAML types
-  metadataUrl: String
-
-  # public: The name for the identity provider
+#  Create Custom link input
+input CreateCustomLinkInput {
+  #  The name for the custom link. It should be unique
   name: String!
 
-  # public: The type of identity provider
+  #  Owner data
+  ownerId: ID
+
+  #  ResourceId of the resource pointed by the customLink
+  resourceId: ID
+
+  #  ResourceType of the resource pointed by the customLink
+  resourceType: CustomLinkResourceType!
+}
+
+#  create identity provider input
+input CreateIdentityProviderInput {
+  #  The email address of the provider administrator
+  adminEmail: String
+
+  #  State of sp-initiated SAML single logout support
+  isSamlSpSloEnabled: Boolean
+
+  #  URL of the SAML metadata file. It is required if the new identity provider is one of the SAML types
+  metadataUrl: String
+
+  #  The name for the identity provider
+  name: String!
+
+  #  The type of identity provider
   type: IDPTypeCreate!
 
-  # public: Attribute name of User Guid in SAML assertion
+  #  Attribute name of User Guid in SAML assertion
   userGuidAttributeName: String
 }
 
-# public: CreateOrgDomainFilterInput
-input CreateOrgDomainFilterInput {
-  # public: allowedDomains
-  allowedDomains: [String!]
-
-  # public: deniedDomains
-  deniedDomains: [String!]
-}
-
-# public: Create organization input
-input CreateOrganizationInput {
-  # public: Account Id
-  accountId: ID
-
-  # public: True if IDP user is to be auto associated
-  autoAssociateIdentityProviderUser: Boolean = true
-
-  # public: True if the organization allows guests
-  canHaveGuests: Boolean = true
-
-  # public: Default Organization User RoleId
-  defaultOrganizationUserRoleId: ID
-
-  # public: Default Public Workspace RoleId
-  defaultPublicWorkspaceRoleId: ID
-
-  # public: True if custom roles are enabled for the organization
-  isCustomRolesEnabled: Boolean = false
-
-  # public: True if the organization requires admin approval for users to invite guest
-  isGuestInviteApprovalRequired: Boolean = false
-
-  # API user definable types stored in a key value collection
-  metadata: JSON
-
-  # public: The name of the organization or company
-  name: String!
-
-  # public: Owner Id
-  ownerId: ID
-
-  # public: The name of the team or organizational unit.
-  secondaryName: String = null
-}
-
-# public: Create role input
+#  Create role input
 input CreateRoleInput {
-  # public: description of the role
+  #  description of the role
   description: String
 
-  # public: The name for the role. It should be unique
+  #  The name for the role. It should be unique
   name: String!
 
-  # public: Organization Id
+  #  Organization Id
   organizationId: ID!
 
-  # public: Permission GroupIds
+  #  Permission GroupIds
   permissionGroupIds: [ID!]
 
-  # public: The resource type this role applies to
+  #  The resource type this role applies to
   resourceType: ResourceType!
 
-  # public: The type of role
+  #  The type of role
   type: RoleType!
 }
 
-input CreateTemplateInput {
-  # Template category
-  category: String
-
-  # Template description
-  description: String
-
-  # Template elements
-  elements: JSON
-
-  # Template icon
-  icon: String
-
-  # Template id comes from UI
-  masterId: String!
-
-  # Template metadata
-  metadata: JSON
-
-  # Template name
-  name: String!
-
-  # Template organization id
-  organizationId: ID!
-
-  # Template parameters
-  parameters: JSON
-  templateCollaborators: [TemplateMember!]
-
-  # Template type - User/Organization
-  type: TemplateType!
-}
-
-# public: Create user input
+#  Create user input
 input CreateUserInput {
-  # public: Application Role Id
+  #  Application Role Id
   applicationRoleId: String
 
-  # public: email id of the user
+  #  email id of the user
   email: String!
-
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata: JSON
 }
 
-input CreateVerficationCodeInput {
-  # email of the self serve user
-  email: String!
-
-  # query string EG:{tier: 'basic'}
-  qs: JSON
-}
-
-# public: Type for wall creation
-input CreateWallInput {
-  # The assetId of the wall
-  assetId: String!
-
-  # A unchanging uniquely generated random string used for caching
-  cacheKey: String
-
-  # The default area to show on the default workspace on loading the workspace
-  defaultViewport: DefaultViewportInput
-
-  # The ID of wall default workspace
-  defaultWorkspaceId: ID
-
-  # The location of the wall
-  location: String
-
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata: JSON
-
-  # The name of the wall
-  name: String!
-
-  # The ID of the organization that owns the wall
-  organizationId: String!
-
-  # The publicKey of the wall
-  publicKey: String!
-}
-
-# public: Created workspace input
+#  Created workspace input
 input CreateWorkspaceInput {
-  # public: Archived Date
+  #  Archived Date
   archivedAt: DateTime
 
-  # public: The classification of workspace.
+  #  The classification of workspace.
   classification: String
 
-  # public: Copy From
+  #  Copy From
   copyFrom: String
 
-  # public: The default workspace role for a public workspace
+  #  The default workspace role for a public workspace
   defaultRoleId: String
 
-  # public: The description for the workspace.
+  #  The description for the workspace.
   description: String
 
-  # public: true: this workspace can be accessed by any member of the organization, false: this workspace can only be accessed by the workspace's collaborators
+  #  true: this workspace can be accessed by any member of the organization, false: this workspace can only be accessed by the workspace's collaborators
   isPublic: Boolean!
 
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata: JSON
-
-  # public: The name for the workspace. It should be unique
+  #  The name for the workspace. It should be unique
   name: String!
 
-  # public: The organization Id this workspace is associated with
+  #  The organization Id this workspace is associated with
   organizationId: String!
 
-  # public: The id of the member who will own this workspace
+  #  The id of the member who will own this workspace
   ownerId: String
 }
 
-# Currency of all pricing related fields.
-enum Currency {
-  # United States Dollars.
-  USD
+#  The type expressing custom link.
+type CustomLink {
+  #  Created Date
+  createdAt: DateTime!
+
+  #  Custom link Id
+  id: ID!
+
+  #  The name for the custom link. It should be unique
+  name: String!
+
+  #  Owner data
+  owner: User
+
+  #  ResourceId of the resource pointed by the customLink
+  resourceId: ID
+
+  #  ResourceType of the resource pointed by the customLink
+  resourceType: CustomLinkResourceType!
+
+  #  Updated Date
+  updatedAt: DateTime!
 }
 
-# Date scalar
-scalar Date
+#  Get custom link by name
+type CustomLinkAnonymous {
+  #  ResourceId of the resource pointed by the customLink
+  resourceId: ID!
 
-# public: Date Filter
+  #  ResourceType of the resource pointed by the customLink
+  resourceType: CustomLinkResourceType!
+}
+
+#  The type expressing custom link is available or not.
+#   Given some valid suggestion if available.
+type CustomLinkAvailability {
+  #  Custom link is available
+  isAvailable: Boolean!
+
+  #  Alternative suggested names
+  suggestions: [String!]!
+}
+
+#  Custom link availability
+input CustomLinkAvailabilityInput {
+  #  The name for the custom link. It should be unique
+  name: String!
+}
+
+#  Custom link filters
+input CustomLinkFilters {
+  #  and filter
+  and: [CustomLinkFilters!]
+
+  #  Created Date
+  createdAt: DateFilter
+
+  #  Id
+  id: StringFilter
+
+  #  name
+  name: StringFilter
+
+  #  not filter
+  not: [CustomLinkFilters!]
+
+  #  or filter
+  or: [CustomLinkFilters!]
+
+  #  Owner id of the custom link. This should be used for instance admin. User get their own custom links only.
+  ownerId: StringFilter
+
+  #  updated date
+  updatedAt: DateFilter
+}
+
+#  Custom link orderBy Field
+enum CustomLinkOrderByField {
+  #  Order by creation date.
+  createdAt
+
+  #  Order by name.
+  name
+
+  #  Order by last update date.
+  updatedAt
+}
+
+#  Custom link ordering options.
+input CustomLinkOrderedFields {
+  #
+  createdAt: OrderBy
+
+  #
+  name: OrderBy
+
+  #
+  updatedAt: OrderBy
+}
+
+#  Custom link, ordering
+input CustomLinkOrdering {
+  #  field
+  field: CustomLinkOrderByField
+
+  #  order
+  order: OrderBy = Asc
+
+  #
+  orderedField: CustomLinkOrderedFields
+}
+
+#  Available types of resource
+enum CustomLinkResourceType {
+  #  Custom link blocked type. (Reserved by admin or taken by others)
+  Blocked
+
+  #  Custom link meeting type
+  Meet
+}
+
+#  A paginated collection of custom links
+type CustomLinksPaged {
+  #  next
+  next: String
+
+  #  prev
+  prev: String
+
+  #  results
+  results: [CustomLink!]
+
+  #  totalItems
+  totalItems: Int
+}
+
+#  Date Filter
 input DateFilter {
-  # public: equals
+  #  equals
   eq: DateTime
 
-  # public: greater equal
+  #  greater equal
   ge: DateTime
 
-  # public: greater than
+  #  greater than
   gt: DateTime
 
-  # public: less than equal
+  #  less than equal
   le: DateTime
 
-  # public: less than
+  #  less than
   lt: DateTime
 
-  # public: not equals
+  #  not equals
   ne: DateTime
 }
 
-# The javascript `Date` as string. Type represents date and time as the ISO Date string.
+# The `DateTime` scalar type represents dates in RFC 3339 format (for example "2019-11-25T16:22:28.737Z").
 scalar DateTime
 
-# [deprecated] The default view port for the wall. To become to Viewport when gql-gateway can deal with conflict with Elementary Viewport
-type DefaultViewport {
-  h: Float!
-  w: Float!
-  x: Float!
-  y: Float!
-}
-
-input DefaultViewportInput {
-  h: Float!
-  w: Float!
-  x: Float!
-  y: Float!
-}
-
-# public: Delete member input
+#  Delete member input
 input DeleteMemberInput {
-  # public: The User Id or the Group Id to be deleted from the Organization
+  #  The User Id or the Group Id to be deleted from the Organization
   memberId: ID!
 
-  # public: When changing an organization member to be a "guest", sets any workspaces owned by that member to a new workspace owner.
+  #  When changing an organization member to be a "guest", sets any workspaces owned by that member to a new workspace owner.
   newWorkspaceOwnerId: ID = null
 }
 
-# public: Delete Org Domain Filter Input
-input DeleteOrgDomainFilterInput {
-  # public: domains
-  domains: [String!]!
-}
-
-# public: Group info used for synchronization.
+#  Group info used for synchronization.
 type ExternalGroupInfo {
-  # public: Auto-invite inviter or null if the previous sync did not use auto-invite
+  #  Auto-invite inviter or null if the previous sync did not use auto-invite
   autoInviteInviter: String!
 
-  # public: The ID of the External Group Info.
+  #  The ID of the External Group Info.
   id: ID!
 
-  # public: Identifier for the group in the external provider. Example: "e06eebc1-32fb-4971-b633-nnnnnnnnnnnn"
+  #  Identifier for the group in the external provider. Example: "e06eebc1-32fb-4971-b633-nnnnnnnnnnnn"
   identity: String!
 
-  # public: Determines whether auto nested sync is enabled for the group
+  #  Determines whether auto nested sync is enabled for the group
   isAutoNestedSync: Boolean!
 
-  # public: Error message from the most recent incremental or full sync failure. This
+  #  Error message from the most recent incremental or full sync failure. This
   #     message is not removed when the sync completes successfully.<br/>
   lastSyncError: String!
 
-  # public: The name of the group in the external provider
+  #  The name of the group in the external provider
   name: String!
 
-  # public: State of the last incremental or full sync.
+  #  State of the last incremental or full sync.
   syncState: ExternalGroupInfoSyncState!
 }
 
-# public: External Group sync state
+#  External Group sync state
 enum ExternalGroupInfoSyncState {
-  # public: The previously attempted full or incremental sync has successfully completed
+  #  The previously attempted full or incremental sync has successfully completed
   Complete
 
-  # public: The previously attempted full or incremental sync has failed. See also the sync error field
+  #  The previously attempted full or incremental sync has failed. See also the sync error field
   Failure
 
-  # public: A full or incremental sync is currently in process
+  #  A full or incremental sync is currently in process
   InProcess
 
-  # public: No sync has yet been attempted
+  #  No sync has yet been attempted
   NeverInitiated
 }
 
-# public: Workspaces marked as favorites
+#  Workspaces marked as favorites
 type Favorites {
-  # public: Workspaces
+  #  Workspaces
   workspaces(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: WorkspaceFilters
 
-    # public: ordering
+    #  ordering
     ordering: [WorkspaceOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): WorkspacesPaged
 }
 
-# Free trial Subscription.
-type FreeTrialSubscriptionInfo {
-  # Reason the subscription was cancelled
-  cancelReason: CancellationReason
-
-  # The date the current term will end at and the subscription will be cancelled.
-  cancelledAt: Date
-
-  # Date the subscription was created at. Will be the same as the organization's creation date
-  createdAt: Date
-
-  # End date of the current term for Free Trial or Self Serve.
-  currentTermEnd: Date
-
-  # Start date of the current term for Free Trial or Self Serve.
-  currentTermStart: Date
-
-  # The date at which the organization's subscription expired
-  expiredAt: Date
-
-  # The number of licenses currently in use.
-  licensesCurrentlyInUse: Int
-
-  # Mode.
-  mode: SubscriptionMode
-
-  # Plan name.
-  planName: String
-
-  # Plan type.
-  planType: PlanType
-
-  # Date the subscription was last updated at. Will be the last update from the external subscription once it has been created with createOrganization.
-  updatedAt: Date
-
-  # Workspace count limit.
-  workspaceCountLimit: Int
-
-  # Workspace storage limit in Mb
-  workspaceStorageLimitMb: Int
+#  Get availability by name
+input GetCustomLinkByNameInput {
+  #  The name for the custom link.
+  name: String!
 }
 
-# public: A group of users.
+#  A group of users.
 type Group {
-  # public: This field determines how a group members are added to a Bluescape Group. Note: doesn't apply to External groups.
+  #  This field determines how a group members are added to a Bluescape Group. Note: doesn't apply to External groups.
   bluescapeGroupJoinType: BluescapeGroupJoinType
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: Description of the purpose of this group along with any notes relating to it
+  #  Description of the purpose of this group along with any notes relating to it
   description: String!
 
-  # public: externalGroupInfo
+  #  externalGroupInfo
   externalGroupInfo: ExternalGroupInfo
 
-  # public: The Id of the Group
+  #  The Id of the Group
   id: ID!
 
-  # public: The name of the Group
+  #  The name of the Group
   name: String!
 
-  # public: The Id of the organization this group will belong to
+  #  The Id of the organization this group will belong to
   organizationId: ID!
 
-  # public: Whether this group is a Bluescape Group (internal) managed group or and externally synced group
+  #  Whether this group is a Bluescape Group (internal) managed group or and externally synced group
   type: GroupType!
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
 }
 
-# public: Group join filter
+#  Group join filter
 input GroupJoinTypeFilter {
-  # public: equals filter
+  #  equals filter
   eq: BluescapeGroupJoinType
 
-  # public: not equals filter
+  #  not equals filter
   ne: BluescapeGroupJoinType
 }
 
-# public: GroupType
+#  GroupType
 enum GroupType {
-  # public: A group defined within Bluescape.
+  #  A group defined within Bluescape.
   Bluescape
 
-  # public: A group defined outside of Bluescape.
+  #  A group defined outside of Bluescape.
   External
 }
 
-# The help menu type.
-type HelpMenu {
-  createdAt: DateTime!
+#  IDFilter
+input IDFilter {
+  #  equals
+  eq: ID
 
-  # Display order of the help menu
-  displayOrder: Int!
-
-  # The Id of the help menu
-  id: ID!
-
-  # The URL of the help menu
-  link: String!
-
-  # The title of the help menu
-  title: String!
-  updatedAt: DateTime!
+  #  not equal
+  ne: ID
 }
 
-input HelpMenuFilters {
-  and: [HelpMenuFilters!]
-  not: [HelpMenuFilters!]
-  or: [HelpMenuFilters!]
-  title: StringFilter
-}
-
-enum HelpMenuOrderByField {
-  createdAt
-  displayOrder
-  title
-  updatedAt
-}
-
-input HelpMenuOrdering {
-  field: HelpMenuOrderByField!
-  order: OrderBy = Asc
-}
-
-# A paginated collection of help menu items.
-type HelpMenuPaged {
-  next: String
-  prev: String
-  results: [HelpMenu!]
-  totalItems: Int
-}
-
-# public: IdentityProvider types
+#  IdentityProvider types
 enum IDPType {
-  # public: Active Directory Federation Serivces
+  #  Active Directory Federation Serivces
   Adfs
 
-  # public: Common Access Card
+  #  Common Access Card
   Cac
 
-  # public: F5 SAML Provider
+  #  F5 SAML Provider
   F5
 
-  # public: Okta SAML Provider
+  #  Okta SAML Provider
   Okta
 
-  # public: Onelogin cloud-based SAML Provider
+  #  Onelogin cloud-based SAML Provider
   Onelogin
 
-  # public: Internal, default, Bluescape Identity Provider
+  #  Internal, default, Bluescape Identity Provider
   Password
 
-  # public: PingFederate is an enterprise SAML Provider
+  #  PingFederate is an enterprise SAML Provider
   PingFederate
 }
 
-# public: IdentityProviders that can be created for use
+#  IdentityProviders that can be created for use
 enum IDPTypeCreate {
-  # public: Active Directory Federation Serivces
+  #  Active Directory Federation Serivces
   Adfs
 
-  # public: Common Access Card
+  #  Common Access Card
   Cac
 
-  # public: F5 SAML Provider
+  #  F5 SAML Provider
   F5
 
-  # public: Okta SAML Provider
+  #  Okta SAML Provider
   Okta
 
-  # public: Onelogin cloud-based SAML Provider
+  #  Onelogin cloud-based SAML Provider
   Onelogin
 
-  # public: PingFederate is an enterprise SAML Provider
+  #  PingFederate is an enterprise SAML Provider
   PingFederate
 }
 
-# public: An identity provider is a service that defines the identity of a user, it can be external, e.g. SAML, or internal, e.g. Bluescape password
+#  An identity provider is a service that defines the identity of a user, it can be external, e.g. SAML, or internal, e.g. Bluescape password
 type IdentityProvider {
-  # public: The email address of the provider administrator
+  #  The email address of the provider administrator
   adminEmail: String
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: Identity Provider Id
+  #  Identity Provider Id
   id: ID!
 
-  # public: State of sp-initiated SAML single logout support
+  #  State of sp-initiated SAML single logout support
   isSamlSpSloEnabled: Boolean
 
-  # public: URL of the SAML metadata file. It is required if the new identity provider is one of the SAML types
+  #  URL of the SAML metadata file. It is required if the new identity provider is one of the SAML types
   metadataUrl: String
 
-  # public: The name for the identity provider
+  #  The name for the identity provider
   name: String!
 
-  # public: Organizations
+  #  Organizations
   organizations: [Organization!]!
 
-  # public: The type of identity provider
+  #  The type of identity provider
   type: IDPType!
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
 
-  # public: Attribute name of User Guid in SAML assertion
+  #  Attribute name of User Guid in SAML assertion
   userGuidAttributeName: String
 }
 
-# public: A base type for other identity provider events.
+#  A base type for other identity provider events.
 type IdentityProviderEventPayload {
-  # public: The email address of the provider administrator
+  #  The email address of the provider administrator
   adminEmail: String
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: Identity provider id
+  #  Identity provider id
   id: ID!
 
-  # public: The url that provides SAML metadata
+  #  The url that provides SAML metadata
   metadataUrl: String
 
-  # public: The name for the identity provider
+  #  The name for the identity provider
   name: String!
 
-  # public: The type of identity provider
+  #  The type of identity provider
   type: IDPType!
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
 }
 
-# public: Identity Provider Filters
+#  Identity Provider Filters
 input IdentityProviderFilters {
-  # public: admin email
+  #  admin email
   adminEmail: StringFilter
 
-  # public: and filter
+  #  and filter
   and: [IdentityProviderFilters!]
 
-  # public: created date
+  #  created date
   createdAt: DateFilter
 
-  # public: metadata url
+  #  metadata url
   metadataUrl: StringFilter
 
-  # public: name of the idp
+  #  name of the idp
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [IdentityProviderFilters!]
 
-  # public: or filter
+  #  or filter
   or: [IdentityProviderFilters!]
 
-  # public: type
+  #  type
   type: IdentityProviderTypeFilter
 
-  # public: updated date
+  #  updated date
   updatedAt: DateFilter
 }
 
-# public: Order by fields.
+#  Order by fields.
 enum IdentityProviderOrderByField {
-  # public: Order by creation date.
+  #  Order by creation date.
   createdAt
 
-  # public: Order by name.
+  #  Order by name.
   name
 
-  # public: Order by type.
+  #  Order by type.
   type
 
-  # public: Order by update date.
+  #  Order by update date.
   updatedAt
 }
 
-# public: Identity provider ordering.
+#  Identity provider ordering options.
+input IdentityProviderOrderedFields {
+  #
+  createdAt: OrderBy
+
+  #
+  name: OrderBy
+
+  #
+  type: OrderBy
+
+  #
+  updatedAt: OrderBy
+}
+
+#  Identity provider ordering.
 input IdentityProviderOrdering {
-  # public: Order by field.
-  field: IdentityProviderOrderByField!
+  #  Order by field.
+  field: IdentityProviderOrderByField
 
-  # public: Ordering direction.
+  #  Ordering direction.
   order: OrderBy = Asc
+
+  #  Field
+  orderedField: IdentityProviderOrderedFields
 }
 
-# public: Event raised when an identity provider is created.
+#  Event raised when an identity provider is created.
 type IdentityProviderPayloadCreated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: IdentityProviderEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Event raised when an identity provider is deleted.
+#  Event raised when an identity provider is deleted.
 type IdentityProviderPayloadDeleted {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: IdentityProviderEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Event raised when an identity provider is updated.
+#  Event raised when an identity provider is updated.
 type IdentityProviderPayloadUpdated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: IdentityProviderEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: A type to filter identity providers.
+#  A type to filter identity providers.
 input IdentityProviderTypeFilter {
-  # public: equals
+  #  equals
   eq: IDPType
 
-  # public: not equals
+  #  not equals
   ne: IDPType
 }
 
-# public: A type for paginated identity providers.
+#  A type for paginated identity providers.
 type IdentityProvidersPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [IdentityProvider!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-scalar JSON
-
-# Legacy Subscription.
-type LegacySubscriptionInfo {
-  # Date the subscription was created at. Will be the same as the organization's creation date
-  createdAt: Date
-
-  # The date at which the organization's subscription expired
-  expiredAt: Date
-
-  # Subscription interval - YEAR/MONTH.
-  interval: SubscriptionInterval
-
-  # The number of licenses currently in use.
-  licensesCurrentlyInUse: Int
-
-  # Mode.
-  mode: SubscriptionMode
-
-  # Date the subscription was last updated at. Will be the last update from the external subscription once it has been created with createOrganization.
-  updatedAt: Date
-}
-
-input LinkExternalFreeTrialSubscriptionInput {
-  currency: Currency = USD
-
-  # End date of the current term for Free Trial or Self Serve.
-  currentTermEnd: Date!
-
-  # Start date of the current term for Free Trial or Self Serve.
-  currentTermStart: Date!
-
-  # External subscription ID.
-  externalSubscriptionId: String!
-
-  # Version of external subscription. Changes (increases) with every update.
-  externalSubscriptionVersion: Long!
-
-  # Plan type.
-  futurePlanType: PlanType!
-
-  # The same plan will have multiple versions as it evolves over time.
-  planVersion: Int!
-
-  # Cost per license in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  pricePerLicense: Int!
-}
-
-input LinkExternalSelfServeSubscriptionInput {
-  currency: Currency = USD
-
-  # End date of the current term for Free Trial or Self Serve.
-  currentTermEnd: Date!
-
-  # Start date of the current term for Free Trial or Self Serve.
-  currentTermStart: Date!
-
-  # External subscription ID.
-  externalSubscriptionId: String!
-
-  # Version of external subscription. Changes (increases) with every update.
-  externalSubscriptionVersion: Long!
-
-  # Subscription interval - YEAR/MONTH.
-  interval: SubscriptionInterval!
-
-  # The number of licenses available for the current term.
-  licenseQuantity: Int!
-
-  # The number of licenses purchased for next term.
-  licenseQuantityInNextTerm: Int!
-
-  # Date at which the next billing for the subscription will occur.
-  nextBillingAt: Date!
-
-  # Total amount that will be charged on `nextBillingAt` in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  nextBillingPeriodAmount: Int!
-
-  # Start date of the next term.
-  nextTermStart: Date!
-
-  # Plan type.
-  planType: PlanType!
-
-  # The same plan will have multiple versions as it evolves over time.
-  planVersion: Int!
-
-  # Cost per license in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  pricePerLicense: Int!
-}
-
-# The `Long` scalar type represents 52-bit integers
-scalar Long
-
-# public: Get the current user.
+#  Get the current user.
 type Me {
-  # public: Favorites
+  #  Favorites
   favorites: Favorites!
 
-  # public: Organizations specifically associated to the user
+  #  Organizations specifically associated to the user
   organizations(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: OrganizationFilters
 
-    # public: ordering
+    #  ordering
     ordering: [OrganizationOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): OrganizationsPaged!
 
-  # public: User profile
+  #  User profile
   profile: User!
 
-  # public: public: Wall specifically associated to the user
+  #  public: Wall specifically associated to the user
   walls(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: WallFilters
 
-    # public: ordering
+    #  ordering
     ordering: [WallOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): WallsPaged!
 
-  # public: workspces specifically associated to the user
+  #  workspaces specifically associated to the user
   workspaces(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: UserWorkspaceFilters
 
-    # public: ordering
+    #  ordering
     ordering: [WorkspaceOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): UserWorkspacesPaged!
 }
 
-# public: A member of an organization.
+#  A member of an organization.
 type Member {
-  # public: The User or Group this organization is associated with
+  #  The User or Group this organization is associated with
   member: MemberUnion!
 
-  # public: The organization this Member is associated with
+  #  The organization this Member is associated with
   organization: Organization!
 
-  # public: The Role this Member is associated in the Organization
+  #  The Role this Member is associated in the Organization
   organizationRole: Role!
 }
 
-# public: Organization member added event.
+#  Organization member added event.
 type MemberAdded {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: MemberAddedPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Organization member added event payload.
+#  Organization member added event payload.
 type MemberAddedPayload {
-  # public: The User Id of the Organization member
+  #  The User Id of the Organization member
   id: ID!
 
-  # public: The Role details the Member in Organization
+  #  The Role details the Member in Organization
   organizationRole: MemberRolePayload!
 
-  # public: The Role Type of the Organization member
+  #  The Role Type of the Organization member
   type: String!
 }
 
-# public: Member added subscription
+#  Member added subscription
 input MemberAddedSubscriptionOptions {
-  # public: Organization Id
+  #  Organization Id
   organizationId: ID!
 }
 
-# public: member filters
+#  member filters
 input MemberFilters {
-  # public: and filter
+  #  and filter
   and: [MemberFilters!]
 
-  # public: group filter
+  #  group filter
   group: MemberGroupFilters
 
-  # public: not filter
+  #  not filter
   not: [MemberFilters!]
 
-  # public: or filter
+  #  or filter
   or: [MemberFilters!]
 
-  # public: organization role
+  #  organization role
   organizationRole: MemberRoleFilters
 
-  # public: user filter
+  #  user filter
   user: MemberUserFilters
 }
 
-# public: Member group filter
+#  Member group filter
 input MemberGroupFilters {
-  # public: and filter
+  #  and filter
   and: [MemberGroupFilters!]
 
-  # public: Bluescape group join type
+  #  Bluescape group join type
   bluescapeGroupJoinType: GroupJoinTypeFilter
 
-  # public: description
+  #  description
   description: StringFilter
 
-  # public: id
+  #  id
   id: StringFilter
 
-  # public: name
+  #  name
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [MemberGroupFilters!]
 
-  # public: or filter
+  #  or filter
   or: [MemberGroupFilters!]
 
-  # public: type
+  #  type
   type: StringFilter
 }
 
-# public: Member ordering.
+#  Member ordering.
 enum MemberOrderByField {
-  # public: Order by email.
+  #  Order by email.
   email
 }
 
-# public: Member ordering.
-input MemberOrdering {
-  # public: sort field
-  field: MemberOrderByField!
-
-  # public: sort order
-  order: OrderBy = Asc
+#  Member ordering options.
+input MemberOrderedFields {
+  #
+  email: OrderBy
 }
 
-# public: Organization member removed event.
+#  Member ordering.
+input MemberOrdering {
+  #  sort field
+  field: MemberOrderByField
+
+  #  sort order
+  order: OrderBy = Asc
+
+  #
+  orderedField: MemberOrderedFields
+}
+
+#  Organization member removed event.
 type MemberRemoved {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: MemberRemovedPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Organization member removed event payload.
+#  Organization member removed event payload.
 type MemberRemovedPayload {
-  # public: The email of the Organization member
+  #  The email of the Organization member
   email: String!
 
-  # public: The User Id of the Organization member
+  #  The User Id of the Organization member
   id: ID!
 
-  # public: The name of the Organization member
+  #  The name of the Organization member
   name: String!
 
-  # public: The organization Id this this Member is associated with
+  #  The organization Id this this Member is associated with
   organizationId: ID!
 
-  # public: The Role details of the Organization member
+  #  The Role details of the Organization member
   organizationRole: MemberRolePayload!
 
-  # public: The type of the Organization member, can be user/group
+  #  The type of the Organization member, can be user/group
   type: String!
 }
 
-# public: Member Removed subscription
+#  Member Removed subscription
 input MemberRemovedSubscriptionOptions {
-  # public: Organization Id
+  #  Organization Id
   organizationId: ID!
 }
 
-# public: Member Role filters
+#  Member Role filters
 input MemberRoleFilters {
-  # public: and filter
+  #  and filter
   and: [MemberRoleFilters!]
 
-  # public: description
+  #  description
   description: StringFilter
 
-  # public: id
+  #  id
   id: StringFilter
 
-  # public: is custom
+  #  is custom
   isCustom: BooleanFilter
 
-  # public: name
+  #  name
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [MemberRoleFilters!]
 
-  # public: or filter
+  #  or filter
   or: [MemberRoleFilters!]
 
-  # public: resource type
+  #  resource type
   resourceType: StringFilter
 
-  # public: type
+  #  type
   type: StringFilter
 }
 
-# public: Organization member role event payload.
+#  Organization member role event payload.
 type MemberRolePayload {
-  # public: The Role Id of the Organization member
+  #  The Role Id of the Organization member
   id: ID!
 
-  # public: The Role Name of the Organization member
+  #  The Role Name of the Organization member
   name: String!
 
-  # public: The display order of the role
+  #  The display order of the role
   order: Float!
 
-  # public: The Role Type of the Organization member
+  #  The Role Type of the Organization member
   type: String!
 }
 
-# public: Organization member role updated event.
+#  Organization member role updated event.
 type MemberRoleUpdated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: MemberRoleUpdatedPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Organization member role updated event payload.
+#  Organization member role updated event payload.
 type MemberRoleUpdatedPayload {
-  # public: The User Id of the Organization member
+  #  The User Id of the Organization member
   id: ID!
 
-  # public: The Role details the Member in Organization
+  #  The Role details the Member in Organization
   newOrganizationRole: MemberRolePayload!
 
-  # public: The Role details the Member in Organization
+  #  The Role details the Member in Organization
   previousOrganizationRole: MemberRolePayload!
 
-  # public: The Role Type of the Organization member
+  #  The Role Type of the Organization member
   type: String!
 }
 
-# public: Member role updated subscription
+#  Member role updated subscription
 input MemberRoleUpdatedSubscriptionOptions {
-  # public: Member Id
+  #  Member Id
   memberId: ID!
 
-  # public: Organization Id
+  #  Organization Id
   organizationId: ID!
 }
 
-# public: Member Union
+#  Member Union
 union MemberUnion = Group | User
 
-# public: Member user filters
+#  Member user filters
 input MemberUserFilters {
-  # public: and filter
+  #  and filter
   and: [MemberUserFilters!]
 
-  # public: avatar URL
+  #  avatar URL
   avatarUrl: StringFilter
 
-  # public: email
+  #  email
   email: StringFilter
 
-  # public: first name
+  #  first name
   firstName: StringFilter
 
-  # public: Id
+  #  Id
   id: StringFilter
 
-  # public: last name
+  #  last name
   lastName: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [MemberUserFilters!]
 
-  # public: or filter
+  #  or filter
   or: [MemberUserFilters!]
 }
 
-# public: A paginated collection of organization members.
+#  A paginated collection of organization members.
 type MembersPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [Member!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# Associations between the requester and the resource in context
-type My {
-  # The resolved permissions of the requester on this organization
-  permissions(
-    # A list of permission keys to filter by
-    contains: [String!]
-
-    # which permissions to include
-    include: [String!]
-  ): [String!]!
-}
-
-# public: OrderBy
+#  OrderBy
 enum OrderBy {
-  # public: Ascending order
+  #  Ascending order
   Asc
 
-  # public: Descending order
+  #  Descending order
   Desc
 }
 
-# public: The organizaiton domain filter type expresses what domains guest invites can be made to.
-type OrgDomainFilter {
-  # public: The domain that will be either denied or allowed in the org
-  domain: String!
-
-  # public: Is the domian allowed
-  isAllowed: Boolean!
-
-  # public: Is the domain denied
-  isDenied: Boolean!
-
-  # public: The organization where the domain is filtered
-  organization: Organization
-}
-
-# public: The response of a organization domain filter request.
-type OrgDomainFiltersResponse {
-  # public: allowedDomains
-  allowedDomains: [String!]!
-
-  # public: deniedDomains
-  deniedDomains: [String!]!
-}
-
-# public: The organization type.
+#  The organization type.
 type Organization {
-  # public: True if IDP user is to be auto associated
+  #  True if IDP user is to be auto associated
   autoAssociateIdentityProviderUser: Boolean!
 
-  # public: True if the organization allows guests
+  #  True if the organization allows guests
   canHaveGuests: Boolean
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: The role to apply when a user is added to an organization, but has no role has been assigned
+  #  The role to apply when a user is added to an organization, but has no role has been assigned
   defaultOrganizationUserRole: Role
 
-  # public: The Id of the role to apply when a user accesses a public workspace, but has no role specified for that workspace
+  #  The Id of the role to apply when a user accesses a public workspace, but has no role specified for that workspace
   defaultPublicWorkspaceRole: Role
 
-  # Get domain filters in the organization
-  domainFilters: OrgDomainFiltersResponse!
-
-  # public: Id of the organization
+  #  Id of the organization
   id: ID!
 
-  # The identity provider that the organization uses
-  identityProvider: IdentityProvider
-
-  # public: True if custom roles are enabled for the organization
+  #  True if custom roles are enabled for the organization
   isCustomRolesEnabled: Boolean
 
-  # Whether this organization has Enhanced User Authorization enabled. Note: will be false for Bluescape instances that don't support the EUA feature.
-  isEnhancedUserAuthorizationEnabled: Boolean!
-
-  # public: True if the organization requires admin approval for users to invite guest
+  #  True if the organization requires admin approval for users to invite guest
   isGuestInviteApprovalRequired: Boolean
 
-  # The date the organization was locked at
-  lockedAt: DateTime
-
-  # public: Members
+  #  Members
   members(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: MemberFilters
 
-    # public: ordering
+    #  ordering
     ordering: [MemberOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): MembersPaged!
 
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata(
-    # Select a subset of fields to include in the output.
-    include: [String!]
-  ): JSON
+  #  Enable/disable Multi-factor authentication for the organization
+  mfaEnabled: Boolean
 
-  # associations between the requester and the organization
-  my: My
-
-  # public: The name of the organization or company
+  #  The name of the organization or company
   name: String!
 
-  # public: The owner of the organization
+  #  The owner of the organization
   owner: User!
 
-  # public: The name of the team or organizational unit
+  #  The name of the team or organizational unit
   secondaryName: String
 
-  # Subscription
-  subscription: SubscriptionUnionType
+  #  Signed avatar URL of the organization
+  signedAvatarUrl: String
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
 
-  # public: Walls
+  #  Walls
   walls(
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): WallsPaged!
 }
 
-# public: Organization Filters
+#  Organization Filters
 input OrganizationFilters {
-  # public: and filter
+  #  and filter
   and: [OrganizationFilters!]
 
-  # public: can have guests
+  #  can have guests
   canHaveGuests: BooleanFilter
 
-  # public: is custom role enalbed
+  #  is custom role enalbed
   isCustomRolesEnabled: BooleanFilter
 
-  # public: is guest invite approval required
+  #  is guest invite approval required
   isGuestInviteApprovalRequired: BooleanFilter
 
-  # public: name
+  #  name
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [OrganizationFilters!]
 
-  # public: or filter
+  #  or filter
   or: [OrganizationFilters!]
 
-  # public: Secondary name
+  #  Secondary name
   secondaryName: StringFilter
-
-  # A filter for subscription mode
-  subscriptionMode: SubscriptionModeFilter
 }
 
-# public: Organization Order by field
+#  Organization Order by field
 enum OrganizationOrderByField {
-  # public: Order by the creation date
+  #  Order by the creation date
   createdAt
 
-  # public: Order by name
+  #  Order by name
   name
 
-  # public: Order by secondaryName
+  #  Order by secondaryName
   secondaryName
 
-  # public: Order by subscriptionMode
+  #  Order by subscriptionMode
   subscriptionMode
 
-  # public: Order by the last updated date
+  #  Order by the last updated date
   updatedAt
 }
 
-# public: Organization Ordering
-input OrganizationOrdering {
-  # public: sort fields
-  field: OrganizationOrderByField!
+#  Organization ordering options.
+input OrganizationOrderedFields {
+  #
+  createdAt: OrderBy
 
-  # public: order fields
-  order: OrderBy = Asc
+  #
+  name: OrderBy
+
+  #
+  secondaryName: OrderBy
+
+  #
+  subscriptionMode: OrderBy
+
+  #
+  updatedAt: OrderBy
 }
 
-# public: A paginated collection of organizations.
+#  Organization Ordering
+input OrganizationOrdering {
+  #  sort fields
+  field: OrganizationOrderByField
+
+  #  order fields
+  order: OrderBy = Asc
+
+  #
+  orderedField: OrganizationOrderedFields
+}
+
+#  A paginated collection of organizations.
 type OrganizationsPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [Organization!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# public: OwnedBy
+#  OwnedBy
 enum OwnedBy {
-  # public: Owned by me
+  #  Owned by me
   me
 
-  # public: Owned by other users
+  #  Owned by other users
   others
 }
 
-# public: Owned By Filter
+#  Owned By Filter
 input OwnedByFilter {
-  # public: equals
+  #  equals
   eq: OwnedBy
 
-  # public: not equals
+  #  not equals
   ne: OwnedBy
 }
 
-# public: Pagination Args
 input PaginationArgs {
-  # public: pageSize
   pageSize: Int = 25
 }
 
-# public: The permission object reflects the access rights needed or attributed to an entity
+#  The permission object reflects the access rights needed or attributed to an entity
 type Permission {
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: Permission Id
+  #  Permission Id
   id: ID!
 
-  # public: The Key this permission gets identified with.
+  #  The Key this permission gets identified with.
   key: String
 
-  # public: The name of the Permission. It should be unique
+  #  The name of the Permission. It should be unique
   name: String!
 
-  # public: The resource type of the Permission
+  #  The resource type of the Permission
   resourceType: ResourceType!
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
 }
 
-# public: Permission Filter
-input PermissionFilters {
-  # public: and filter
-  and: [PermissionFilters!]
-
-  # public: name
-  name: StringFilter
-
-  # public: nor filter
-  not: [PermissionFilters!]
-
-  # public: or filter
-  or: [PermissionFilters!]
-}
-
-# public: A management mechanism to bulk manage permissions.
+#  A management mechanism to bulk manage permissions.
 type PermissionGroup {
-  # public:
+  #
   createdAt: DateTime!
 
-  # public: The description for the Permission Group.
+  #  The description for the Permission Group.
   description: String
 
-  # public: The ID of the permission group.
+  #  The ID of the permission group.
   id: ID!
 
-  # public: True if not hidden
+  #  True if not hidden
   isVisible: Boolean!
 
-  # public: The Key this Permission Group gets identified with.
+  #  The Key this Permission Group gets identified with.
   key: String
 
-  # public: The name of the Permission Group. It should be unique
+  #  The name of the Permission Group. It should be unique
   name: String!
 
-  # public: The permission groups that belong to this permission group.
+  #  The permission groups that belong to this permission group.
   permissionGroups: [PermissionGroup!]!
 
-  # public: The permissions that belong to this permissions group.
+  #  The permissions that belong to this permissions group.
   permissions: [Permission!]!
 
-  # public: The resource type of the Permission Group
+  #  The resource type of the Permission Group
   resourceType: ResourceType!
 
-  # public:
+  #
   updatedAt: DateTime!
 }
 
-# public: Filters for filtering paginated collections of permission groups
+#  Filters for filtering paginated collections of permission groups
 input PermissionGroupFilters {
-  # public:
+  #
   and: [PermissionGroupFilters!]
 
-  # public:
+  #
   name: StringFilter
 
-  # public:
+  #
   not: [PermissionGroupFilters!]
 
-  # public:
+  #
   or: [PermissionGroupFilters!]
 }
 
-# public: Fields that can be specified for ordering criteria on paginated collections of permission groups.
+#  Fields that can be specified for ordering criteria on paginated collections of permission groups.
 enum PermissionGroupOrderByField {
-  # public: The name of the permission group.
+  #  The name of the permission group.
   name
 
-  # public: The resource type of the permission group.
+  #  The resource type of the permission group.
   resourceType
 }
 
-# public: A type to specify the ordering of paginated collections of permission groups
-input PermissionGroupOrdering {
-  # public:
-  field: PermissionGroupOrderByField!
+#  Permission group ordering options.
+input PermissionGroupOrderedFields {
+  #
+  name: OrderBy
 
-  # public:
-  order: OrderBy = Asc
+  #
+  resourceType: OrderBy
 }
 
-# public: A paginated collection of permission groups.
+#  A type to specify the ordering of paginated collections of permission groups
+input PermissionGroupOrdering {
+  #
+  field: PermissionGroupOrderByField
+
+  #
+  order: OrderBy = Asc
+
+  #
+  orderedField: PermissionGroupOrderedFields
+}
+
+#  A paginated collection of permission groups.
 type PermissionGroupsPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [PermissionGroup!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# public: Permission Fields
-enum PermissionOrderByField {
-  # public: Order by name
-  name
-
-  # public: Order by resourceType
-  resourceType
-}
-
-# public: Permission ordering
-input PermissionOrdering {
-  # public: field
-  field: PermissionOrderByField!
-
-  # public: order
-  order: OrderBy = Asc
-}
-
-# public: A paginated collection of permissions.
-type PermissionsPaged {
-  # public: next
-  next: String
-
-  # public: prev
-  prev: String
-
-  # public: results
-  results: [Permission!]
-
-  # public: totalItems
-  totalItems: Int
-}
-
-# The current plan the client is subscribed to.
-enum PlanType {
-  # Business plan.
-  Business
-
-  # Team plan.
-  Team
-}
-
-# A user provision object.
-type Provisioning {
-  # Verfication code
-  code: String!
-
-  # Message of the code
-  message: String!
-
-  # The verificationId
-  verificationId: ID
-}
-
-type ResendVerificationCodeExchange {
-  # Message of the code
-  message: String!
-
-  # The verificationId
-  verificationId: ID!
-}
-
-input ResendVerificationCodeExchangeInput {
-  # query string EG:{tier: 'basic'}
-  qs: JSON
-
-  # redirect url provided when the type is SSOEmailVerification
-  redirectUrl: String
-
-  # Verification Id
-  verificationId: String!
-}
-
-# public: Available types of resource
+#  Available types of resource
 enum ResourceType {
-  # public: Accounts are entities for billing and associated to one or more organizations
+  #  Accounts are entities for billing and associated to one or more organizations
   Account
 
-  # public: Application refers to the entire Bluescape instance
+  #  Application refers to the entire Bluescape instance
   Application
 
-  # public: Groups a mechanism to bulk manage users associations to organizations and workspaces
+  #  Groups a mechanism to bulk manage users associations to organizations and workspaces
   Group
 
-  # public: Organizations are entities for the coordination of users and workspaces
+  #  Organizations are entities for the coordination of users and workspaces
   Organization
 
-  # public: Templates a set of predefined workspace elements
+  #  Templates a set of predefined workspace elements
   Template
 
-  # public: Workspaces are the principle unit that reflects a digital container
+  #  Workspaces are the principle unit that reflects a digital container
   Workspace
 }
 
-# public: Resource filter
+#  Resource filter
 input ResourceTypeFilter {
-  # public: Equal
+  #  Equal
   eq: ResourceType
 
-  # public: Not Equal
+  #  Not Equal
   ne: ResourceType
 }
 
-# public: The role used in the management and association of permissions for access control.
+#  The role used in the management and association of permissions for access control.
 type Role {
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: The description for the role.
+  #  The description for the role.
   description: String
 
-  # display order of the role
-  displayOrder: Int!
-
-  # public: Role Id
+  #  Role Id
   id: ID!
 
-  # public: True if it is a custom role
+  #  True if it is a custom role
   isCustom: Boolean!
 
-  # public: The name for the role. It should be unique
+  #  The name for the role. It should be unique
   name: String!
 
-  # public: The organization this role is associated with
+  #  The organization this role is associated with
   organization: Organization
 
-  # public: Permission groups associated to the role.
+  #  Permission groups associated to the role.
   permissionGroups(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: PermissionGroupFilters
 
-    # public: ordering
+    #  ordering
     ordering: [PermissionGroupOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): PermissionGroupsPaged!
 
-  # public:
+  #
   permissions: [String!]
 
-  # public: The resource type this role applies to
+  #  The resource type this role applies to
   resourceType: ResourceType!
 
-  # public: The type of role
+  #  The type of role
   type: RoleType!
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
 }
 
-# public: Event produced when a role is created.
+#  Event produced when a role is created.
 type RoleCreated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: RoleEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Subscription options for role create events
+#  Subscription options for role create events
 input RoleCreatedSubscriptionOptions {
-  # public: organization Id
+  #  organization Id
   organizationId: ID!
 }
 
-# public: Event produced when a role is deleted.
+#  Event produced when a role is deleted.
 type RoleDeleted {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: RoleEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Subscription options for role delete events
+#  Subscription options for role delete events
 input RoleDeletedSubscriptionOptions {
-  # public: Organization Id
+  #  Organization Id
   organizationId: ID!
 
-  # public: Role Id
+  #  Role Id
   roleId: ID!
 }
 
-# public: Role event payload
+#  Role event payload
 type RoleEventPayload {
-  # public: Role
+  #  Role
   role: RolePayload!
 }
 
-# public: Role Filter
+#  Role Filter
 input RoleFilters {
-  # public: and filter
+  #  and filter
   and: [RoleFilters!]
 
-  # public: is custom
+  #  is custom
   isCustom: BooleanFilter
 
-  # public: name of the role
+  #  name of the role
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [RoleFilters!]
 
-  # public: or filter
+  #  or filter
   or: [RoleFilters!]
 
-  # public: Organization Id
-  organizationId: StringFilter
+  #  Organization Id
+  organizationId: IDFilter
 
-  # public: Resource filter
+  #  Resource filter
   resourceType: ResourceTypeFilter
 
-  # public: Filter Type
+  #  Filter Type
   type: RoleTypeFilter
 }
 
-# public: Role order
+#  Role order
 enum RoleOrderByField {
-  # public: Order by name
+  #  Order by name
   name
 }
 
-# public: Role ordering
-input RoleOrdering {
-  # public: field
-  field: RoleOrderByField
-
-  # public: order
-  order: OrderBy = Asc
+#  Role ordering options.
+input RoleOrderedFields {
+  #
+  name: OrderBy
 }
 
-# public: Role event payload
+#  Role ordering
+input RoleOrdering {
+  #  field
+  field: RoleOrderByField
+
+  #  order
+  order: OrderBy = Asc
+
+  #
+  orderedField: RoleOrderedFields
+}
+
+#  Role event payload
 type RolePayload {
-  # public: Created Date
+  #  Created Date
   createdAt: String!
 
-  # public: description
+  #  description
   description: String
 
-  # public: Role Id
+  #  Role Id
   id: ID!
 
-  # public: Role Name
+  #  Role Name
   name: String!
 
-  # public: Organization Id
+  #  Organization Id
   organizationId: String!
 
-  # public: Resource Type
+  #  Resource Type
   resourceType: ResourceType!
 
-  # public: Role Type
+  #  Role Type
   type: RoleType!
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: String!
 }
 
-# public: Role changed event payload
+#  Role changed event payload
 type RolePayloadChanged {
-  # public: Id
+  #  Id
   id: ID!
 
-  # public: The workspace this new role is associated with
+  #  The workspace this new role is associated with
   newWorkspaceRole: WorkspaceRolePayload
 
-  # public: The workspace this previous role is associated with
+  #  The workspace this previous role is associated with
   previousWorkspaceRole: WorkspaceRolePayload
 
-  # public: Role Type
+  #  Role Type
   type: String!
 }
 
-# public: Expresses various levels of user access
+#  Expresses various levels of user access
 enum RoleType {
-  # public: The Admin roleType is used to categorize roles for association with admins
+  #  The Admin roleType is used to categorize roles for association with admins
   Admin
 
-  # public: The App roleType is used to categorize roles that can be assoiated to apps
+  #  The App roleType is used to categorize roles that can be assoiated to apps
   App
 
-  # public: The Visitor roleType is used to categorize roles for association with workspace visitors
-  Guest
-
-  # public: The Owner roleType is used to categorize roles for the owner of a resource
+  #  The Owner roleType is used to categorize roles for the owner of a resource
   Owner
 
-  # public: The User roleType is used to categorize roles for association with users
+  #  The User roleType is used to categorize roles for association with users
   User
+
+  #  The Visitor roleType is used to categorize roles for association with workspace visitors
+  Visitor
 }
 
-# public: RoleTypeFilter
+#  RoleTypeFilter
 input RoleTypeFilter {
-  # public: Equal
+  #  Equal
   eq: RoleType
 
-  # public: Not Equal
+  #  Not Equal
   ne: RoleType
 }
 
-# public: Event produced when a role is updated.
+#  Event produced when a role is updated.
 type RoleUpdated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: RoleEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Subscription options for role update events
+#  Subscription options for role update events
 input RoleUpdatedSubscriptionOptions {
-  # public: Organization Id
+  #  Organization Id
   organizationId: ID!
 
-  # public: Role Id
+  #  Role Id
   roleId: ID!
 }
 
-# public: A paginated collection of roles
+#  A paginated collection of roles
 type RolesPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [Role!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# The ScratchWorkspace type
+#  The ScratchWorkspace type
 type ScratchWorkspace {
-  # The id of the actor that created the scratch workspace. Only that actor can update it
+  #  The id of the actor that created the scratch workspace. Only that actor can update it
   actorId: String!
 
-  # When the scratch workspace was created
+  #  When the scratch workspace was created
   createdAt: DateTime!
 
-  # The email for the user who can claim or delete the scratch workspace
+  #  The email for the user who can claim or delete the scratch workspace
   email: String
 
-  # Scratch workspace Id
+  #  Scratch workspace Id
   id: ID!
 
-  # The name for the scratch workspace
+  #  The name for the scratch workspace
   name: String
 
-  # When the scratch workspace was last updated
+  #  When the scratch workspace was last updated
   updatedAt: DateTime!
 }
 
-# Scratch workspace filters
+#  Scratch workspace filters
 input ScratchWorkspaceFilters {
-  # and filter
+  #  and filter
   and: [ScratchWorkspaceFilters!]
 
-  # Id
+  #  id
   id: StringFilter
 
-  # name
+  #  name
   name: StringFilter
 
-  # not filter
+  #  not filter
   not: [ScratchWorkspaceFilters!]
 
-  # or filter
+  #  or filter
   or: [ScratchWorkspaceFilters!]
 }
 
-# ScratchWorkspace orderBy Field
+#  ScratchWorkspace orderBy Field
 enum ScratchWorkspaceOrderByField {
-  # Actor that created the scratch workspace
+  #  Actor that created the scratch workspace
   actorId
 
-  # Order by creation date
+  #  Order by creation date
   createdAt
-  id
 
-  # Order by name
+  #  Order by name
   name
 
-  # Order by last update date
+  #  Order by last update date
   updatedAt
 }
 
-# Scratch workspace ordering
-input ScratchWorkspaceOrdering {
-  # Field
-  field: ScratchWorkspaceOrderByField!
+#  Scratch workspace ordering options.
+input ScratchWorkspaceOrderedFields {
+  #
+  actorId: OrderBy
 
-  # Order
-  order: OrderBy = Asc
+  #
+  createdAt: OrderBy
+
+  #
+  name: OrderBy
+
+  #
+  updatedAt: OrderBy
 }
 
-# A paginated collection of scratch workspaces
+#  Scratch workspace ordering
+input ScratchWorkspaceOrdering {
+  #  Field
+  field: ScratchWorkspaceOrderByField
+
+  #  Order
+  order: OrderBy = Asc
+
+  #
+  orderedField: ScratchWorkspaceOrderedFields
+}
+
+#  A paginated collection of scratch workspaces
 type ScratchWorkspacesPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [ScratchWorkspace!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# Self serve Subscription.
-type SelfServeSubscriptionInfo {
-  # Reason the subscription was cancelled
-  cancelReason: CancellationReason
-
-  # The date the current term will end at and the subscription will be cancelled.
-  cancelledAt: Date
-
-  # Date the subscription was created at. Will be the same as the organization's creation date
-  createdAt: Date
-  currency: Currency
-
-  # End date of the current term for Free Trial or Self Serve.
-  currentTermEnd: Date
-
-  # Start date of the current term for Free Trial or Self Serve.
-  currentTermStart: Date
-
-  # The date at which the organization's subscription expired
-  expiredAt: Date
-
-  # Subscription interval - YEAR/MONTH.
-  interval: SubscriptionInterval
-
-  # The number of licenses available for the current term.
-  licenseQuantity: Int
-
-  # The number of licenses purchased for next term.
-  licenseQuantityInNextTerm: Int
-
-  # The number of licenses currently in use.
-  licensesCurrentlyInUse: Int
-
-  # Mode.
-  mode: SubscriptionMode
-
-  # Date at which the next billing for the subscription will occur.
-  nextBillingAt: Date
-
-  # Total amount that will be charged on `nextBillingAt` in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  nextBillingPeriodAmount: Int
-
-  # Start date of the next term.
-  nextTermStart: Date
-
-  # Plan name.
-  planName: String
-
-  # Plan type.
-  planType: PlanType
-
-  # Cost per license in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  pricePerLicense: Int
-
-  # Date the subscription was last updated at. Will be the last update from the external subscription once it has been created with createOrganization.
-  updatedAt: Date
-}
-
-# A broadcast message with user, createdAt,updatedAt, startAt, endAt properties removed.
-type SimpleBroadcastMessage {
-  # The body of the broadcast message
-  body: String!
-  id: ID!
-
-  # Is the broadcast message can be dismissible
-  isDismissable: Boolean!
-
-  # The type of broadcast message
-  type: BroadcastMessageType!
-}
-
-# public: StringFilter
+#  StringFilter
 input StringFilter {
-  # public: contains
+  #  contains
   contains: String
 
-  # public: equals
+  #  equals
   eq: String
 
-  # public: not equal
+  #  not equal
   ne: String
 
-  # public: starts with
+  #  starts with
   startsWith: String
 }
 
-# Subscription renewal interval.
-enum SubscriptionInterval {
-  Monthly
-  Yearly
-}
-
-# The current plan the client is subscribed to.
-enum SubscriptionMode {
-  # Trial mode.
-  FreeTrial
-
-  # Legacy mode.
-  LegacyEnterprise
-
-  # Self serve mode.
-  SelfServe
-}
-
-# public: Subscription mode filter
-input SubscriptionModeFilter {
-  # public: equals
-  eq: SubscriptionMode
-
-  # public: not equals
-  ne: SubscriptionMode
-}
-
-enum SubscriptionState {
-  # A paid subscription is active.
-  Active
-
-  # The subscription was been cancelled and the current term has ended.
-  Cancelled
-}
-
-# Subscription Union
-union SubscriptionUnionType =
-    FreeTrialSubscriptionInfo
-  | LegacySubscriptionInfo
-  | SelfServeSubscriptionInfo
-
-# The type reflecting a template
-type Template {
-  # Template category
-  category: String
-  createdAt: DateTime
-
-  # Template creator id
-  creatorId: ID!
-  deletedAt: DateTime
-
-  # Template description
-  description: String
-
-  # Template elements
-  elements: JSON
-
-  # Template icon
-  icon: String
-  id: ID!
-
-  # Is the template active or expired
-  isActive: Boolean!
-
-  # Template id comes from UI
-  masterId: String!
-
-  # Template metadata
-  metadata: JSON
-
-  # Template name
-  name: String!
-
-  # Template organization id
-  organizationId: ID!
-
-  # Template parameters
-  parameters: JSON
-
-  # Template members
-  templateCollaborators: [UserTemplate!]
-
-  # Template type - User/Organization
-  type: TemplateType!
-  updatedAt: DateTime
-}
-
-input TemplateFilters {
-  and: [TemplateFilters!]
-  category: StringFilter
-  isActive: BooleanFilter
-  masterId: StringFilter
-  name: StringFilter
-  not: [TemplateFilters!]
-  or: [TemplateFilters!]
-  type: StringFilter
-}
-
-input TemplateMember {
-  # Member template Role id
-  templateRoleId: ID!
-
-  # Member userId
-  userId: ID!
-}
-
-enum TemplateOrderByField {
-  category
-  createdAt
-  icon
-  isActive
-  name
-  updatedAt
-}
-
-input TemplateOrdering {
-  field: TemplateOrderByField!
-  order: OrderBy = Asc
-}
-
-# A paginated collection of templates.
-type TemplatePaged {
-  next: String
-  prev: String
-  results: [Template!]
-  totalItems: Int
-}
-
-# Template types
-enum TemplateType {
-  # Organization Template
-  Organization
-
-  # User template
-  User
-}
-
-# public: User token revoked event.
+#  User token revoked event.
 type TokenRevoked {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Token Revoked Data
+  #  Token Revoked Data
   data: TokenRevokedData!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Token revoked data type.
+#  Token revoked data type.
 type TokenRevokedData {
-  # public: Identity Provider Id
+  #  Identity Provider Id
   identityProviderId: ID
 
-  # public: Token Id
+  #  Token Id
   tokenId: ID
 }
 
-input UpdateBroadcastMessageInput {
-  # The body of the broadcast message
-  body: String
-  endAt: String
-
-  # Is the broadcast message can be dismissible
-  isDismissable: Boolean
-  startAt: String
-
-  # The type of broadcast message
-  type: BroadcastMessageType
-}
-
-input UpdateHelpMenuInput {
-  displayOrder: Int
-  link: String
-  title: String
-}
-
-# public: updated indetity provider input
-input UpdateIdentityProviderInput {
-  # public: The email address of the provider administrator
-  adminEmail: String
-
-  # public: State of sp-initiated SAML single logout support
-  isSamlSpSloEnabled: Boolean
-
-  # public: URL of the SAML metadata file. It is required if the new identity provider is one of the SAML types
-  metadataUrl: String
-
-  # public: The name for the identity provider
+#  Update custom link input
+input UpdateCustomLinkInput {
+  #  The name for the custom link. It should be unique
   name: String
 
-  # public: The type of identity provider
+  #  Owner Id
+  ownerId: ID
+
+  #  ResourceId of the resource pointed by the customLink
+  resourceId: ID
+
+  #  ResourceType of the resource pointed by the customLink
+  resourceType: CustomLinkResourceType
+}
+
+#  updated indetity provider input
+input UpdateIdentityProviderInput {
+  #  The email address of the provider administrator
+  adminEmail: String
+
+  #  State of sp-initiated SAML single logout support
+  isSamlSpSloEnabled: Boolean
+
+  #  URL of the SAML metadata file. It is required if the new identity provider is one of the SAML types
+  metadataUrl: String
+
+  #  The name for the identity provider
+  name: String
+
+  #  The type of identity provider
   type: IDPTypeCreate
 
-  # public: Attribute name of User Guid in SAML assertion
+  #  Attribute name of User Guid in SAML assertion
   userGuidAttributeName: String
 }
 
-# public: Update member role input
+#  Update member role input
 input UpdateMemberRoleInput {
-  # public: Organization Role Id
+  #  Organization Role Id
   organizationRoleId: ID!
 }
 
-# public: Update Organization input
+#  Update Organization input
 input UpdateOrganizationInput {
-  # public: Auto Associate Identity Provider User
+  #  Auto Associate Identity Provider User
   autoAssociateIdentityProviderUser: Boolean
 
-  # public: Can have guests
+  #  Can have guests
   canHaveGuests: Boolean
 
-  # public: Default Public Organization RoleId
+  #  Default Public Organization RoleId
   defaultOrganizationUserRoleId: ID
 
-  # public: Default Public Workspace RoleId
+  #  Default Public Workspace RoleId
   defaultPublicWorkspaceRoleId: ID
 
-  # public: Expire Date
+  #  Expire Date
   expiredAt: DateTime
 
-  # public: Custom Roles Enabled
+  #  Custom Roles Enabled
   isCustomRolesEnabled: Boolean
 
-  # public: Guest Invite Approval Required
+  #  Guest Invite Approval Required
   isGuestInviteApprovalRequired: Boolean
 
-  # The date the organization was locked at
-  lockedAt: DateTime
+  #  Enable/disable Multi-factor authentication for the organization
+  mfaEnabled: Boolean
 
-  # API user definable types stored in a key value collection
-  metadata: JSON
-
-  # public: The name of the organization or company
+  #  The name of the organization or company
   name: String
 
-  # public: Owner Id
+  #  Owner Id
   ownerId: ID
 
-  # public: The name of the team or organizational unit
+  #  The name of the team or organizational unit
   secondaryName: String
 }
 
-# public: Update role input
+#  Update role input
 input UpdateRoleInput {
-  # public: The description for the role.
+  #  The description for the role.
   description: String
 
-  # public: The name for the role. It should be unique
+  #  The name for the role. It should be unique
   name: String
 
-  # public: Permission GroupIds
+  #  Permission GroupIds
   permissionGroupIds: [ID!]
 
-  # public: The type of role
+  #  The type of role
   type: RoleType
 }
 
-input UpdateSubscriptionInput {
-  # Reason the subscription was cancelled
-  cancelReason: CancellationReason
-
-  # The date the current term will end at and the subscription will be cancelled.
-  cancelledAt: Date
-  currency: Currency = USD
-
-  # End date of the current term for Free Trial or Self Serve.
-  currentTermEnd: Date
-
-  # Start date of the current term for Free Trial or Self Serve.
-  currentTermStart: Date
-
-  # Version of external subscription. Changes (increases) with every update.
-  externalSubscriptionVersion: Long!
-
-  # Subscription interval - YEAR/MONTH.
-  interval: SubscriptionInterval
-
-  # The number of licenses available for the current term.
-  licenseQuantity: Int
-
-  # The number of licenses purchased for next term.
-  licenseQuantityInNextTerm: Int
-
-  # Date at which the next billing for the subscription will occur.
-  nextBillingAt: Date
-
-  # Total amount that will be charged on `nextBillingAt` in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  nextBillingPeriodAmount: Int
-
-  # Start date of the next term.
-  nextTermStart: Date
-
-  # Plan type.
-  planType: PlanType
-
-  # The same plan will have multiple versions as it evolves over time.
-  planVersion: Int
-
-  # Cost per license in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  pricePerLicense: Int
-
-  # Subscription state.
-  state: SubscriptionState
-}
-
-input UpdateTemplateInput {
-  # Template category
-  category: String
-
-  # Template description
-  description: String
-
-  # Template elements
-  elements: JSON
-
-  # Template icon
-  icon: String
-
-  # Is the template active or expired
-  isActive: Boolean
-
-  # Template metadata
-  metadata: JSON
-
-  # Template name
-  name: String
-
-  # Template parameters
-  parameters: JSON
-  templateCollaborators: [TemplateMember!]
-
-  # Template type - User/Organization
-  type: TemplateType
-}
-
-# public: Update user input
+#  Update user input
 input UpdateUserInput {
-  # public: Application Role Id
+  #  Application Role Id
   applicationRoleId: String
 
-  # public: The email address of the user
+  #  The email address of the user
   email: String
 
-  # public: The first name of the user
+  #  The first name of the user
   firstName: String
 
-  # public: The status of the user's invitation
+  #  The status of the user's invitation
   invitationStatus: String
 
-  # public: The date when they last logged in
+  #  The date when they last logged in
   lastLoggedInAt: DateTime
 
-  # public: The last name of the user
+  #  The last name of the user
   lastName: String
-
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata: JSON
 }
 
-# Input type allow for the updating of walls
-input UpdateWallInput {
-  archived: Boolean
+#  Update user password input
+input UpdateUserPasswordInput {
+  #  Current Password of the user
+  currentPassword: String!
 
-  # The assetId for the wall
-  assetId: String
+  #  New Password of the user
+  newPassword: String!
 
-  # A unchanging uniquely generated random string used for caching
-  cacheKey: String
-
-  # The default area to show on the default workspace on loading the workspace
-  defaultViewport: DefaultViewportInput
-
-  # The ID of wall default workspace
-  defaultWorkspaceId: ID
-  location: String
-
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata: JSON
-  name: String
-
-  # The ID of the organization that owns the wall
-  organizationId: ID
-
-  # The private key of the wall
-  publicKey: String
+  #  Revoke ID tokens of the user
+  revokeAllExistingLoginSessions: Boolean
 }
 
-# public: Update workspace input
+#  Update workspace input
 input UpdateWorkspaceInput {
-  # public: Archived Date
+  #  Archived Date
   archivedAt: DateTime
 
-  # public: The classification of workspace.
+  #  The classification of workspace.
   classification: String
 
-  # public: Default Role Id
+  #  Default Role Id
   defaultRoleId: String
 
-  # public: The description for the workspace.
+  #  The description for the workspace.
   description: String
 
-  # public: True means that all users in the organization have access to this workspace
+  #  True means that all users in the organization have access to this workspace
   isPublic: Boolean
 
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata: JSON
-
-  # public: The name for the workspace. It should be unique
+  #  The name for the workspace. It should be unique
   name: String
 }
 
-# public: A type representing a user.
+#  A type representing a user.
 type User {
-  # public: The user's role with respect to the application
+  #  The user's role with respect to the application
   applicationRole: Role!
 
-  # public: The avatar url for the user
-  avatarUrl: String
+  #  The avatar url for the user
+  avatarUrl: String @deprecated(reason: "New key signedAvatarUrl is added")
 
-  # public: The date the was created
+  #  The date the user was created
   createdAt: DateTime!
 
-  # public: The email address of the user
+  #  The email address of the user
   email: String
 
-  # public: The first name of the user
+  #  The first name of the user
   firstName: String
 
-  # public: The Id of the user
+  #  The Id of the user
   id: ID!
 
-  # public: The status of the user's invitation
+  #  The status of the user's invitation
   invitationStatus: String
 
-  # public: The date when they last logged in
+  #  The date when they last logged in
   lastLoggedInAt: DateTime
 
-  # public: The last name of the user
+  #  The last name of the user
   lastName: String
 
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata(
-    # which fields to include
-    include: [String!]
-  ): JSON
+  #  The avatar url for the user
+  signedAvatarUrl: String
 
-  # public: The date the user was last updated
+  #  The date the user was last updated
   updatedAt: DateTime
 }
 
-# public: User event payload.
+#  User event payload.
 type UserEventPayload {
-  # public: User Id
+  #  User Id
   userId: ID!
 }
 
-# public: User Filters
+#  User Filters
 input UserFilters {
-  # public: and filter
+  #  and filter
   and: [UserFilters!]
 
-  # public: Avatar URL
+  #  Avatar URL
   avatarUrl: StringFilter
 
-  # public: Email
+  #  Email
   email: StringFilter
 
-  # public: First Name
+  #  First Name
   firstName: StringFilter
 
-  # public: Last Logged Date
+  #  Last Logged Date
   lastLoggedInAt: DateFilter
 
-  # public: Last Name
+  #  Last Name
   lastName: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [UserFilters!]
 
-  # public: or filter
+  #  or filter
   or: [UserFilters!]
 }
 
-# public: User login event.
+#  User login event.
 type UserLogin {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: User Login Data
+  #  User Login Data
   data: UserLoginData!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: User login data.
+#  User login data.
 type UserLoginData {
-  # public: Identity Provider Id
+  #  Identity Provider Id
   identityProviderId: ID
 }
 
-# public: User Login Subscription
+#  User Login Subscription
 input UserLoginSubscriptionOptions {
-  # public: User Id
+  #  User Id
   userId: ID
 }
 
-# public: Sort fields
+#  Sort fields
 enum UserOrderByField {
-  # public: Order by email.
+  #  Order by email.
   email
 
-  # public: Order by firstName.
+  #  Order by firstName.
   firstName
 
-  # public: Order by last login date.
+  #  Order by last login date.
   lastLoggedInAt
 
-  # public: Order by lastName.
+  #  Order by lastName.
   lastName
 }
 
-# public: User Ordering
+#  User ordering options.
+input UserOrderedFields {
+  #
+  email: OrderBy
+
+  #
+  lastLoggedInAt: OrderBy
+
+  #
+  lastName: OrderBy
+
+  #
+  updatedAt: OrderBy
+}
+
+#  User Ordering
 input UserOrdering {
-  # public: sort fields
-  field: UserOrderByField!
+  #  sort fields
+  field: UserOrderByField
 
-  # public: order fields
+  #  order fields
   order: OrderBy = Asc
+
+  #
+  orderedField: UserOrderedFields
 }
 
-# public: User registered event.
+#  User registered event.
 type UserRegistered {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: User Registered Data
+  #  User Registered Data
   data: UserResendActivationData!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: User resend activation event.
+#  User resend activation event.
 type UserResendActivation {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: UserResendActivationData!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: User resend activation data.
+#  User resend activation data.
 type UserResendActivationData {
-  # public: State of the user
+  #  State of the user
   state: UserStateChange!
 
-  # public: Id of the User
+  #  Id of the User
   userId: ID
 }
 
-# public: User password reset event.
+#  User password reset event.
 type UserResetPassword {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: data
+  #  data
   data: UserEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: User state change event.
+#  User state change event.
 type UserStateChange {
-  # public: Current state of the user
+  #  Current state of the user
   current: String!
 
-  # public: Previous state of the user
+  #  Previous state of the user
   previous: String!
 }
 
-# The type reflecting a user template
-type UserTemplate {
-  # Template member id
-  collaborator: User!
-
-  # Template member role id
-  templateRole: Role!
-}
-
-# public: User updated event.
+#  User updated event.
 type UserUpdated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Update user event data
+  #  Update user event data
   data: UserUpdatedEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: User update event payload.
+#  User update event payload.
 type UserUpdatedEventPayload {
-  # public: Email of the user
+  #  Email of the user
   email: String!
 
-  # public: First name of the user
+  #  First name of the user
   firstName: String!
 
-  # public: Id of the user
+  #  Id of the user
   id: ID!
 
-  # public: Last name of the user
+  #  Last name of the user
   lastName: String!
 }
 
-# public: Subscription User Updated
+#  Subscription User Updated
 input UserUpdatedSubscriptionOptions {
-  # public: Id of the User
+  #  Id of the User
   userId: ID!
 }
 
-# public: Workspace associated to the user.
+#  Workspace associated to the user.
 type UserWorkspace {
-  # public: Archived Date
+  #  Archived Date
   archivedAt: DateTime
 
-  # public: The classification of workspace.
+  #  The classification of workspace.
   classification: String
 
-  # public: Collaborators
+  #  Collaborators
   collaborators(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering
+    #  filtering
     filtering: CollaboratorFilters
 
-    # public: ordering
+    #  ordering
     ordering: [CollaboratorOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): CollaboratorsPaged!
 
-  # public: Content Updated Date
+  #  Content Updated Date
   contentUpdatedAt: DateTime
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: Default Role
+  #  Default Role
   defaultRole: Role!
 
-  # public: The description for the workspace.
+  #  The description for the workspace.
   description: String
 
-  # public: Workspace Id
+  #  Workspace Id
   id: ID!
 
-  # True when the user favorited the workspace
-  isFavorite: Boolean!
-
-  # public: True means that all users in the organization have access to this workspace
+  #  True means that all users in the organization have access to this workspace
   isPublic: Boolean!
 
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata(
-    # which fields to include
-    include: [String!]
-  ): JSON
-
-  # public: The name for the workspace. It should be unique
+  #  The name for the workspace. It should be unique
   name: String!
 
-  # public: Organization
+  #  Organization
   organization: Organization!
 
-  # public: Owner
+  #  Owner
   owner: User!
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
 }
 
-# public: User Workspace Filters
+#  User Workspace Filters
 input UserWorkspaceFilters {
-  # public: and filter
+  #  and filter
   and: [UserWorkspaceFilters!]
 
-  # public: This filter will soon be removed. *false*: return private(collaborator/owner) and includes all public workspaces list that are in the session user organization. <br />
-  #       *true*: return excludes all public workspaces to which the session user has NOT been explicitly invited to collaborate and all private workspaces to which the session user is a collaborator/owner
+  #  Deprecation Warning:
+  #
+  #     The associatedWorkspace key is ambiguious. This filter will soon be removed.
+  #     *false*: return private(collaborator/owner) and includes all public workspaces list that are in the session user organization.
+  #     *true*: return excludes all public workspaces to which the session user has NOT been explicitly invited to collaborate and all private workspaces to which the session user is a collaborator/owner
   associatedWorkspaces: BooleanFilter
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateFilter
 
-  # public: Id
+  #  Id
   id: StringFilter
 
-  # public: is public
+  #  is public
   isPublic: BooleanFilter
 
-  # public: name
+  #  name
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [UserWorkspaceFilters!]
 
-  # public: or filter
+  #  or filter
   or: [UserWorkspaceFilters!]
 
-  # public: Organization Id
+  #  Organization Id
   organizationId: StringFilter
 
-  # public: Owned by filter
+  #  Owned by filter
   ownedBy: OwnedByFilter
 
-  # public: updated date
+  #  updated date
   updatedAt: DateFilter
 }
 
-# public: A paginated collection of workspaces associated to the user.
+#  A paginated collection of workspaces associated to the user.
 type UserWorkspacesPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [UserWorkspace!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# public: A paginated collection of users.
+#  A paginated collection of users.
 type UsersPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [User!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-type VerificationCodeExchange {
-  # Registered Email Id
-  email: ID!
-
-  # Activation Token
-  token: String!
-}
-
-input VerificationCodeExchangeInput {
-  # Verfication code
-  code: String!
-
-  # Verification Id
-  verificationId: String!
-}
-
-# public: The wall type.
+#  The wall type.
 type Wall {
-  # public: The boolean value of active or inactive wall information
+  #  The boolean value of active or inactive wall information
   archived: Boolean!
 
-  # The assetId of the wall
-  assetId: String!
-
-  # A unchanging uniquely generated random string used for caching
-  cacheKey: String
-
-  # public: The date the wall was created
+  #  The date the wall was created
   createdAt: DateTime!
 
-  # User who created the wall
-  creator: User
-
-  # The viewport to display on loading the default workspace
-  defaultViewport: DefaultViewport
-
-  # public: The workspace the wall loads on boot
+  #  The workspace the wall loads on boot
   defaultWorkspace: Workspace
 
-  # public: The Id of the wall
+  #  The Id of the wall
   id: ID!
 
-  # The location of the wall
-  location: String
-
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata(
-    # which fields to include
-    include: [String!]
-  ): JSON
-
-  # public: The name of the wall
+  #  The name of the wall
   name: String!
 
-  # public: Organization information based on specific wall
+  #  Organization information based on specific wall
   organization: Organization!
 
-  # The publicKey of the wall
-  publicKey: String
-
-  # User who sent a workspace the current workspace to the wall
-  sender: User
-
-  # public: The date when the wall was last updated
+  #  The date when the wall was last updated
   updatedAt: DateTime!
 }
 
-# public: Filters for wall listing queries
+#  Filters for wall listing queries
 input WallFilters {
-  # public:
+  #
   and: [WallFilters!]
 
-  # public:
+  #
   archived: BooleanFilter
 
-  # The assetId for the wall
-  assetId: StringFilter
-
-  # public:
+  #
   name: StringFilter
 
-  # public:
+  #
   not: [WallFilters!]
 
-  # public:
+  #
   or: [WallFilters!]
 
-  # public:
+  #
   organizationId: StringFilter
 }
 
-# public:  Types for ordering wall listings
-input WallOrdering {
-  # public:
-  field: WallsOrderByField!
+#  Wall ordering options.
+input WallOrderedFields {
+  #
+  archived: OrderBy
 
-  # public:
-  order: OrderBy = Asc
+  #
+  createdAt: OrderBy
+
+  #
+  updatedAt: OrderBy
 }
 
-# public: Walls Orderby Field
+#   Types for ordering wall listings
+input WallOrdering {
+  #
+  field: WallsOrderByField
+
+  #
+  order: OrderBy = Asc
+
+  #
+  orderedField: WallOrderedFields
+}
+
+#  Walls Orderby Field
 enum WallsOrderByField {
-  # public: True if the wall is archived.
+  #  True if the wall is archived.
   archived
 
-  # The assetId of the wall.
-  assetId
-
-  # public: The date the wall was created.
+  #  The date the wall was created.
   createdAt
 
-  # public: The id of the wall.
+  #  The id of the wall.
   id
 
-  # public: The name of the wall.
+  #  The name of the wall.
   name
 
-  # public: The data the wall was last updated.
+  #  The data the wall was last updated.
   updatedAt
 }
 
-# public: A paginated collection of walls.
+#  A paginated collection of walls.
 type WallsPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [Wall!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# public: The type expressing workspace management state.
+#  The type expressing workspace management state.
 type Workspace {
-  # public: Archived Date
+  #  Archived Date
   archivedAt: DateTime
 
-  # public: The classification of workspace.
+  #  The classification of workspace.
   classification: String
 
-  # public: Collaborators on the workspace.
+  #  Collaborators on the workspace.
   collaborators(
-    # public: cursor
+    #  cursor
     cursor: String
 
-    # public: filtering by fields
+    #  filtering by fields
     filtering: CollaboratorFilters
 
-    # public: ordering
+    #  ordering
     ordering: [CollaboratorOrdering!]
 
-    # public: pagination
+    #  pagination
     pagination: PaginationArgs
   ): CollaboratorsPaged!
 
-  # public: Content Updated Date
+  #  Content Updated Date
   contentUpdatedAt: DateTime
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateTime!
 
-  # public: The Role this workspace is associated with
+  #  The Role this workspace is associated with
   defaultRole: Role
 
-  # public: The description for the workspace.
+  #  The description for the workspace.
   description: String
 
-  # public: Workspace Id
+  #  Workspace Id
   id: ID!
 
-  # public: True means that all users in the organization have access to this workspace
+  #  True means that all users in the organization have access to this workspace
   isPublic: Boolean!
 
-  # A JSON-like key-value store. Valid keys are valid GraphQL property names. Valid values are any JSON encodable values.
-  #  The values can be up 1024 bytes when JSON encoded.
-  #  An ascii string 1022 characters in length become 1024 characters when encoded. Be aware of multi-byte characters.
-  metadata(
-    # which fields to include
-    include: [String!]
-  ): JSON
-
-  # public: The name for the workspace. It should be unique
+  #  The name for the workspace. It should be unique
   name: String!
 
-  # public: The organization this workspace is associated with
+  #  The organization this workspace is associated with
   organization: Organization!
 
-  # public: Owner data
+  #  Owner data
   owner: User
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: DateTime!
   elements: [Element]
 }
 
-# public: Workspace access request.
+#  Workspace access request.
 type WorkspaceAccessRequest {
-  # public:
+  #
   createdAt: DateTime!
 
-  # public:
+  #
   deletedAt: DateTime
 
-  # public:
+  #
   expiredAt: DateTime!
 
-  # public:
+  #
   id: ID!
 
-  # public:
+  #
   requestedAt: DateTime!
 
-  # public: The status for the workspace access request
+  #  The status for the workspace access request
   status: String!
 
-  # public:
+  #
   updatedAt: DateTime!
 
-  # public:
+  #
   user: User
 }
 
-# public: Workspace access request created event.
+#  Workspace access request created event.
 type WorkspaceAccessRequestCreated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public:
+  #
   data: WorkspaceAccessRequestPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: WorkspaceAccessRequestCreatedSubscriptionOptions
+#  WorkspaceAccessRequestCreatedSubscriptionOptions
 input WorkspaceAccessRequestCreatedSubscriptionOptions {
-  # public:
+  #
   workspaceId: ID!
 }
 
-# public: Workspace access request filters
+#  Workspace access request filters
 input WorkspaceAccessRequestFilters {
-  # public:
+  #
   and: [WorkspaceAccessRequestFilters!]
 
-  # public:
+  #
   email: StringFilter
 
-  # public:
+  #
   firstName: StringFilter
 
-  # public:
+  #
   lastName: StringFilter
 
-  # public:
+  #
   not: [WorkspaceAccessRequestFilters!]
 
-  # public:
+  #
   or: [WorkspaceAccessRequestFilters!]
 
-  # public:
+  #
   status: StringFilter
 }
 
-# public: WorkspaceAccessRequestOrderByField
+#  WorkspaceAccessRequestOrderByField
 enum WorkspaceAccessRequestOrderByField {
-  # public: email address
+  #  email address
   email
 
-  # public: first name
+  #  first name
   firstName
 
-  # public: family name
+  #  family name
   lastName
 
-  # public: access request status.
+  #  access request status.
   status
 }
 
-# public: Ordering fields
-input WorkspaceAccessRequestOrdering {
-  # public:
-  field: WorkspaceAccessRequestOrderByField!
+#  Workspace access request ordering options.
+input WorkspaceAccessRequestOrderedFields {
+  #
+  email: OrderBy
 
-  # public:
-  order: OrderBy = Asc
+  #
+  firstName: OrderBy
+
+  #
+  lastName: OrderBy
+
+  #
+  status: OrderBy
 }
 
-# public: A paged collection of workspace access requests.
+#  Ordering fields
+input WorkspaceAccessRequestOrdering {
+  #
+  field: WorkspaceAccessRequestOrderByField
+
+  #
+  order: OrderBy = Asc
+
+  #
+  orderedField: WorkspaceAccessRequestOrderedFields
+}
+
+#  A paged collection of workspace access requests.
 type WorkspaceAccessRequestPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [WorkspaceAccessRequest!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
-# public: Workspace access request payload.
+#  Workspace access request payload.
 type WorkspaceAccessRequestPayload {
-  # public:
+  #
   id: ID!
 
-  # public: The status for the workspace access request
+  #  The status for the workspace access request
   status: String!
 
-  # public:
+  #
   userId: ID!
 }
 
-# public: Workspace access request update event.
+#  Workspace access request update event.
 type WorkspaceAccessRequestUpdate {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public:
+  #
   data: WorkspaceAccessRequestPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: WorkspaceAccessRequestUpdateSubscriptionOptions
+#  WorkspaceAccessRequestUpdateSubscriptionOptions
 input WorkspaceAccessRequestUpdateSubscriptionOptions {
-  # public:
+  #
   requestId: ID!
 
-  # public:
+  #
   userId: ID!
 }
 
-# public: Workspace created event.
+#  Workspace created event.
 type WorkspaceCreated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Workspace Created
+  #  Workspace Created
   data: WorkspaceEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Workspace duplicated event.
+#  Workspace duplicated event.
 type WorkspaceDuplicated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Workspace Duplicated
+  #  Workspace Duplicated
   data: WorkspaceDuplicatedEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Workspace duplicated event payload.
+#  Workspace duplicated event payload.
 type WorkspaceDuplicatedEventPayload {
-  # public: New Workspace
+  #  New Workspace
   newWorkspace: WorkspacePayload!
 
-  # public: Organization Id
+  #  Organization Id
   organizationId: String!
 }
 
-# public: Workspace duplicated subscription
+#  Workspace duplicated subscription
 input WorkspaceDuplicatedSubscriptionOptions {
-  # public: Workspace Id
+  #  Workspace Id
   workspaceId: ID!
 }
 
-# public: The workspace event payload.
+#  The workspace event payload.
 type WorkspaceEventPayload {
-  # public: Organization Id
+  #  Organization Id
   organizationId: String!
 
-  # public: Workspace Event Payload
+  #  Workspace Event Payload
   workspace: WorkspacePayload!
 }
 
-# public: Workspace filters
+#  Workspace filters
 input WorkspaceFilters {
-  # public: and filter
+  #  and filter
   and: [WorkspaceFilters!]
 
-  # public: Created Date
+  #  Created Date
   createdAt: DateFilter
 
-  # public: Id
+  #  Id
   id: StringFilter
 
-  # public: is public
+  #  is public
   isPublic: BooleanFilter
 
-  # public: name
+  #  name
   name: StringFilter
 
-  # public: not filter
+  #  not filter
   not: [WorkspaceFilters!]
 
-  # public: or filter
+  #  or filter
   or: [WorkspaceFilters!]
 
-  # public: Organization Id
+  #  Organization Id
   organizationId: StringFilter
 
-  # public: updated date
+  #  updated date
   updatedAt: DateFilter
 }
 
-# public: Work space orderBy Field
+#  Work space orderBy Field
 enum WorkspaceOrderByField {
-  # public: Order by last date the content was updated.
+  #  Order by last date the content was updated.
   contentUpdatedAt
 
-  # public: Order by creation date.
+  #  Order by creation date.
   createdAt
 
-  # public: Order by name.
+  #  Order by name.
   name
 
-  # public: Order by last update date.
+  #  Order by last update date.
   updatedAt
 }
 
-# public: Workspace ordering
-input WorkspaceOrdering {
-  # public: Field
-  field: WorkspaceOrderByField!
+#  Workspace ordering options.
+input WorkspaceOrderedFields {
+  #
+  contentUpdatedAt: OrderBy
 
-  # public: Order
-  order: OrderBy = Asc
+  #
+  createdAt: OrderBy
+
+  #
+  name: OrderBy
+
+  #
+  updatedAt: OrderBy
 }
 
-# public: The workspace type for a workspace event payload.
+#  Workspace ordering
+input WorkspaceOrdering {
+  #  Field
+  field: WorkspaceOrderByField
+
+  #  Order
+  order: OrderBy = Asc
+
+  #  Field
+  orderedField: WorkspaceOrderedFields
+}
+
+#  The workspace type for a workspace event payload.
 type WorkspacePayload {
-  # public: Created Date
+  #  Created Date
   createdAt: String!
 
-  # public: Default Role Id
+  #  Default Role Id
   defaultRoleId: String!
 
-  # public: Description
+  #  Description
   description: String
 
-  # public: Workspace Id
+  #  Workspace Id
   id: ID!
 
-  # public: isPublic
+  #  isPublic
   isPublic: Boolean!
 
-  # public: The name for the workspace
+  #  The name for the workspace
   name: String!
 
-  # public: Owner Id
+  #  Owner Id
   ownerId: String
 
-  # public: Updated Date
+  #  Updated Date
   updatedAt: String!
 }
 
-# public: Workspace reassigned event.
+#  Workspace reassigned event.
 type WorkspaceReassigned {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Workspace Reassigned
+  #  Workspace Reassigned
   data: WorkspaceReassignedPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Workspace reassign event payload.
+#  Workspace reassign event payload.
 type WorkspaceReassignedPayload {
-  # public: The id of the user to whom this workspace is reassigned now
+  #  The id of the user to whom this workspace is reassigned now
   newOwnerId: String!
 
-  # public: The id of the user who owned this workspace previously
+  #  The id of the user who owned this workspace previously
   oldOwnerId: String!
 
-  # public: The workspace ids which are reassigned
+  #  The workspace ids which are reassigned
   workspaceIds: [ID!]!
 }
 
-# public: Workspace Reassigned subscription
+#  Workspace Reassigned subscription
 input WorkspaceReassignedSubscriptionOptions {
-  # public: Old Workspace OwnerId
+  #  Old Workspace OwnerId
   oldWorkspaceOwnerId: ID!
 
-  # public: Organization Id
+  #  Organization Id
   organizationId: ID!
 }
 
-# public: Workspace role event payload
+#  Workspace role event payload
 type WorkspaceRolePayload {
-  # public: Organization Id
+  #  Organization Id
   id: ID!
 
-  # public: Workspace Role Name
+  #  Workspace Role Name
   name: String!
 
-  # public: order
+  #  order
   order: Float!
 
-  # public: Workspace Role Type
+  #  Workspace Role Type
   type: String!
 }
 
-# public: Workspace updated event.
+#  Workspace updated event.
 type WorkspaceUpdated {
-  # public: actorId
+  #  actorId
   actorId: ID!
 
-  # public: actorType
+  #  actorType
   actorType: String!
 
-  # public: category
+  #  category
   category: String!
 
-  # public: containsConfidential
+  #  containsConfidential
   containsConfidential: Boolean!
 
-  # public: containsPII
+  #  containsPII
   containsPII: Boolean!
 
-  # public: Workspace Updated
+  #  Workspace Updated
   data: WorkspaceUpdatedEventPayload!
 
-  # public: date
+  #  date
   date: String
 
-  # public: eventVersion
+  #  eventVersion
   eventVersion: String!
 
-  # public: organizationId
+  #  organizationId
   organizationId: ID
 
-  # public: type
+  #  type
   type: String!
 
-  # public: workspaceId
+  #  workspaceId
   workspaceId: ID
 }
 
-# public: Workspace updated event payload.
+#  Workspace updated event payload.
 type WorkspaceUpdatedEventPayload {
-  # public: Work space Updated Event Payload
+  #  Work space Updated Event Payload
   workspace: WorkspacePayload!
 }
 
-# public: Workspace updated subscription
+#  Workspace updated subscription
 input WorkspaceUpdatedSubscriptionOptions {
-  # public: Organization Id
+  #  Organization Id
   organizationId: String!
 
-  # public: Workspace Id
+  #  Workspace Id
   workspaceId: ID!
 }
 
-# public: A paginated collection of workspaces.
+#  A paginated collection of workspaces.
 type WorkspacesPaged {
-  # public: next
+  #  next
   next: String
 
-  # public: prev
+  #  prev
   prev: String
 
-  # public: results
+  #  results
   results: [Workspace!]
 
-  # public: totalItems
+  #  totalItems
   totalItems: Int
 }
 
@@ -5484,6 +4653,18 @@ type UpdateGridStyle {
   cellHeight: Float
 }
 
+type UpdateIcon implements UpdateAttachable & UpdateElement {
+  pinned: Boolean
+  zIndex: Int
+  surface: String
+  transform: UpdateSimilitude
+  style: UpdateIconStyle
+}
+
+type UpdateIconStyle {
+  color: Color
+}
+
 type UpdateImage implements UpdateAssetElement & UpdateAttachable & UpdateElement {
   pinned: Boolean
   zIndex: Int
@@ -5508,7 +4689,7 @@ type Similitude {
   # y coordinate
   y: Float
 
-  # x-coordinate scaling factor
+  # uniform scaling factor
   scale: Float
 }
 
@@ -5663,7 +4844,11 @@ enum HorizontalAlign {
 type UpdateShapeTextStyle {
   # font size in pixels. Set to "auto" to adjust font size to a shape.
   fontSize: FontSize
+
+  # font family
+  fontFamily: String
   verticalAlign: VerticalAlign
+  color: Color
 }
 
 # The `FontSize` scalar type can be either integer value representing font size in pixels or "auto".
@@ -5829,6 +5014,18 @@ input UpdateGridStyleInput {
   cellHeight: Float
 }
 
+input UpdateIconInput {
+  pinned: Boolean
+  zIndex: Int
+  surface: String
+  transform: UpdateSimilitudeInput
+  style: UpdateIconStyleInput
+}
+
+input UpdateIconStyleInput {
+  color: ColorInput
+}
+
 input UpdateImageInput {
   pinned: Boolean
   zIndex: Int
@@ -5987,6 +5184,9 @@ type Box {
   height: Float!
 }
 
+# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+scalar JSON
+
 # Element that can be attached to other elements
 interface Attachable {
   # Workspace-unique element id
@@ -6053,6 +5253,7 @@ interface Surface {
 enum AttachableType {
   Text
   LegacyNote
+  Icon
   Image
   Document
   Browser
@@ -6312,6 +5513,50 @@ type GridStyle {
   verticalCellMargin: Float!
   cellWidth: Float!
   cellHeight: Float!
+}
+
+# Icon element
+type Icon implements Element & Attachable & Surface & Selectable {
+  # Workspace-unique element id
+  id: ID!
+
+  # Stack order, an element with a higher stack order is in front of a lower stack order
+  zIndex: Int!
+  transform: Transform!
+
+  # If true, element will be "pinned" and immovable in the workspace
+  pinned: Boolean!
+  comments: [Comment!]!
+  boundingBox: Box!
+
+  # additional element properties specified using JSON-LD
+  traits(
+    # If present, shape the output using a JSON-LD frame constructed from content, context and vocab.
+    content: JSONObject
+
+    # JSON-LD context to use to compact the output. If framing, also used to construct the frame.
+    context: JSON
+
+    # Common prefix to use to compact the output. If framing, also used to construct or augment the context of the frame.
+    vocab: String
+
+    # If framing, include only the properties specified in the frame.
+    explicit: Boolean = false
+  ): JSON
+  attachments(type: [AttachableType!]): [Attachable!]!
+  surface: Surface
+  style: IconStyle
+
+  # Defines the width of the icon
+  width: Float!
+
+  # Defines the height of the icon
+  height: Float!
+  assetPath: String!
+}
+
+type IconStyle {
+  color: Color!
 }
 
 # Image
@@ -6641,10 +5886,11 @@ type Shape implements Element & Attachable & Surface & Selectable {
 type ShapeTextStyle {
   # font size in pixels. Set to "auto" to adjust font size to a shape.
   fontSize: FontSize!
-  verticalAlign: VerticalAlign!
 
   # font family
   fontFamily: String!
+  verticalAlign: VerticalAlign!
+  color: Color!
 }
 
 # freehand stroke
@@ -6809,7 +6055,12 @@ type VideoAsset {
 }
 
 enum VideoFormat {
+  mkv
+  avi
+  flv
+  wmv
   mp4
+  webm
   quicktime
   unknown
 }
@@ -6974,6 +6225,7 @@ type DeleteElementCommand implements Command & HistoryCommand {
 enum ElementType {
   Text
   LegacyNote
+  Icon
   Image
   Document
   Grid
@@ -7192,9 +6444,52 @@ enum FindAvailableAreaDirection {
   down
 }
 
+type LibrariesPaged {
+  results: [IconLibrary!]!
+  next: String
+  prev: String
+  totalItems: Int
+}
+
+type IconLibrary {
+  name: String!
+  categories: [IconCategory!]!
+  categoryCount: Int!
+  iconCount: Int!
+}
+
+type IconCategory {
+  name: String!
+  availableVariantNames: [String!]!
+  iconCount: Int!
+  icons: [IconInfo!]!
+}
+
+type IconInfo {
+  name: String!
+  libraryName: String!
+  categoryName: String!
+  variant: IconVariant!
+  availableVariants: [IconVariant!]!
+  aspectRatio: Float!
+}
+
+type IconVariant {
+  name: String
+  assetPath: String
+}
+
+type IconsPaged {
+  results: [IconInfo!]!
+  next: String
+  prev: String
+  totalItems: Int
+}
+
 input TransferCompleteInput {
   errorCode: String
   errorMessage: String
+  multipartUploadId: String
 }
 
 type UpdateWorkspaceStyleResponse {
@@ -7299,7 +6594,7 @@ input SimilitudeInput {
   # y coordinate
   y: Float = 0
 
-  # x-coordinate scaling factor
+  # uniform scaling factor
   scale: Float = 1
 }
 
@@ -7590,9 +6885,15 @@ enum ImageFormatInput {
 }
 
 enum VideoFormatInput {
+  mkv
+  avi
+  flv
+  wmv
   mp4
   mov
   m4v
+  webm
+  webmMime
   quicktime
   mp4Mime
   m4vMime
@@ -7723,7 +7024,7 @@ input CreateShapeInput {
   # text on shape
   text: String
 
-  # Structured text content on shape, exclusive with `.text`. Does not support fontSize, fontFamily, color and backgroundColor styles.
+  # Structured text content on shape, exclusive with `.text`.
   blocks: [ToplevelBlockTextContentInput!]
   textStyle: ShapeTextStyleInput
   mirrorX: Boolean = false
@@ -7781,7 +7082,11 @@ enum StickyShapeKind {
 input ShapeTextStyleInput {
   # font size in pixels. Set to "auto" to adjust font size to a shape.
   fontSize: FontSize = "auto"
+
+  # font family
+  fontFamily: String = "Noto Sans"
   verticalAlign: VerticalAlign = center
+  color: ColorInput = { r: 255, g: 255, b: 255, a: 1 }
 }
 
 input UpdateShapeInput {
@@ -7794,7 +7099,7 @@ input UpdateShapeInput {
   # text on shape
   text: String
 
-  # Structured text content on shape, exclusive with `.text`. Does not support fontSize, fontFamily, color and backgroundColor styles.
+  # Structured text content on shape, exclusive with `.text`.
   blocks: [ToplevelBlockTextContentInput!]
   textStyle: UpdateShapeTextStyleInput
   mirrorX: Boolean
@@ -7830,7 +7135,11 @@ input UpdateStickyShapeStyleInput {
 input UpdateShapeTextStyleInput {
   # font size in pixels. Set to "auto" to adjust font size to a shape.
   fontSize: FontSize
+
+  # font family
+  fontFamily: String
   verticalAlign: VerticalAlign
+  color: ColorInput
 }
 
 input CreateLineInput {
@@ -7896,6 +7205,27 @@ input UpdateLineStyleInput {
   endCap: LineCapStyle
 }
 
+# If the dimensions of the icon to be created are known and are provided as width/height the transform can be used to position and scale the asset. If the aspect ratio of the input width and height are not the same as the desired aspect ratio, the width and height will be scaled accordingly. Once created, the icon will be positioned in the center of the bounding box and scaled to fit it.
+input CreateIconInput {
+  traits: TraitInput
+  pinned: Boolean = false
+  zIndex: Int
+  surface: String
+  transform: SimilitudeInput = { x: 0, y: 0, scale: 1 }
+
+  # Defines the width of the bounding box that the icon should fit into
+  width: Float = 300
+
+  # Defines the height of the bounding box that the icon should fit into
+  height: Float = 300
+  style: IconStyleInput
+  assetPath: String!
+}
+
+input IconStyleInput {
+  color: ColorInput = { r: 0, g: 0, b: 0, a: 1 }
+}
+
 type RawCommand implements Command {
   workspaceId: ID!
 
@@ -7906,377 +7236,4 @@ type RawCommand implements Command {
   actorId: ID!
   actorType: String!
   data: JSON!
-}
-
-input MeetingHostChangedSubscriptionOptions {
-  sessionId: ID!
-}
-
-type MeetingHostChangedPayload {
-  sessionId: ID!
-}
-
-type MeetingHostChanged {
-  data: MeetingHostChangedPayload!
-  date: String
-  eventVersion: String!
-}
-
-input WorkspaceMeetingAttendanceChangedSubscriptionOptions {
-  workspaceId: ID!
-}
-
-type WorkspaceMeetingAttendanceChangedPayload {
-  sessionId: ID!
-  workspaceId: ID!
-  attendeeCount: Int!
-  startTime: String!
-}
-
-type WorkspaceMeetingAttendanceChanged {
-  data: WorkspaceMeetingAttendanceChangedPayload!
-  date: String
-  eventVersion: String!
-}
-
-input WaitingRoomStatusUpdatedSubscriptionOptions {
-  sessionId: ID!
-  userId: ID
-}
-
-type WaitingRoomStatusUpdatedPayload {
-  sessionId: ID!
-  userId: ID!
-  status: String!
-}
-
-type WaitingRoomStatusUpdated {
-  data: WaitingRoomStatusUpdatedPayload!
-  date: String
-  eventVersion: String!
-}
-
-input RecordingFileLimitReachedSubscriptionOptions {
-  meetingSessionId: ID!
-}
-
-type RecordingFileLimitReachedPayload {
-  meetingSessionId: ID!
-}
-
-type RecordingFileLimitReached {
-  data: RecordingFileLimitReachedPayload!
-  date: String
-  eventVersion: String!
-}
-
-input RecordingErrorOccurredSubscriptionOptions {
-  meetingSessionId: ID!
-}
-
-type RecordingErrorOccurredPayload {
-  meetingSessionId: ID!
-}
-
-type RecordingErrorOccurred {
-  data: RecordingErrorOccurredPayload!
-  date: String
-  eventVersion: String!
-}
-
-enum CacheControlScope {
-  PUBLIC
-  PRIVATE
-}
-
-# The `Upload` scalar type represents a file upload.
-scalar Upload
-
-type InvoiceInfo {
-  invoiceId: String!
-  status: InvoiceStatus!
-  amount: Int
-  date: DateTime
-  currency: CurrencyEnt!
-}
-
-# The status of an invoice
-enum InvoiceStatus {
-  Paid
-  Posted
-  PaymentDue
-  NotPaid
-  Voided
-  Pending
-}
-
-# Currency of all pricing related fields
-enum CurrencyEnt {
-  USD
-}
-
-# The sort order
-enum SortOrder {
-  Asc
-  Desc
-}
-
-type InvoicePDF {
-  url: String!
-}
-
-type PaymentCardInfo {
-  status: CardStatus!
-  gateway: String
-  last4: String
-  cardType: CardType
-  expiryMonth: Int
-  expiryYear: Int
-  maskedNumber: String
-  billingAddress: Address!
-  shippingAddress: Address
-}
-
-# Status of credit card
-enum CardStatus {
-  Valid
-  Expiring
-  Expired
-  Invalid
-  PendingVerification
-}
-
-# Type of credit card
-enum CardType {
-  Visa
-  MasterCard
-  AmericanExpress
-  Discover
-  JCB
-  DinersClub
-  PaypalExpressCheckout
-  AmazonPayments
-  DirectDebit
-  Generic
-  AliPay
-  UnionPay
-  ApplePay
-  WeChatPay
-  Ideal
-  GooglePay
-  Sofort
-  Bancontact
-  GiroPay
-  DotPay
-}
-
-type Address {
-  firstName: String!
-  lastName: String!
-  country: String!
-  zip: String!
-  state: String!
-  city: String!
-  line1: String!
-  line2: String
-}
-
-type PlanInfo {
-  # Monthly price per license in cents
-  monthlyPrice: Int!
-
-  # Yearly price per license in cents
-  yearlyPrice: Int!
-  currency: CurrencyEnt!
-}
-
-# The type of plan. Same as ISAM PlanType.
-enum PlanTypeEnt {
-  Business
-  Team
-}
-
-type PriceEstimateResponse {
-  immediateEstimate: PriceEstimateInfo
-  nextTermEstimate: PriceEstimateInfo!
-}
-
-type PriceEstimateInfo {
-  subtotal: Int!
-  taxes: Int!
-  total: Int!
-  currency: CurrencyEnt!
-}
-
-# The billing period. Same as ISAM SubscriptionInterval.
-enum SubscriptionIntervalEnt {
-  Monthly
-  Yearly
-}
-
-type PriceEstimateNewOrganizationResponse {
-  nextTermEstimate: PriceEstimateInfo!
-}
-
-input AddressInput {
-  firstName: String!
-  lastName: String!
-  country: String!
-  zip: String!
-  state: String!
-  city: String!
-  line1: String!
-  line2: String
-}
-
-type SelfServeSubscriptionInfoEnt {
-  # Mode.
-  mode: SubscriptionModeEnt
-
-  # Date the subscription was created at. Will be the same as the organization's creation date
-  createdAt: DateTime
-
-  # Date the subscription was last updated at. Will be the last update from the external subscription once it has been created with createOrganization.
-  updatedAt: DateTime
-
-  # The date the current term will end at and the subscription will be cancelled.
-  cancelledAt: DateTime
-
-  # Reason the subscription was cancelled
-  cancelReason: CancellationReasonEnt
-
-  # Start date of the current term for Free Trial or Self Serve.
-  currentTermStart: DateTime
-
-  # End date of the current term for Free Trial or Self Serve.
-  currentTermEnd: DateTime
-
-  # The number of licenses currently in use.
-  licensesCurrentlyInUse: Int
-
-  # Plan name.
-  planName: String
-
-  # Plan type.
-  planType: PlanTypeEnt
-
-  # Start date of the next term.
-  nextTermStart: DateTime
-
-  # Date at which the next billing for the subscription will occur.
-  nextBillingAt: DateTime
-
-  # Subscription interval - YEAR/MONTH.
-  interval: SubscriptionIntervalEnt
-
-  # Total amount that will be charged on `nextBillingAt` in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  nextBillingPeriodAmount: Int
-
-  # Cost per license in the smallest unit of currency (e.g. USD cents). Note: does not include taxes.
-  pricePerLicense: Int
-
-  # The number of licenses available for the current term.
-  licenseQuantity: Int
-
-  # The number of licenses purchased for next term.
-  licenseQuantityInNextTerm: Int
-  currency: CurrencyEnt
-}
-
-# The subscription mode. Same as ISAM SubscriptionMode.
-enum SubscriptionModeEnt {
-  FreeTrial
-  LegacyEnterprise
-  SelfServe
-}
-
-# Subscription cancellation reasons. The same as ISAM CancellationReason.
-enum CancellationReasonEnt {
-  CurrencyIncompatibleWithGateway
-  FraudReviewFailed
-  NoCard
-  NonCompliantCustomer
-  NonCompliantEuCustomer
-  NotPaid
-  NotRenewing
-  TaxCalculationFailed
-}
-
-type CreateFreeTrialResponse {
-  organizationId: String!
-}
-
-# Usecase for starting the Free Trial
-enum Intent {
-  ProjectKickOff
-  BrainstormWorkshop
-  CreativeDesignReview
-  CreativeProjectWarRoom
-  RemoteHybridWork
-}
-
-input HubSpotInput {
-  # Optional hubspot tracker GUID
-  hutk: String!
-
-  # Optional hubspot pageUri
-  pageUri: String!
-
-  # Optional hubspot pageName
-  pageName: String!
-}
-
-type CreateSelfServeSubscriptionResponse {
-  organizationId: String!
-}
-
-union SubscriptionUnionTypeEnt =
-    SelfServeSubscriptionInfoEnt
-  | FreeTrialSubscriptionInfoEnt
-  | LegacySubscriptionInfoEnt
-
-type FreeTrialSubscriptionInfoEnt {
-  # Mode.
-  mode: SubscriptionModeEnt
-
-  # Date the subscription was created at. Will be the same as the organization's creation date
-  createdAt: DateTime
-
-  # Date the subscription was last updated at. Will be the last update from the external subscription once it has been created with createOrganization.
-  updatedAt: DateTime
-
-  # The date the current term will end at and the subscription will be cancelled.
-  cancelledAt: DateTime
-
-  # Reason the subscription was cancelled
-  cancelReason: CancellationReasonEnt
-
-  # Start date of the current term for Free Trial or Self Serve.
-  currentTermStart: DateTime
-
-  # End date of the current term for Free Trial or Self Serve.
-  currentTermEnd: DateTime
-
-  # The number of licenses currently in use.
-  licensesCurrentlyInUse: Int
-
-  # Plan name.
-  planName: String
-
-  # Plan type.
-  planType: PlanTypeEnt
-}
-
-type LegacySubscriptionInfoEnt {
-  # Mode.
-  mode: SubscriptionModeEnt
-
-  # Date the subscription was created at. Will be the same as the organization's creation date
-  createdAt: DateTime
-
-  # Date the subscription was last updated at. Will be the last update from the external subscription once it has been created with createOrganization.
-  updatedAt: DateTime
-
-  # Subscription interval - YEAR/MONTH.
-  interval: SubscriptionIntervalEnt
 }
