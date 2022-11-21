@@ -113,6 +113,12 @@ type Query {
     pagination: PaginationArgs
   ): RolesPaged!
 
+  #  Get a scratch workspace by id. Any authorized user who knows the id can use this
+  scratchWorkspace(
+    #  Scratch workspace id
+    scratchWorkspaceId: ID!
+  ): ScratchWorkspace!
+
   #  Get all scratch workspaces belonging to the current user
   scratchWorkspaces(
     #  cursor
@@ -461,7 +467,7 @@ type Mutation {
     RoleId: String!
   ): Boolean!
 
-  #  Delete the specified scratch workspace
+  #  Delete the specified scratch workspace. The JWT actorId much match the actorId in the database or (if a user JWT and an email was set) the user's email must match
   deleteScratchWorkspace(
     #  permanent delete flag
     isPermanentDelete: Boolean
@@ -575,7 +581,7 @@ type Mutation {
     input: UpdateRoleInput!
   ): Role!
 
-  #  Updates a scratch workspace with name (optional) and email
+  #  Updates a scratch workspace with name (optional) and email. Only the actor that created the scratch workspaces can update it
   updateScratchWorkspace(
     #  Email of the user that is saving the scratch workspace)
     email: String!
@@ -954,7 +960,7 @@ input AddMemberInput {
   id: ID!
 
   #  Organization Role Id
-  organizationRoleId: ID!
+  organizationRoleId: ID
 
   #  The Role Type of the Organization member
   type: String
@@ -1297,6 +1303,9 @@ input CollaboratorUserFilters {
 
   #  Id
   id: StringFilter
+
+  #  Invitation Status
+  invitationStatus: InvitationStatusFilter
 
   #  Last name
   lastName: StringFilter
@@ -2015,6 +2024,30 @@ type IdentityProvidersPaged {
   totalItems: Int
 }
 
+#  Invitation status of the User
+enum InvitationStatus {
+  #
+  ACCEPTED
+
+  #
+  CREATED
+
+  #
+  INVITED
+
+  #
+  PENDING_INVITE
+}
+
+#  Invitation Status filter
+input InvitationStatusFilter {
+  #  Equal
+  eq: InvitationStatus
+
+  #  Not Equal
+  ne: InvitationStatus
+}
+
 #  Get the current user.
 type Me {
   #  Favorites
@@ -2394,6 +2427,9 @@ input MemberUserFilters {
 
   #  Id
   id: StringFilter
+
+  #  Invitation Status
+  invitationStatus: InvitationStatusFilter
 
   #  last name
   lastName: StringFilter
@@ -3074,13 +3110,13 @@ type RolesPaged {
 
 #  The ScratchWorkspace type
 type ScratchWorkspace {
-  #  The id of the actor that created the scratch workspace. Only that actor can update it
-  actorId: String!
+  #  The id of the actor that created the scratch workspace. Only that actor (or matching email) can update it. Scratch workspaces created in V2 don't have an actorId but have a wallId
+  actorId: String
 
   #  When the scratch workspace was created
   createdAt: DateTime!
 
-  #  The email for the user who can claim or delete the scratch workspace
+  #  The email for the user who can modify or delete the scratch workspace
   email: String
 
   #  Scratch workspace Id
@@ -3333,7 +3369,7 @@ input UpdateUserInput {
   firstName: String
 
   #  The status of the user's invitation
-  invitationStatus: String
+  invitationStatus: InvitationStatus
 
   #  The date when they last logged in
   lastLoggedInAt: DateTime
@@ -3396,7 +3432,7 @@ type User {
   id: ID!
 
   #  The status of the user's invitation
-  invitationStatus: String
+  invitationStatus: InvitationStatus
 
   #  The date when they last logged in
   lastLoggedInAt: DateTime
@@ -3430,6 +3466,9 @@ input UserFilters {
 
   #  First Name
   firstName: StringFilter
+
+  #  Invitation status
+  invitationStatus: InvitationStatusFilter
 
   #  Last Logged Date
   lastLoggedInAt: DateFilter
@@ -5933,12 +5972,17 @@ type Stroke implements Element & Attachable & Selectable {
 type StrokeStyle {
   color: Color!
   strokeWidth: Float!
+
+  # Eraser stroke will be removed in the future. Using Eraser may lead to unexpected results under certain conditions. Use stroke deletion instead of eraser stroke.
   brushType: StrokeBrush!
 }
 
 enum StrokeBrush {
   Pen
   Eraser
+    @deprecated(
+      reason: "Eraser stroke will be removed in the future. Using Eraser may lead to unexpected results under certain conditions. Use stroke deletion instead of eraser stroke."
+    )
 }
 
 # Rich text.
@@ -6601,6 +6645,8 @@ input SimilitudeInput {
 input StrokeStyleInput {
   color: ColorInput = { r: 255, g: 255, b: 255, a: 1 }
   strokeWidth: Float = 1
+
+  # Eraser stroke will be removed in the future. Using Eraser may lead to unexpected results under certain conditions. Use stroke deletion instead of eraser stroke.
   brushType: StrokeBrush = Pen
 }
 
