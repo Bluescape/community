@@ -69,7 +69,14 @@ export default async function runGraphqlRequest(bluescapeApiParams, requestParam
 
     // Set a reasonable timeout
     try {
-        requestAnswer = await axios(requestValues)
+        const startTime = new Date();
+        requestAnswer = await axios(requestValues);
+        const endTime = new Date();
+        console.log(`[[DEBUG]] GraphQL API execution time (ms): ${ endTime - startTime}`,
+        {
+            query: requestParams.requestQuery,
+            variables: requestParams.requestVariables
+        });
     } catch (error) {
         console.error(`runGraphqlRequest error: ${error}`);
         console.error(`API call failed with status code: ${error?.response?.status ?? 'NOT AVAILABLE'} after ${maxRetries} retry attempts`);
@@ -124,7 +131,14 @@ export async function runRestRequest(bluescapeApiParams, requestParams) {
 
     let requestAnswer;
     try {
-        requestAnswer = await axios(requestValues)
+        const startTime = new Date();
+        requestAnswer = await axios(requestValues);
+        const endTime = new Date();
+        console.log(`[[DEBUG]] REST API execution time (ms): ${ endTime - startTime}`,
+        {
+            query: requestParams.requestQuery,
+            variables: requestParams.requestVariables
+        });
     } catch (error) {
         console.error(`REST API execution error: ${error}`);
         console.error(`API call failed with status code: ${error?.response?.status ?? 'NOT AVAILABLE'} after ${maxRetries} retry attempts`);
