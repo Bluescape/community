@@ -30,7 +30,7 @@
  *      this folder and the ../bluescape-modules folder.
  * 
  * Usage:
- *      node move-canvas --token=<token> --workspaceId=<Id of workspace> --canvasId=<Id of canvas to move> [ --direction=<direction to move> ]
+ *      node move-canvas-and-its-contents --token=<token> --workspaceId=<Id of workspace> --canvasId=<Id of canvas to move> [ --direction=<direction to move> ]
  * 
  * Notes:
  *      To obtain a token you can follow the instructions in the Application
@@ -152,6 +152,9 @@ async function getCanvasWithElementsById() {
                 boundingBox {
                     x y width height
                 }
+                transform {
+                    x y    
+                }
             }
         }
     }`;
@@ -184,6 +187,11 @@ async function getCanvasWithElementsById() {
             boundingBox {
                 x y
             }
+
+            transform {
+                x y
+            }
+
             ... on Line {
                 start {
                     __typename
@@ -250,7 +258,6 @@ async function moveCanvasAndContents(canvas, newLocation) {
     // Move all contained elements
     for (const element of canvas.elements) {
         console.log(`Moving ${element.__typename}`);
-
         if (element.__typename === "Line") {
             await moveLine(element, xDiff, yDiff);
         }
@@ -356,9 +363,10 @@ async function move(element, xDiff, yDiff) {
     // Construct the name of the mutation based on the type of element
     const action = `update${element.__typename}`;
 
+    console.log('move element = ', element.__typename)
     // Calculate the new location
-    const newX = element.boundingBox.x + xDiff;
-    const newY = element.boundingBox.y + yDiff;
+    const newX = element.transform.x + xDiff;
+    const newY = element.transform.y + yDiff;
     const transform = `{ x: ${newX}, y: ${newY} }`;
 
     // Build mutation to move the element
@@ -373,7 +381,6 @@ async function move(element, xDiff, yDiff) {
             id
         }
     }`;
-    
     await runGraphqlRequest(bluescapeApiParams, { requestQuery: mutation });
 }
 
