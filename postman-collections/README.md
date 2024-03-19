@@ -6,7 +6,6 @@ File | Description| Comments
 [v3_REST_APIs.postman_collection.json](./v3_REST_APIs.postman_collection.json)|Collection with examples for v3 REST APIs|
 [v3_graphQL_APIs.postman_collection.json](./v3_graphQL_APIs.postman_collection.json)|Collection with examples for GraphQL APIs|
 [production.bluescape.com.postman_environment.json](./production.bluescape.com.postman_environment.json)|Environmental variables for the Bluescape Production environment|These variables will be used for the generation of Access Tokens and for storing results used in some examples of APIs.
-[production_federated_gql_schema.graphql](./production_federated_gql_schema.graphql)|GraphQL Schema|This schema will facilitate writing GraphQL queries, mutations and subscriptions
 
 # Interesting examples
 
@@ -43,7 +42,12 @@ https://learning.postman.com/docs/getting-started/importing-and-exporting-data/
 
 ## How to import the GraphQL schema
 
-1. If you are using the graphQL collection, you will need to create an API and import the graphQL schema production_federated_gql_schema.graphql
+1. If you are using the graphQL collection, you can use the "Auto Fetch" to get the schema from the server (preferred method) or you can import a schema version manually by creating an API and importing your desired graphQL schema version
+
+Auto Fetch:
+   <img width="1407" alt="image" src="https://github.com/Bluescape/community/assets/593911/f3797efd-3563-4c27-b273-bd8abbd96e67">
+
+For manually adding specific graphQL schema version:
 
 ![importGraphQLschema](https://user-images.githubusercontent.com/593911/169601434-92ab0916-8366-4f07-8481-fa4ee050f9eb.png)
 
@@ -64,7 +68,7 @@ Import the environment variables file: production.bluescape.com.postman_environm
 ### Prerequisites 
 
 You will need to crate an Application in Bluescape.
-Please follow the instructions about [how to create an Application (Developer Portal)](https://api.apps.us.bluescape.com/docs/page/app-auth#appendices)
+Please follow the instructions about [how to create an Application]([https://api.apps.us.bluescape.com/docs/page/app-auth#appendices](https://community.bluescape.com/t/v3-api-application-authorization-with-pkce/3695))
 
 
 ### How to generate the Access Token in Postman
@@ -73,17 +77,20 @@ You can quickly create a bearer token in postman by using the "Authorization" ta
 
 Steps:
 1. You will need to create a Bluescape Application with the postman Callback Url: https://oauth.pstmn.io/v1/callback
-![postmanApplication](https://user-images.githubusercontent.com/593911/169608586-2ad255dc-bae1-4d83-a0fd-06044f2778a3.png)
 
-2. Go to the "Authroization" tab for a given API
+![postmanApplication](https://github.com/Bluescape/community/assets/593911/72e98171-e7a0-42d5-bfa4-8a0d5e6ecc6b)
+
+
+3. Go to the "Authroization" tab for a given API
 4. Type is OAuth 2.0
 5. Grant Type is "Authorization Code"
-6. Enter the clientID and clientSecret as environment variables from the Application created in step 1
+6. Enter the clientID, clientSecret, and scope as environment variables from the Application created in step 1
 7. Hit "Get New Access Token" after completing previous steps
 
-![postmanBearerTokenCreation](https://user-images.githubusercontent.com/593911/169610445-cd7dfca8-a792-44ee-bb54-75d2c487bd6c.png)
+![postmanBearerTokenCreation](https://github.com/Bluescape/community/assets/593911/9db81b6d-e853-4637-aef7-bbf1d2054f28)
+
 
 # Contact us
 
-Let us know your questions, comments and ideas in our [Bluescape Community site](https://community.bluescape.com/).
+Let us know your questions, comments and ideas in our [Bluescape Community site](https://community.bluescape.com/c/developer/14).
 
