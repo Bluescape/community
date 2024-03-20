@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c3ab0456-717b-4de4-bcd3-f62f330bcc33",
-		"name": "v3 REST APIs",
+		"_postman_id": "3aabcb7b-620f-4ee7-a3e1-46d654e6a2ff",
+		"name": "v3 REST APIs public",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8001164"
 	},
@@ -10,46 +10,104 @@
 			"name": "authorization test calls",
 			"item": [
 				{
-					"name": "1. authorize GetToken with Auth Code",
+					"name": "authorize from refresh_token",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"grant_type\":\"authorization_code\",\n    \"code\":\"<yourAccessCode>\",\n    \"client_id\":\"{{clientID}}\",\n    \"client_secret\":\"{{clientSecret}}\",\n    \"redirect_uri\":\"{{redirect_URI}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "<yourRefreshToken>",
+									"description": "returned when creating bearer token from access code",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{clientID}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{clientSecret}}",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{redirect_URI}}",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "{{authTokenURL}}",
+							"raw": "{{API_path}}{{OAuthAccessTokenURL}}",
 							"host": [
-								"{{authTokenURL}}"
+								"{{API_path}}{{OAuthAccessTokenURL}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "1. authorize from refresh_token",
+					"name": "create BearerToken",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"grant_type\":\"refresh_token\",\n    \"refresh_token\":\"{{refreshToken}}\",\n    \"client_id\":\"{{clientID}}\",\n    \"client_secret\":\"{{clientSecret}}\",\n    \"redirect_uri\":\"{{redirect_URI}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"header": [
+							{
+								"key": "x-bluescape-internal",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
 							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "<yourAccessCode>",
+									"description": "the access code created from: {{API_path}}/v3/oauth2/authorize?response_type=code&client_id={{client_id}}&redirect_uri={{redirect_URI}}&scope=v2legacy%20offline_access",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{clientID}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{clientSecret}}",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{redirect_URI}}",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
-							"raw": "{{authTokenURL}}",
+							"raw": "{{API_path}}{{OAuthAccessTokenURL}}",
 							"host": [
-								"{{authTokenURL}}"
+								"{{API_path}}{{OAuthAccessTokenURL}}"
 							]
 						}
 					},
@@ -96,13 +154,23 @@
 									"type": "oauth2",
 									"oauth2": [
 										{
-											"key": "tokenName",
-											"value": "production",
+											"key": "scope",
+											"value": "{{OAuthScope}}",
 											"type": "string"
 										},
 										{
-											"key": "challengeAlgorithm",
-											"value": "S256",
+											"key": "accessTokenUrl",
+											"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
 											"type": "string"
 										},
 										{
@@ -111,8 +179,8 @@
 											"type": "boolean"
 										},
 										{
-											"key": "grant_type",
-											"value": "authorization_code",
+											"key": "challengeAlgorithm",
+											"value": "S256",
 											"type": "string"
 										},
 										{
@@ -126,11 +194,6 @@
 											"type": "string"
 										},
 										{
-											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
-											"type": "string"
-										},
-										{
 											"key": "addTokenTo",
 											"value": "header",
 											"type": "string"
@@ -138,11 +201,6 @@
 										{
 											"key": "client_authentication",
 											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
 											"type": "string"
 										},
 										{
@@ -215,13 +273,23 @@
 									"type": "oauth2",
 									"oauth2": [
 										{
-											"key": "tokenName",
-											"value": "production",
+											"key": "scope",
+											"value": "{{OAuthScope}}",
 											"type": "string"
 										},
 										{
-											"key": "challengeAlgorithm",
-											"value": "S256",
+											"key": "accessTokenUrl",
+											"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
 											"type": "string"
 										},
 										{
@@ -230,8 +298,8 @@
 											"type": "boolean"
 										},
 										{
-											"key": "grant_type",
-											"value": "authorization_code",
+											"key": "challengeAlgorithm",
+											"value": "S256",
 											"type": "string"
 										},
 										{
@@ -245,11 +313,6 @@
 											"type": "string"
 										},
 										{
-											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
-											"type": "string"
-										},
-										{
 											"key": "addTokenTo",
 											"value": "header",
 											"type": "string"
@@ -257,11 +320,6 @@
 										{
 											"key": "client_authentication",
 											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
 											"type": "string"
 										},
 										{
@@ -334,13 +392,23 @@
 									"type": "oauth2",
 									"oauth2": [
 										{
-											"key": "tokenName",
-											"value": "production",
+											"key": "scope",
+											"value": "{{OAuthScope}}",
 											"type": "string"
 										},
 										{
-											"key": "challengeAlgorithm",
-											"value": "S256",
+											"key": "accessTokenUrl",
+											"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
 											"type": "string"
 										},
 										{
@@ -349,8 +417,8 @@
 											"type": "boolean"
 										},
 										{
-											"key": "grant_type",
-											"value": "authorization_code",
+											"key": "challengeAlgorithm",
+											"value": "S256",
 											"type": "string"
 										},
 										{
@@ -364,11 +432,6 @@
 											"type": "string"
 										},
 										{
-											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
-											"type": "string"
-										},
-										{
 											"key": "addTokenTo",
 											"value": "header",
 											"type": "string"
@@ -376,11 +439,6 @@
 										{
 											"key": "client_authentication",
 											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
 											"type": "string"
 										},
 										{
@@ -513,13 +571,23 @@
 									"type": "oauth2",
 									"oauth2": [
 										{
-											"key": "tokenName",
-											"value": "production",
+											"key": "scope",
+											"value": "{{OAuthScope}}",
 											"type": "string"
 										},
 										{
-											"key": "challengeAlgorithm",
-											"value": "S256",
+											"key": "accessTokenUrl",
+											"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
 											"type": "string"
 										},
 										{
@@ -528,8 +596,8 @@
 											"type": "boolean"
 										},
 										{
-											"key": "grant_type",
-											"value": "authorization_code",
+											"key": "challengeAlgorithm",
+											"value": "S256",
 											"type": "string"
 										},
 										{
@@ -543,11 +611,6 @@
 											"type": "string"
 										},
 										{
-											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
-											"type": "string"
-										},
-										{
 											"key": "addTokenTo",
 											"value": "header",
 											"type": "string"
@@ -555,11 +618,6 @@
 										{
 											"key": "client_authentication",
 											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
 											"type": "string"
 										},
 										{
@@ -661,13 +719,23 @@
 									"type": "oauth2",
 									"oauth2": [
 										{
-											"key": "tokenName",
-											"value": "production",
+											"key": "scope",
+											"value": "{{OAuthScope}}",
 											"type": "string"
 										},
 										{
-											"key": "challengeAlgorithm",
-											"value": "S256",
+											"key": "accessTokenUrl",
+											"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
 											"type": "string"
 										},
 										{
@@ -676,8 +744,8 @@
 											"type": "boolean"
 										},
 										{
-											"key": "grant_type",
-											"value": "authorization_code",
+											"key": "challengeAlgorithm",
+											"value": "S256",
 											"type": "string"
 										},
 										{
@@ -691,11 +759,6 @@
 											"type": "string"
 										},
 										{
-											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
-											"type": "string"
-										},
-										{
 											"key": "addTokenTo",
 											"value": "header",
 											"type": "string"
@@ -703,11 +766,6 @@
 										{
 											"key": "client_authentication",
 											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
 											"type": "string"
 										},
 										{
@@ -914,13 +972,23 @@
 									"type": "oauth2",
 									"oauth2": [
 										{
-											"key": "tokenName",
-											"value": "production",
+											"key": "scope",
+											"value": "{{OAuthScope}}",
 											"type": "string"
 										},
 										{
-											"key": "challengeAlgorithm",
-											"value": "S256",
+											"key": "accessTokenUrl",
+											"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
 											"type": "string"
 										},
 										{
@@ -929,8 +997,8 @@
 											"type": "boolean"
 										},
 										{
-											"key": "grant_type",
-											"value": "authorization_code",
+											"key": "challengeAlgorithm",
+											"value": "S256",
 											"type": "string"
 										},
 										{
@@ -944,11 +1012,6 @@
 											"type": "string"
 										},
 										{
-											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
-											"type": "string"
-										},
-										{
 											"key": "addTokenTo",
 											"value": "header",
 											"type": "string"
@@ -956,11 +1019,6 @@
 										{
 											"key": "client_authentication",
 											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
 											"type": "string"
 										},
 										{
@@ -1012,13 +1070,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1027,8 +1095,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1042,11 +1110,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1054,11 +1117,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1104,13 +1162,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1119,8 +1187,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1134,11 +1202,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1146,11 +1209,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1189,8 +1247,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -1199,14 +1267,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1216,11 +1284,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -1234,13 +1297,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -1277,8 +1340,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -1287,14 +1360,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1304,11 +1377,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -1322,13 +1390,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -1364,8 +1432,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -1374,14 +1452,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1391,11 +1469,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -1409,13 +1482,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -1463,8 +1536,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -1473,14 +1556,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1490,11 +1573,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -1508,13 +1586,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -1552,8 +1630,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -1562,14 +1650,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1579,11 +1667,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -1597,13 +1680,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -1641,8 +1724,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -1651,14 +1744,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1668,11 +1761,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -1686,13 +1774,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -1730,13 +1818,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1745,8 +1843,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1760,11 +1858,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1772,11 +1865,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1831,13 +1919,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1846,8 +1944,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1861,11 +1959,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1873,11 +1966,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1936,8 +2024,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -1946,14 +2044,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1963,11 +2061,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -1981,13 +2074,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -2036,8 +2129,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -2046,14 +2149,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2063,11 +2166,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -2081,13 +2179,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -2136,8 +2234,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -2146,14 +2254,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2163,11 +2271,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -2181,13 +2284,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -2225,8 +2328,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -2235,14 +2348,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2252,11 +2365,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -2270,13 +2378,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -2325,8 +2433,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -2335,14 +2453,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2352,11 +2470,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -2370,13 +2483,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -2425,8 +2538,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -2435,14 +2558,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2452,11 +2575,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -2470,13 +2588,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -2514,8 +2632,18 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
 									"type": "string"
 								},
 								{
@@ -2524,14 +2652,14 @@
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
-									"type": "string"
-								},
-								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2541,11 +2669,6 @@
 								{
 									"key": "clientId",
 									"value": "{{clientID}}",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
 									"type": "string"
 								},
 								{
@@ -2559,13 +2682,13 @@
 									"type": "string"
 								},
 								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"key": "accessToken",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
+									"key": "tokenType",
+									"value": "Bearer",
 									"type": "string"
 								}
 							]
@@ -2692,13 +2815,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -2707,8 +2840,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -2722,11 +2855,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -2734,11 +2862,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2794,13 +2917,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -2809,8 +2942,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -2824,11 +2957,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -2836,11 +2964,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2896,13 +3019,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -2911,8 +3044,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -2926,11 +3059,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -2938,11 +3066,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2998,13 +3121,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3013,8 +3146,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3028,11 +3161,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3040,11 +3168,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3100,13 +3223,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3115,8 +3248,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3130,11 +3263,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3142,11 +3270,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3202,13 +3325,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3217,8 +3350,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3232,11 +3365,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3244,11 +3372,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3304,13 +3427,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3319,8 +3452,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3334,11 +3467,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3346,11 +3474,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3406,13 +3529,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3421,8 +3554,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3436,11 +3569,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3448,11 +3576,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3508,13 +3631,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3523,8 +3656,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3538,11 +3671,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3550,11 +3678,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3610,13 +3733,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3625,8 +3758,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3640,11 +3773,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3652,11 +3780,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3712,13 +3835,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3727,8 +3860,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3742,11 +3875,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3754,11 +3882,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3819,13 +3942,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3834,8 +3967,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3849,11 +3982,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3861,11 +3989,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3904,13 +4027,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3919,8 +4052,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3934,11 +4067,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3946,11 +4074,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3988,13 +4111,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4003,8 +4136,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4018,11 +4151,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4030,11 +4158,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4078,13 +4201,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4093,8 +4226,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4108,11 +4241,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4120,11 +4248,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4163,13 +4286,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4178,8 +4311,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4193,11 +4326,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4205,11 +4333,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4246,13 +4369,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4261,8 +4394,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4276,11 +4409,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4288,11 +4416,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4338,13 +4461,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4353,8 +4486,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4368,11 +4501,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4380,11 +4508,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4430,13 +4553,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4445,8 +4578,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4460,11 +4593,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4472,11 +4600,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4522,13 +4645,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4537,8 +4670,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4552,11 +4685,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4564,11 +4692,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4613,13 +4736,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4628,8 +4761,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4643,11 +4776,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4655,11 +4783,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4705,13 +4828,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "tokenName",
-									"value": "production",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
 									"type": "string"
 								},
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4720,8 +4853,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4735,11 +4868,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4747,11 +4875,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
