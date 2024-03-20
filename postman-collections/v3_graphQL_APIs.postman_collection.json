@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1648e597-0275-4c72-b129-7cd15bf3ad45",
+		"_postman_id": "e51701e2-026d-4c19-a9b2-cb6478972a67",
 		"name": "V3 graphQL Public",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8001164"
@@ -18,6 +18,21 @@
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
+								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
 								{
 									"key": "grant_type",
 									"value": "authorization_code",
@@ -44,11 +59,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -56,11 +66,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -108,6 +113,21 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
 									"type": "string"
@@ -133,11 +153,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -145,11 +160,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -197,8 +207,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -207,8 +232,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -222,11 +247,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -234,11 +254,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -285,29 +300,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -320,18 +340,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -351,8 +366,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "#find an element by elementID:\nquery getElementById($workspaceId: String!, $elementId:String!){\n    elements(workspaceId: $workspaceId, id:$elementId) {        \n        __typename\n        id\n        traits\n        pinned\n        transform{\n            scaleX\n            scaleY\n            x\n            y\n        }\n\n        ... on Image{\n            width\n            height\n        }\n\n        ... on Canvas{\n            name\n            style{\n                 height\n                 width\n                 fillColor{\n                     r\n                     g\n                     b\n                     a\n                 }\n                 borderColor{\n                     r\n                     g\n                     b\n                     a\n                 }\n            }\n        }\n        ... on Text{\n            text\n        }\n        ... on Shape{\n            shapeText:text\n            style{\n                height\n                width\n            }\n        }\n\n        ... on Document{\n            width\n            height\n            title\n            filename\n            sourceUrl\n            preview{\n                imageFormat\n                url\n            }\n\n            ingestionState\n\n            asset{\n                documentFormat\n                url\n            }\n\n        }\n    }\n}",
-								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"elementId\": \"<yourElementID>\"\n}"
+								"query": "#find an element by elementID:\nquery getElementById($workspaceId: String!, $elementId:String!){\n    elements(workspaceId: $workspaceId, id:$elementId) {        \n        __typename\n        id\n        traits\n        pinned\n        transform{\n            x\n            y\n            scaleX\n            scaleY\n            rotateZ\n            origin{\n              anchor\n              point{\n                x y\n              }\n            }\n        }\n\n        ... on Image{\n            width\n            height\n        }\n\n        ... on Canvas{\n            name\n            style{\n                 height\n                 width\n                 fillColor{ r, g, b, a}\n                 borderColor{ r, g, b, a}\n            }\n        }\n        ... on Text{\n            text\n            style{\n                color{ r, g, b, a}\n                fontFamily\n                fontSize\n                width\n                height\n            }\n\n            blocks{\n                __typename\n                align\n                #note content.span.fontSize in pixel (not pt) is more reliable than style.fontSize\n                ... on TextBlock{\n                    content\n                    align\n                }\n            }\n        }\n        ... on Shape{\n            shapeText:text\n            style{\n                height\n                width\n                fillColor{ r g b a}\n            }\n        }\n\n        ... on Line{\n          routing\n          style{\n            startCap\n            endCap\n            strokeColor{ r g b a}\n            strokeStyle\n            strokeWidth\n          }\n          routing\n\n          controlPoints{\n            ... on AbsoluteLinePoint{\n              x y\n            }\n            ... on AnchorLinePoint{\n              id\n              u\n              v\n            }\n          }\n          start{\n            ... on AnchorLinePoint{\n              id\n              u\n              v\n            }\n            ... on AbsoluteLinePoint{\n              x\n              y\n            }\n          }\n\n        }\n\n        ... on Document{\n            width\n            height\n            title\n            filename\n            sourceUrl\n            preview{\n                imageFormat\n                url\n            }\n\n            ingestionState\n\n            asset{\n                documentFormat\n                url\n            }\n\n        }\n    }\n}",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"elementId\": \"{{elementID}}\"\n}"
 							}
 						},
 						"url": {
@@ -478,8 +493,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -488,8 +518,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -503,11 +533,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -515,11 +540,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -566,29 +586,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -601,18 +626,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -659,29 +679,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -694,18 +719,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -752,29 +772,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -787,18 +812,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -845,8 +865,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -855,8 +890,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -870,11 +905,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -882,11 +912,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -933,29 +958,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -968,18 +998,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1026,29 +1051,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1061,18 +1091,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1119,29 +1144,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1154,18 +1184,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1212,29 +1237,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1247,18 +1277,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1305,29 +1330,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1340,18 +1370,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1398,8 +1423,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1408,8 +1448,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1423,11 +1463,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1435,11 +1470,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1486,8 +1516,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1496,8 +1541,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1511,11 +1556,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1523,11 +1563,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1574,8 +1609,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1584,8 +1634,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1599,11 +1649,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1611,11 +1656,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1662,8 +1702,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1672,8 +1727,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1687,11 +1742,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1699,11 +1749,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1750,8 +1795,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1760,8 +1820,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1775,11 +1835,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1787,11 +1842,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1811,7 +1861,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query($workspaceId: String!) {\n  TextFields: elements(workspaceId: $workspaceId) {\n      id\n      __typename\n   ... on Text { id traits style { width height } \n     }\n  }\n}\n",
+								"query": "query($workspaceId: String!) {\n    TextFields: elements(workspaceId: $workspaceId) {\n        id\n        __typename\n        ... on Text { id traits style { width height } \n     }\n  }\n}",
 								"variables": "{\"workspaceId\": \"{{workspaceID}}\"}"
 							}
 						},
@@ -1838,8 +1888,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -1848,8 +1913,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -1863,11 +1928,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -1875,11 +1935,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -1926,8 +1981,112 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "{{clientSecret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{clientID}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query searchMyIcons($queryString:String, $library:String){\n    #assetPath:\" /icons/Icon Library/Bluescape/Interface/interface_color/maximize-window-437.svg\"\n    searchIcons(queryString:$queryString, library:$library){\n        results{\n            name\n            categoryName\n            libraryName\n            variant{\n                name\n                assetPath\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"queryString\":\"display\",\n    \"library\":\"Bluescape\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{API_path}}/v3/graphql",
+							"host": [
+								"{{API_path}}"
+							],
+							"path": [
+								"v3",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query: activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenName",
+									"value": "stg1",
 									"type": "string"
 								},
 								{
@@ -1936,9 +2095,24 @@
 									"type": "string"
 								},
 								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								},
+								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -1971,11 +2145,6 @@
 									"type": "string"
 								},
 								{
-									"key": "accessToken",
-									"value": "{{token}}",
-									"type": "string"
-								},
-								{
 									"key": "tokenType",
 									"value": "Bearer",
 									"type": "string"
@@ -1987,8 +2156,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query searchMyIcons($queryString:String, $library:String){\n    #assetPath:\" /icons/Icon Library/Bluescape/Interface/interface_color/maximize-window-437.svg\"\n    searchIcons(queryString:$queryString, library:$library){\n        results{\n            name\n            categoryName\n            libraryName\n            variant{\n                name\n                assetPath\n            }\n        }\n    }\n}",
-								"variables": "{\n    \"queryString\":\"display\",\n    \"library\":\"Bluescape\"\n}"
+								"query": "query getActivities($workspaceId: ID!){\n    activities(workspaceId: $workspaceId) { \n      __typename\n      totalItems\n      results{\n          activityType:__typename\n          actorIds\n          id\n          timespan{\n              start\n              end\n          }\n          workspaceId\n          children{\n              __typename\n              actorIds\n              id\n          }\n      }\n    }\n}",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\"\n}"
 							}
 						},
 						"url": {
@@ -2045,13 +2214,23 @@
 									"type": "oauth2",
 									"oauth2": [
 										{
-											"key": "challengeAlgorithm",
-											"value": "S256",
+											"key": "scope",
+											"value": "{{OAuthScope}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "{{login}}",
+											"key": "accessTokenUrl",
+											"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
 											"type": "string"
 										},
 										{
@@ -2060,13 +2239,8 @@
 											"type": "boolean"
 										},
 										{
-											"key": "password",
-											"value": "{{password}}",
-											"type": "string"
-										},
-										{
-											"key": "grant_type",
-											"value": "authorization_code",
+											"key": "challengeAlgorithm",
+											"value": "S256",
 											"type": "string"
 										},
 										{
@@ -2080,11 +2254,6 @@
 											"type": "string"
 										},
 										{
-											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
-											"type": "string"
-										},
-										{
 											"key": "addTokenTo",
 											"value": "header",
 											"type": "string"
@@ -2095,8 +2264,8 @@
 											"type": "string"
 										},
 										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
+											"key": "accessToken",
+											"value": "{{token}}",
 											"type": "string"
 										},
 										{
@@ -2262,7 +2431,7 @@
 										},
 										{
 											"key": "authUrl",
-											"value": "{{API_path}}/authorize",
+											"value": "{{API_path}}{{OAuthAuthURL}}",
 											"type": "string"
 										},
 										{
@@ -2273,11 +2442,6 @@
 										{
 											"key": "client_authentication",
 											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "{{authTokenURL}}",
 											"type": "string"
 										},
 										{
@@ -2333,29 +2497,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2368,18 +2537,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2426,29 +2590,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2461,18 +2630,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2530,8 +2694,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -2540,8 +2719,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -2555,11 +2734,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -2567,11 +2741,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2632,8 +2801,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -2642,8 +2826,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -2657,11 +2841,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -2669,11 +2848,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2720,29 +2894,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -2755,18 +2934,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2824,8 +2998,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -2834,8 +3023,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -2849,11 +3038,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -2861,11 +3045,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -2923,8 +3102,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -2933,8 +3127,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -2948,11 +3142,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -2960,11 +3149,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3002,15 +3186,13 @@
 					"response": []
 				},
 				{
-					"name": "mutation: createText with style and bgColor",
+					"name": "mutation: createText with style and text highlight BG color",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"console.log(\"jsonData = \", jsonData.data.createText.id)",
-									"postman.setEnvironmentVariable(\"elementID\", jsonData.data.createText.id);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -3024,8 +3206,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3034,8 +3231,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3049,11 +3246,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3061,11 +3253,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3085,8 +3272,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "#default fontFamily: Noto Sans\n#\n#available fontFamily:\n#Aleo, Architects Daughter, Balsamiq Sans, Barlow Semi Condensed, Bebas Neue, \n#Caveat Comfortaa, Cormorant Garamond, Dosis, Fredoka One, Gruppo, Hepta Slab,\n#Indie Flower, Inter, Josefin Slab, Lato, Merriweather, Montserrat, Nothing You Could Do, \n#Noto Sans, Noto Serif, Open Sans, Overlock, Pacifico, Patrick Hand, Permanent Marker,\n#Raleway, Roboto Slab, Rock Salt, Source Code Pro, Source Sans Pro, Staatliches, Yrsa, \n#Zilla Slab, Noto Sans SC, Helvetica, Times New Roman, Exo 2\nmutation myCreateTextWithBG($workspaceId: String! $textContent: String! $x: Float! $y: Float!, $width:Float!, $height:Float!) {\n        createText(workspaceId: $workspaceId, input: {\n                text: $textContent\n                transform: {\n                    x:$x \n                    y:$y\n                }\n                style:{\n                    width:$width\n                    height:$height\n                    fontSize:55\n                    fontFamily:\"your mom!\"\n                    textTransform:none\n                    verticalAlign:top\n                    color:{\n                        r:255\n                        g:255\n                        b:255\n                        a:1\n                    }\n                }\n            }\n        )\n        {\n            id\n            text\n            transform {x y}\n        }\n}",
-								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"textContent\":\"New text from graphQL\",\n    \"x\": 0,\n    \"y\": 0,\n    \"width\": 600,\n    \"height\":150\n}"
+								"query": "#default fontFamily: Noto Sans\n#\n#available fontFamily:\n#Aleo, Architects Daughter, Balsamiq Sans, Barlow Semi Condensed, Bebas Neue, \n#Caveat Comfortaa, Cormorant Garamond, Dosis, Fredoka One, Gruppo, Hepta Slab,\n#Indie Flower, Inter, Josefin Slab, Lato, Merriweather, Montserrat, Nothing You Could Do, \n#Noto Sans, Noto Serif, Open Sans, Overlock, Pacifico, Patrick Hand, Permanent Marker,\n#Raleway, Roboto Slab, Rock Salt, Source Code Pro, Source Sans Pro, Staatliches, Yrsa, \n#Zilla Slab, Noto Sans SC, Helvetica, Times New Roman, Exo 2\nmutation myCreateTextWithBG(\n  $workspaceId: String!,\n  $x: Float!,\n  $y: Float!,\n  $width: Float!,\n  $height: Float!\n) {\n  createText(\n    workspaceId: $workspaceId,\n    input: {\n      # text: $textContent\n      transform: {\n        x: $x,\n        y: $y\n      },\n      style: {\n        width: $width,\n        height: $height,\n        fontSize: 26,\n        \n        #use fontFamily from the list provided above:\n        fontFamily: \"Helvetica\",\n        textTransform: none,\n        verticalAlign: center,\n        color: {\n          r: 255,\n          g: 255,\n          b: 255,\n          a: 1\n        }\n      },\n      blocks: {\n        block: {\n          content: [\n            {\n              text: \"New text from \"\n            },\n            {\n              span: {\n                #backggroundColor is the highlited text:\n                backgroundColor: {\n                  r: 254,\n                  g: 232,\n                  b: 108,\n                  a: 1\n                },\n                content: [\n                  {\n                    text: \"graphQL\"\n                  }\n                ]\n              }\n            }\n          ]\n        }\n      }\n    }\n  ) {\n    id\n    text\n    transform {\n      x\n      y\n    }\n  }\n}",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"textContent\":\"New text from graphQL\",\n    \"x\": 0,\n    \"y\": 0,\n    \"width\": 310,\n    \"height\":30\n}"
 							}
 						},
 						"url": {
@@ -3125,8 +3312,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3135,8 +3337,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3150,11 +3352,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3162,11 +3359,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3186,7 +3378,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "#default fontFamily: Noto Sans\n#\n#available fontFamily:\n#Aleo, Architects Daughter, Balsamiq Sans, Barlow Semi Condensed, Bebas Neue, \n#Caveat Comfortaa, Cormorant Garamond, Dosis, Fredoka One, Gruppo, Hepta Slab,\n#Indie Flower, Inter, Josefin Slab, Lato, Merriweather, Montserrat, Nothing You Could Do, \n#Noto Sans, Noto Serif, Open Sans, Overlock, Pacifico, Patrick Hand, Permanent Marker,\n#Raleway, Roboto Slab, Rock Salt, Source Code Pro, Source Sans Pro, Staatliches, Yrsa, \n#Zilla Slab, Noto Sans SC, Helvetica, Times New Roman, Exo 2\nmutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n    }",
+								"query": "#default fontFamily: Noto Sans\n#\n#available fontFamily:\n#Aleo, Architects Daughter, Balsamiq Sans, Barlow Semi Condensed, Bebas Neue, \n#Caveat Comfortaa, Cormorant Garamond, Dosis, Fredoka One, Gruppo, Hepta Slab,\n#Indie Flower, Inter, Josefin Slab, Lato, Merriweather, Montserrat, Nothing You Could Do, \n#Noto Sans, Noto Serif, Open Sans, Overlock, Pacifico, Patrick Hand, Permanent Marker,\n#Raleway, Roboto Slab, Rock Salt, Source Code Pro, Source Sans Pro, Staatliches, Yrsa, \n#Zilla Slab, Noto Sans SC, Helvetica, Times New Roman, Exo 2\nmutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n  createText(workspaceId: $workspaceId, input: $input) {\n    id\n    transform {\n      x\n      y\n      scaleX\n      scaleY\n    }\n    pinned\n    zIndex\n    text\n    style {\n      textTransform\n      fontSize\n      fontFamily\n      verticalAlign\n      color {r g b a}\n    }\n    blocks {\n      ...on TextBlock {\n        align\n        content\n      }\n    }\n  }\n}",
 								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"input\": {\n        \"blocks\": {\n            \"block\": {\n            \"align\": \"left\",\n            \"content\": {\n                \"span\": {\n                    \"text\": \"Rich Text Example!\",\n                    \"fontSize\": 30,\n                    \"fontFamily\": \"Helvetica\",\n                    \"fontWeight\": \"normal\",\n                    \"fontStyle\": \"italic\",\n                    \"textDecoration\": \"underline\",\n                    \"color\": { \"r\": 23, \"g\": 56, \"b\": 100, \"a\": 1},\n                    \"backgroundColor\": { \"r\": 223, \"g\": 156, \"b\": 200, \"a\": 1}\n                        }\n                    }\n                }\n            } \n        }\n    }"
 							}
 						},
@@ -3226,8 +3418,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3236,8 +3443,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3251,11 +3458,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3263,11 +3465,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3314,8 +3511,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3324,8 +3536,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3339,11 +3551,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3351,11 +3558,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3402,8 +3604,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3412,8 +3629,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3427,11 +3644,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3439,11 +3651,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3490,8 +3697,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3500,8 +3722,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3515,11 +3737,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3527,11 +3744,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3578,8 +3790,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3588,8 +3815,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3603,11 +3830,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3615,11 +3837,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3666,8 +3883,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3676,8 +3908,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3691,11 +3923,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3703,11 +3930,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3765,8 +3987,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3775,8 +4012,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3790,11 +4027,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3802,11 +4034,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3853,8 +4080,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3863,8 +4105,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3878,11 +4120,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3890,11 +4127,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -3954,8 +4186,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -3964,8 +4211,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -3979,11 +4226,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -3991,11 +4233,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4055,8 +4292,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4065,8 +4317,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4080,11 +4332,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4092,11 +4339,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4134,7 +4376,7 @@
 					"response": []
 				},
 				{
-					"name": "mutation: createImage from URL",
+					"name": "mutation: createImage PNG from URL",
 					"event": [
 						{
 							"listen": "test",
@@ -4154,8 +4396,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4164,8 +4421,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4179,11 +4436,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4191,11 +4443,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4216,7 +4463,7 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "#create Image from URL\nmutation createImageFromUrl($workspaceId:String!, $title:String!, $imageFormat:ImageFormatInput!, $url:String!, $width:Float!, $height:Float!, $x:Float!, $y:Float!, $scale:Float!){\n\n    createImage(workspaceId: $workspaceId, input: {\n            pinned:false\n            title:$title\n            imageFormat: $imageFormat\n            sourceUrl: $url\n            width:$width\n            height:$height\n            transform: {\n              x: $x\n              y: $y\n              scale:$scale\n            }\n    })\n    {\n        #return CreateImageResponse values after creation:    \n        image{id pinned width height ingestionState}\n    }\n}",
-								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"title\":\"tree.jpg\",\n    \"imageFormat\":\"jpg\",\n    \"previewFormat\":\"jpg\",\n    \"url\":\"https://live.staticflickr.com/4007/5075169756_d51008b274.jpg\",\n    \"width\":473,\n    \"height\":500,\n    \"x\":0,\n    \"y\":0,\n    \"scale\":1\n}"
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"title\":\"bluescapeLogo.png\",\n    \"imageFormat\":\"png\",\n    \"previewFormat\":\"png\",\n    \"url\":\"https://cdck-file-uploads-global.s3.dualstack.us-west-2.amazonaws.com/bluescapestaging/original/1X/5db04a9b7eab360c41203320659f6fdd56e29c6b.png\",\n    \"width\":473,\n    \"height\":500,\n    \"x\":0,\n    \"y\":0,\n    \"scale\":1\n}"
 							}
 						},
 						"url": {
@@ -4242,8 +4489,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4252,8 +4514,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4267,11 +4529,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4279,11 +4536,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4341,8 +4593,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4351,8 +4618,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4366,11 +4633,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4378,11 +4640,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4429,8 +4686,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4439,8 +4711,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4454,11 +4726,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4466,11 +4733,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4530,8 +4792,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4540,8 +4817,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4555,11 +4832,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4567,11 +4839,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4591,8 +4858,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "#create shape with json-ld traits data\nmutation myCreateShape($workspaceId:String!, $x:Float!, $y:Float!, $width:Float!, $height:Float!, $g:Int, $strokeWidth:Float!, $fontSize:FontSize!, $shapeText:String){\n        shape1:createShape(workspaceId:$workspaceId, input:{\n            pinned:false\n\n            #store JSON-LD traits metadata that can be accessed with query:\n            traits:{context: \"http://schema.org/\", content: {testBox: \"1\"}}\n            \n            mirrorX: false\n            mirrorY: false\n            text:$shapeText\n            style:{\n                regularShape:{\n                    kind: Rectangle\n                    width:$width height:$height strokeWidth:$strokeWidth\n                    fillColor: {r:255 g:161 b:161 a:1}\n                    strokeColor:{r:255 g:$g b:0 a:1} \n                }\n            }\n            textStyle:{\n                #fontSize = \"auto\" or size int\n                fontSize:$fontSize\n                #verticalAlign = top, center, bottom\n                verticalAlign:center\n            }\n            transform: {x:$x y:$y}\n        }\n    ){\n        #return values from Shape type:\n        id pinned kind mirrorX mirrorY traits transform{x y scaleX scaleY} style{ height width fillColor{r g b a}} \n    }\n}",
-								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"x\":   0,\n    \"y\": 0,\n    \"width\": 800,\n    \"height\": 300,\n    \"g\":0,\n    \"strokeWidth\":5,\n    \"fontSize\":\"auto\",\n    \"shapeText\":\"text on shape from graphQL\"\n}"
+								"query": "#create shape with json-ld traits data\nmutation myCreateShape($workspaceId:String!, $x:Float!, $y:Float!, $width:Float!, $height:Float!, $strokeWidth:Float!, $fontSize:FontSize!, $shapeText:String){\n        shape1:createShape(workspaceId:$workspaceId, input:{\n            pinned:false\n\n            #store JSON-LD traits metadata that can be accessed with query:\n            traits:{context: \"http://schema.org/\", content: {testBox: \"1\"}}\n            \n            mirrorX: false\n            mirrorY: false\n            text:$shapeText\n            style:{\n                regularShape:{\n                    kind: Rectangle\n                    width:$width height:$height strokeWidth:$strokeWidth\n                    fillColor: {r:255 g:161 b:161 a:1}\n                    strokeColor:{r:255 g:0 b:0 a:1} \n                }\n            }\n            textStyle:{\n                #fontSize = \"auto\" or size int\n                fontSize:$fontSize\n                #verticalAlign = top, center, bottom\n                verticalAlign:center\n            }\n            transform: {x:$x y:$y}\n        }\n    ){\n        #return values from Shape type:\n        id pinned kind mirrorX mirrorY traits transform{x y scaleX scaleY} \n        style{ height width fillColor{r g b a}} \n    }\n}",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"x\": 0,\n    \"y\": 0,\n    \"width\": 800,\n    \"height\": 300,\n    \"g\":0,\n    \"strokeWidth\":5,\n    \"fontSize\":\"auto\",\n    \"shapeText\":\"text on shape from graphQL\"\n}"
 							}
 						},
 						"url": {
@@ -4631,8 +4898,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4641,8 +4923,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4656,11 +4938,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4668,11 +4945,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4692,7 +4964,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "#create shape with text blocks and json-ld traits metadata\nmutation myCreateShape($workspaceId: String! $x:Float! $y:Float!, $width:Float!, $height:Float!, $strokeWidth:Float!, $fontSize:FontSize!, $titleFontSize:Int ) {\n        shape1:createShape(workspaceId:$workspaceId, input:{\n            pinned:false\n            traits:{context: \"http://schema.org/\", content: {testTraits: 1}}\n            mirrorX: false\n            mirrorY: false\n            style:{\n                regularShape:{\n                    kind: Rectangle\n                    width:$width height:$height strokeWidth:$strokeWidth\n                    fillColor: {r:255 g:245 b:189 a:1}\n                    strokeColor:{r:255 g:255 b:255 a:1} \n                }\n            }\n\n            textStyle:{\n                fontSize:$fontSize\n                verticalAlign:bottom\n                color:{\n                    r:0\n                    g:0\n                    b:0\n                    a:1\n                }\n            }\n            \n            #text blocks:\n            blocks:[\n                {\n                    block:{\n                        align: left\n                        content: [\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    fontSize:$titleFontSize\n                                    text: \"MY VIDEO ANALYSIS\"\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Name: \"\n                                }   \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"myVideo_mp4\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Duration: \"\n                                }\n                                \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"3:05\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Frames Extracted: \"\n                                }\n                                \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"304\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Labels Detected: \"\n                                }\n                                \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"xyz\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    #padding to have one blank line of text at the bottom\n                    block:{\n                        align:left\n                        text:\"\"\n                    }\n                }\n            ]\n            transform: {x:$x y:$y}\n        }\n    ){\n        #return params:\n        id pinned kind mirrorX mirrorY traits transform{x y scaleX scaleY} style{ height width fillColor{r g b a}} \n    }\n}",
+								"query": "#create shape with text blocks and json-ld traits metadata\nmutation myCreateShape($workspaceId: String! $x:Float! $y:Float!, $width:Float!, $height:Float!, $strokeWidth:Float!, $fontSize:FontSize!, $titleFontSize:Int ) {\n        shape1:createShape(workspaceId:$workspaceId, input:{\n            pinned:false\n            #store JSON-LD traits metadata that can be accessed with query:\n            traits:{context: \"http://schema.org/\", content: {testTraits: 1}}\n            mirrorX: false\n            mirrorY: false\n            style:{\n                regularShape:{\n                    kind: Rectangle\n                    width:$width height:$height strokeWidth:$strokeWidth\n                    fillColor: {r:255 g:245 b:189 a:1}\n                    strokeColor:{r:255 g:255 b:255 a:1} \n                }\n            }\n\n            textStyle:{\n                fontSize:$fontSize\n                verticalAlign:bottom\n                color:{ r:0 g:0 b:0 a:1}\n            }\n            \n            #text blocks:\n            blocks:[\n                {\n                    block:{\n                        align: left\n                        content: [\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    fontSize:$titleFontSize\n                                    text: \"MY VIDEO ANALYSIS\"\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Name: \"\n                                }   \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"myVideo_mp4\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Duration: \"\n                                }\n                                \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"3:05\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Frames Extracted: \"\n                                }\n                                \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"304\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    block:{\n                        align:left\n                        content:[\n                            {\n                                span:{\n                                    fontWeight:bold\n                                    text:\"Labels Detected: \"\n                                }\n                                \n                            },\n                            {\n                                span:{\n                                    fontWeight:normal\n                                    content:[\n                                        {\n                                            text:\"xyz\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    }\n                },\n                {\n                    #padding to have one blank line of text at the bottom\n                    block:{\n                        align:left\n                        text:\"\"\n                    }\n                }\n            ]\n            transform: {x:$x y:$y}\n        }\n    ){\n        #return params:\n        id pinned kind mirrorX mirrorY traits transform{x y scaleX scaleY} \n        style{ height width fillColor{r g b a}} \n    }\n}",
 								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"x\":   0,\n    \"y\": 0,\n    \"width\": 1000,\n    \"height\": 800,\n    \"strokeWidth\":5,\n    \"fontSize\":25,\n    \"titleFontSize\":35\n}"
 							}
 						},
@@ -4732,8 +5004,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4742,8 +5029,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4757,11 +5044,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4769,11 +5051,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4793,7 +5070,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "#create shape with json-ld traits data\nmutation myCreateShape($workspaceId:String!, $x:Float!, $y:Float!, $width:Float!, $textContent:String!){\n    shape1:createShape(workspaceId:$workspaceId, input:{\n        text:$textContent\n        traits:{context: \"http://schema.org/\", content: {testBox: \"1\"}}\n        mirrorX: false\n        mirrorY: false\n        style:{\n            stickyShape:{\n                width:$width\n                kind:StickySquare\n                fillColor:{ \n                    r:255\n                    g:255\n                    b:255\n                    a:1\n                }\n            }\n        }  \n        transform: {x:$x y:$y}\n    }\n    ){\n        #return values:\n        id pinned kind mirrorX mirrorY traits transform{x y scaleX scaleY} style{ height width fillColor{r g b a}} \n    }\n}",
+								"query": "#create shape with json-ld traits data\nmutation myCreateShape($workspaceId:String!, $x:Float!, $y:Float!, $width:Float!, $textContent:String!){\n    shape1:createShape(workspaceId:$workspaceId, input:{\n        text:$textContent\n        #store JSON-LD traits metadata that can be accessed with query:\n        traits:{context: \"http://schema.org/\", content: {testBox: \"1\"}}\n        mirrorX: false\n        mirrorY: false\n        style:{\n            stickyShape:{\n                width:$width\n                kind:StickySquare\n                fillColor:{ \n                    r:254\n                    g:232\n                    b:108\n                    a:1\n                }\n            }\n        }  \n        transform: {x:$x y:$y}\n    }\n    ){\n        #return values:\n        id pinned kind mirrorX mirrorY traits transform{x y scaleX scaleY} \n        style{ height width fillColor{r g b a}} \n    }\n}",
 								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"textContent\" : \"graphQL stickyShape\",\n    \"x\": 0,\n    \"y\": 0,\n    \"width\":800\n}"
 							}
 						},
@@ -4817,9 +5094,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"console.log(\"jsonData = \", jsonData.data.shape1.id)",
-									"postman.setEnvironmentVariable(\"elementID\", jsonData.data.shape1.id);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -4833,8 +5108,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4843,8 +5133,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4858,11 +5148,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4870,11 +5155,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -4894,7 +5174,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "#This request will creates 2 shapes\nmutation myCreateShape($workspaceId: String!, $x:Float!, $x2:Float!, $y2:Float!, $y:Float!, $width:Float!, $height:Float!, $textContent:String!){\n        shape1:createShape(workspaceId:$workspaceId, input:{\n            text:$textContent\n            mirrorY: false \n            style: {\n                regularShape:{\n                    kind: Rectangle        \n                    width:$width height:$height\n                    fillColor: {r:255 g:34 b:255 a:1}\n                    strokeColor:{r:0 g:0 b:255 a:1}\n                }\n            }\n            transform:{x:$x y:$y}\n        })\n        {\n            #return Shape1 values:\n            id kind mirrorY traits style{ ... on RegularShapeStyle{ width height}}\n        }\n\n        shape2:createShape(workspaceId:$workspaceId, input:{\n            text:$textContent\n            mirrorY: false \n            style:{\n                regularShape:{\n                    kind: Rectangle        \n                    width:$width height:$height\n                    fillColor: {r:0 g:34 b:255 a:1}\n                    strokeColor:{r:0 g:0 b:255 a:1}\n                }\n            }\n            transform:{x:$x2 y:$y2}\n        })\n        {\n            #return Shape2 values:\n            id kind mirrorY traits style{ ... on RegularShapeStyle{ width height}}\n        }  \n}\n    ",
+								"query": "#This request will creates 2 shapes\nmutation myCreateShape($workspaceId: String!, $x:Float!, $x2:Float!, $y2:Float!, $y:Float!, $width:Float!, $height:Float!, $textContent:String!){\n        shape1:createShape(workspaceId:$workspaceId, input:{\n            text:$textContent\n            mirrorY: false \n            style: {\n                regularShape:{\n                    kind: Rectangle        \n                    width:$width height:$height\n                    fillColor: {r:200 g:122 b:255 a:1}\n                    strokeColor:{r:0 g:0 b:255 a:1}\n                }\n            }\n            transform:{x:$x y:$y}\n        })\n        {\n            #return Shape1 values:\n            id kind mirrorY traits style{ ... on RegularShapeStyle{ width height}}\n        }\n\n        shape2:createShape(workspaceId:$workspaceId, input:{\n            text:$textContent\n            mirrorY: false \n            style:{\n                regularShape:{\n                    kind: Rectangle        \n                    width:$width height:$height\n                    fillColor: {r:0 g:34 b:255 a:1}\n                    strokeColor:{r:0 g:0 b:255 a:1}\n                }\n            }\n            transform:{x:$x2 y:$y2}\n        })\n        {\n            #return Shape2 values:\n            id kind mirrorY traits style{ ... on RegularShapeStyle{ width height}}\n        }  \n}\n    ",
 								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"textContent\" : \"graphQL shape\",\n    \"x\": 0,\n    \"y\": 0,\n    \"x2\":820,\n    \"y2\":0,\n    \"width\": 800,\n    \"height\": 300\n}"
 							}
 						},
@@ -4934,8 +5214,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -4944,8 +5239,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -4959,11 +5254,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -4971,11 +5261,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5022,29 +5307,34 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
 									"key": "grant_type",
 									"value": "authorization_code",
-									"type": "string"
-								},
-								{
-									"key": "tokenType",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
 									"type": "string"
 								},
 								{
 									"key": "useBrowser",
 									"value": true,
 									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
 								},
 								{
 									"key": "clientSecret",
@@ -5057,18 +5347,13 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"key": "addTokenTo",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5089,7 +5374,7 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "#update shape properties\nmutation myUpdateShape($workspaceId:String!, $x:Float!, $y:Float!, $textContent:String!, $width:Float!, $height:Float!, $shapeId:String!){\n    updateShape(workspaceId:$workspaceId, id:$shapeId, input:{\n        text:$textContent\n        transform:{x:$x y:$y}\n        style:{\n            regularShape:{\n                width:$width\n                height:$height\n                fillColor:{\n                    r:255\n                    g:255\n                    b:255\n                    a:1\n                }\n\n                strokeColor:{\n                    r:255\n                    g:255\n                    b:0\n                    a:1\n                }\n            }\n        }\n   })\n   #returning id is mandatory: UpdateElementOutput!\n   {id}\n}\n",
-								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"textContent\" : \"update Shape from gQL\",\n    \"x\": 0,\n    \"y\": 0,\n    \"width\":500,\n    \"height\":500,\n    \"shapeId\" : \"<shapeElementId>\"\n}"
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"textContent\" : \"update Shape from gQL\",\n    \"x\": 0,\n    \"y\": 0,\n    \"width\":500,\n    \"height\":500,\n    \"shapeId\" : \"{{elementID}}\"\n}"
 							}
 						},
 						"url": {
@@ -5129,8 +5414,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5139,8 +5439,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5154,11 +5454,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5166,11 +5461,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5231,8 +5521,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5241,8 +5546,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5256,11 +5561,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5268,11 +5568,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5330,8 +5625,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5340,8 +5650,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5355,11 +5665,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5367,11 +5672,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5391,8 +5691,112 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation myCreateLine($ws: String!, $lineID:String!){\n    updateLine(workspaceId:$ws, id:$lineID, input:{\n        start:{\n            absolute:{x:0 y:0}\n        }\n        end:{\n            absolute:{x:600 y:30}\n        }\n        style:{\n            #ArrowFill, ArrowStroke, Circle\n            startCap:Circle\n            endCap:ArrowStroke\n            strokeColor:{r:0 g:255 b:255 a:1}\n            #Solid, Dot, DashShort, DashLong\n            strokeStyle: Solid\n        }\n    })\n    {\n        #what is returned:\n        id\n    }\n}\n",
-								"variables": "{\n    \"ws\": \"{{workspaceID}}\",\n    \"lineID\":\"<line_elementID>\"\n}"
+								"query": "mutation myCreateLine($workspaceId: String!, $lineID:String!){\n    updateLine(workspaceId:$workspaceId, id:$lineID, input:{\n        start:{\n            absolute:{x:0 y:0}\n        }\n        end:{\n            absolute:{x:600 y:30}\n        }\n        style:{\n            #ArrowFill, ArrowStroke, Circle\n            startCap:Circle\n            endCap:ArrowStroke\n            strokeColor:{r:0 g:255 b:255 a:1}\n            #Solid, Dot, DashShort, DashLong\n            strokeStyle: Solid\n        }\n    })\n    {\n        #what is returned:\n        id\n    }\n}\n",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"lineID\":\"{{elementID}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{API_path}}/v3/graphql",
+							"host": [
+								"{{API_path}}"
+							],
+							"path": [
+								"v3",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mutation: updateLineAnchor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "{{clientSecret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{clientID}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateLineAnchor($workspaceId: String!, $lineID:String!, $startAnchorId:String!, $endAnchorId:String!){\n    updateLine(workspaceId:$workspaceId, id:$lineID, input:{\n        start:{\n            anchor:{\n              id:$startAnchorId\n              #u = position along element's horizontal left->right: 0, 0.25, 0.5, 0.75, 1 \n              u:0.5\n              #v = vertical line attachment top to bottom: 0, 0.25. 0.5, 0.75, 1\n              v:0\n            }\n        }\n        end:{\n            anchor:{\n              id:$endAnchorId\n              #for left center\n              u:0\n              v:0.5\n            }\n        }\n        style:{\n            #ArrowFill, ArrowStroke, Circle\n            startCap:Circle\n            endCap:ArrowStroke\n            strokeColor:{r:0 g:255 b:255 a:1}\n            #Solid, Dot, DashShort, DashLong\n            strokeStyle: Solid\n        }\n    })\n    {\n        #what is returned:\n        id\n    }\n}\n",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"lineID\":\"{{elementID}}\",\n    \"startAnchorId\":\"<startElementId>\",\n    \"endAnchorId\":\"<endAnchorId>\"\n\n}"
 							}
 						},
 						"url": {
@@ -5432,8 +5836,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5442,8 +5861,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5457,11 +5876,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5469,11 +5883,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5534,8 +5943,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5544,8 +5968,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5559,11 +5983,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5571,11 +5990,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5611,21 +6025,34 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "ISAM - workspace/org managment",
-			"item": [
+				},
 				{
-					"name": "ISAM - Query: getRoles",
+					"name": "mutation: updateImageWithRotation",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
 					"request": {
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5634,8 +6061,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5649,8 +6076,109 @@
 									"type": "string"
 								},
 								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "#update an image x,y and scale. \n#Note: if no x,y are sent image defaults to x,y (0,0)\nmutation myUpdateImageRotation($workspaceId:String!, $rotationDegrees:Float!, $imageID:String!) {\n    updateImage( workspaceId:$workspaceId id:$imageID input:{\n        pinned:false\n        transform:{\n            #rotate degrees from center origin:\n            rotateZ:$rotationDegrees\n            origin:{\n                anchor:Center\n            }\n        }\n    })\n    #returning id is mandatory: UpdateElementOutput!\n    {id}\n}",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"rotationDegrees\":45,\n    \"imageID\" : \"{{elementID}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{API_path}}/v3/graphql",
+							"host": [
+								"{{API_path}}"
+							],
+							"path": [
+								"v3",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mutation: createShapeRotation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// var jsonData = JSON.parse(responseBody);",
+									"// console.log(\"jsonData = \", jsonData.data.shape1.id)",
+									"// postman.setEnvironmentVariable(\"elementID\", jsonData.data.shape1.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
 									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "{{clientSecret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{clientID}}",
 									"type": "string"
 								},
 								{
@@ -5664,13 +6192,191 @@
 									"type": "string"
 								},
 								{
+									"key": "accessToken",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createShapeRotation($ws: String! $x:Float! $y:Float!, $width:Float!, $height:Float!, $g:Int, $strokeWidth:Float!, $fontSize:FontSize!, $shapeText:String, ) {\n      shape1:createShape(\n          workspaceId: $ws\n          input: {\n            pinned:false\n            traits:{context: \"http://schema.org/\", content: {testBox: \"1\"}}\n            mirrorX: false\n            mirrorY: false\n            text:$shapeText\n            style:{\n                regularShape:{\n                    kind: Rectangle\n                    width:$width height:$height strokeWidth:$strokeWidth\n                    fillColor: {r:255 g:161 b:161 a:1}\n                    strokeColor:{r:255 g:$g b:0 a:1} \n                }\n            }\n            textStyle:{\n                #fontSize = \"auto\" or size int\n                fontSize:$fontSize\n                #verticalAlign = top, center, bottom\n                verticalAlign:center\n            }\n          transform: {x:$x y:$y\n            rotateZ:45\n            origin:{\n                anchor:TopLeft\n            }\n          }})\n    #return values:\n    {id pinned kind mirrorX mirrorY traits transform{x y scaleX scaleY} style{ height width fillColor{r g b a}} }\n}",
+								"variables": "{\n    \"ws\": \"{{workspaceID}}\",\n    \"x\": 0,\n    \"y\": 0,\n    \"width\": 800,\n    \"height\": 800,\n    \"g\":0,\n    \"strokeWidth\":1,\n    \"fontSize\":\"auto\",\n    \"shapeText\":\"text on shape from graphQL\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{API_path}}/v3/graphql",
+							"host": [
+								"{{API_path}}"
+							],
+							"path": [
+								"v3",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mutation: updateImageCrop",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
 									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "{{clientSecret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{clientID}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
 									"type": "string"
 								},
 								{
 									"key": "accessToken",
 									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "#update an image x,y, scale, and crop\n#Note: if no x,y are sent image defaults to x,y (0,0)\nmutation myUpdateImage($workspaceId:String!, $x:Float!, $y:Float!, $scale:Float!, $imageID:String!) {\n    updateImage( workspaceId:$workspaceId, id:$imageID, input:{\n        pinned:false\n        transform:{\n            x:$x \n            y:$y \n            scale:$scale\n        }\n        #to remove crop, set crop:null\n        crop:{\n          width:50\n          height:50\n          transform:{\n            x:0\n            y:0\n          }\n        }\n    })\n    #returning id is mandatory: UpdateElementOutput!\n    {id}\n}",
+								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"x\": 0,\n    \"y\": 0,\n    \"scale\":1,\n    \"imageID\" : \"{{elementID}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{API_path}}/v3/graphql",
+							"host": [
+								"{{API_path}}"
+							],
+							"path": [
+								"v3",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ISAM - workspace/org managment",
+			"item": [
+				{
+					"name": "ISAM - Query: getRoles",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "{{clientSecret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{clientID}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
 									"type": "string"
 								},
 								{
@@ -5714,8 +6420,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5724,8 +6445,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5739,11 +6460,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5751,16 +6467,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
-									"type": "string"
-								},
-								{
-									"key": "accessToken",
-									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -5804,8 +6510,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5814,8 +6535,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5829,11 +6550,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5841,16 +6557,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
-									"type": "string"
-								},
-								{
-									"key": "accessToken",
-									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -5894,8 +6600,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5904,8 +6625,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -5919,11 +6640,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -5931,11 +6647,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -5979,8 +6690,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -5989,8 +6715,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -6004,11 +6730,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -6016,16 +6737,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
-									"type": "string"
-								},
-								{
-									"key": "accessToken",
-									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -6069,8 +6780,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -6079,8 +6805,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -6094,11 +6820,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -6106,11 +6827,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -6154,8 +6870,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -6164,8 +6895,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -6179,11 +6910,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -6191,11 +6917,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -6239,8 +6960,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -6249,8 +6985,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -6264,11 +7000,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -6276,16 +7007,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
-									"type": "string"
-								},
-								{
-									"key": "accessToken",
-									"value": "{{token}}",
 									"type": "string"
 								},
 								{
@@ -6329,8 +7050,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -6339,8 +7075,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -6354,11 +7090,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -6366,11 +7097,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -6414,8 +7140,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -6424,8 +7165,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -6439,11 +7180,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -6451,11 +7187,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
@@ -6499,8 +7230,23 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
-									"key": "challengeAlgorithm",
-									"value": "S256",
+									"key": "scope",
+									"value": "{{OAuthScope}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{API_path}}{{OAuthAccessTokenURL}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{API_path}}{{OAuthAuthURL}}",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
 									"type": "string"
 								},
 								{
@@ -6509,8 +7255,8 @@
 									"type": "boolean"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code",
+									"key": "challengeAlgorithm",
+									"value": "S256",
 									"type": "string"
 								},
 								{
@@ -6524,11 +7270,6 @@
 									"type": "string"
 								},
 								{
-									"key": "authUrl",
-									"value": "{{API_path}}/authorize",
-									"type": "string"
-								},
-								{
 									"key": "addTokenTo",
 									"value": "header",
 									"type": "string"
@@ -6536,11 +7277,6 @@
 								{
 									"key": "client_authentication",
 									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "{{authTokenURL}}",
 									"type": "string"
 								},
 								{
