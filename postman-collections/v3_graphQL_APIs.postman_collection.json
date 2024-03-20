@@ -179,7 +179,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query myFindAvailableArea($workspaceId: String!, $proposedArea:BoxInput!){\n    findAvailableArea(workspaceId: $workspaceId, proposedArea:$proposedArea ) {\n        type: __typename\n        x\n        y\n        width\n        height\n    }\n}",
+								"query": "query myFindAvailableArea($workspaceId:String!, $proposedArea:BoxInput!){\n    findAvailableArea(workspaceId: $workspaceId, proposedArea:$proposedArea ) {\n        type: __typename\n        x\n        y\n        width\n        height\n    }\n}",
 								"variables": "{\n    \"workspaceId\": \"{{workspaceID}}\",\n    \"proposedArea\":{\"x\":0, \"y\":0, \"width\":1000, \"height\":1000}\n}"
 							}
 						},
