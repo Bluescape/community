@@ -1,13 +1,13 @@
 {
-    "name": "upload-content-into-new-canvas-grid-display.graphql",
+    "name": "upload-content-into-existing-canvas-REST",
     "version": "1.0.0",
-    "description": "Bluescape sample app: upload assets to a new canvas, display them in a grid.",
-    "main": "upload-content-into-new-canvas-grid-display.graphql.js",
+    "description": "Bluescape sample app: uplaod content into an existing Canvas, extending it if more space is needed for the new assets. It uses REST APIs.",
+    "main": "upload-content-into-existing-canvas.REST.js",
     "author": "Bluescape",
     "private": true,
     "type": "module",
     "scripts": {
-        "start": "node ./upload-content-into-new-canvas-grid-display.graphql.js"
+        "start": "node ./upload-content-into-existing-canvas.REST.js"
     },
     "license": "ISC",
     "dependencies": {
@@ -16,6 +16,7 @@
         "ffprobe-client": "^1.1.6",
         "form-data": "^4.0.0",
         "fs": "0.0.1-security",
+        "lodash.isequal": "^4.5.0",
         "probe-image-size": "^7.2.3",
         "yargs": "^17.3.1"
     },

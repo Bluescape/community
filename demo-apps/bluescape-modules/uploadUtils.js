@@ -22,6 +22,8 @@
 import ffprobe from 'ffprobe-client';
 import probe from 'probe-image-size';
 import fs from 'fs';
+import { runRestRequest } from '../bluescape-modules/bluescapeApis.js';
+
 
 /**
     * Gets the dimensions (width and height) of the asset to upload: image or video.
@@ -346,4 +348,238 @@ export async function getPositionForAssetInCanvasGraphql(functionParams) {
         console.error('ERROR: getPositionForAssetInCanvas');
         console.error(error?.message ?? error);
     }
+}
+
+/** 
+    * Calculates the (x,y) coordinate for where the asset will be positioned into an Existing Canvas. 
+    * This position depends on:
+    * - position of last asset
+    * - width and height of the asset 
+    * Based on this current asset, it calculates the insertion point for the next asset (insertX,insertY)
+    * 
+    * @param {Object} functionParams - Object containing the data for the execution of this funtion:
+    * @param {Object} functionParams.assetData - Object with width and height of the asset to upload
+    * @param {number} functionParams.assetData.width - Asset width 
+    * @param {number} functionParams.assetData.height - Asset Height
+    * @param {Object} functionParams.canvasElement - Object with the properties of the canvas, also stores the next asset insertion (x,y) coordinates
+    * @param {string} functionParams.canvasElement.id - Canvas Id
+    * @param {number} functionParams.canvasElement.canvasX - X position of the Canvas
+    * @param {number} functionParams.canvasElement.canvasY - Y position of the Canvas
+    * @param {number} functionParams.canvasElement.insertX - X position to upload the next asset
+    * @param {number} functionParams.canvasElement.insertY - Y position to upload the next asset
+    * @param {number} functionParams.canvasElement.horizontalSpacing - Horizontal spacing between assets
+    * @param {number} functionParams.canvasElement.verticalSpacing - Vertical spacing between assets
+    * @param {number} functionParams.canvasElement.maximumHeightInRow - Maximum height of tallest element in the virtual row where we are adding assets
+    * @param {number} functionParams.canvasElement.canvasInitialWidth - Canvas width
+    * 
+    * @returns {Object} functionReturnValues - Object with the values to return:
+    * @returns {number} functionReturnValues.x - X coordinate for position where the asset will be uploaded
+    * @returns {number} functionReturnValues.y - Y coordinate for position where the asset will be uploaded
+    * @returns {Object} functionReturnValues.canvasElement - Canvas element with modified values: next point of insertion and canvas height
+    *  
+*/
+export async function getPositionForAssetInCanvasRest(functionParams) {
+    try {
+        let x = functionParams.canvasElement.insertX;
+        let y = functionParams.canvasElement.insertY;
+        let maximumHeightInRow = functionParams.canvasElement.maximumHeightInRow;
+
+        const assetActualHeight = functionParams.assetData.height;
+        const assetActualWidth = functionParams.assetData.width;
+
+        // Check if the asset fits (by width) in the insertion point. If is does not fit, then start a new row
+        // We are usign absolute coordinates.
+        if (x + assetActualWidth > functionParams.canvasElement.canvasInitialWidth + functionParams.canvasElement.canvasX) {
+            // New row is needed  
+            y += functionParams.canvasElement.verticalSpacing + functionParams.canvasElement.maximumHeightInRow;
+            x = functionParams.canvasElement.canvasX + functionParams.canvasElement.horizontalSpacing;
+            maximumHeightInRow = assetActualHeight;
+
+            functionParams.canvasElement.insertX = x + functionParams.canvasElement.horizontalSpacing + assetActualWidth;
+
+        } else {
+            functionParams.canvasElement.insertX += functionParams.canvasElement.horizontalSpacing + assetActualWidth;
+        }
+
+        // Check for the "tallest image in the row", to not overlap it in the next row
+        maximumHeightInRow = assetActualHeight > maximumHeightInRow ? assetActualHeight : maximumHeightInRow;
+        functionParams.canvasElement.maximumHeightInRow = maximumHeightInRow;
+
+        // Update coordinates for next asset
+        functionParams.canvasElement.insertY = y;
+
+        // (x,y) is the insertion point for this asset, and (insertX,insertY) is the insertion point for the next asset
+        const functionReturnValues = {
+            x,
+            y,
+            'canvasElement': functionParams.canvasElement
+        }
+
+        return functionReturnValues;
+    }
+    catch (error) {
+        console.error('ERROR running getPositionForAssetInCanvasREST');
+        console.error(error?.stack ?? error.stack);
+        console.error(error?.message ?? error);
+    }
+}
+
+/** 
+    * Calculates the Y coordinate to start the upload of new assets into the existing canvas, 
+    * this based on the elements within the Canvas: finds the one closer to the bottom of the Canvas.
+    * and adds its height. This way the new assets will not overlap on top of the existing elements in the Canvas.
+    * @param {Object} bluescapeApiParams - Object containing the data for executing Bluescape APIs:
+    * @param {string} bluescapeApiParams.token -  Access Token (oauth2 token, see https://api.apps.us.bluescape.com/docs/page/app-auth)
+    * @param {string} bluescapeApiParams.apiPortalUrl - URL to the portal to execute the APIs, e.g. "https://api.apps.us.bluescape.com/api"
+    * @param {string} bluescapeApiParams.apiVersion - Version of the APIs to be executed, e.g.: "v3". Current version: v3
+  
+    * @param {Object} functionParams - Object containing the data for the execution of this funtion:
+    * @param {string} functionParams.workspaceId - Workspace Id where we are uploading assets
+    * @param {Object} functionParams.canvasId - ID of the Canvas where we will upload the asset
+    * @param {Object} functionParams.canvasYCoordinate - Y coordinate of the canvas. It is the starting point for the position of the elements in the canvas
+    * @param {Object} functionParams.verticalSpacing - Vertical spacing to separate the bottom of lowest element in the Canvas from the new assets to be uploaded.
+    *  
+    * @returns {number} Y coordinate to start uploading new assets into the existing Canvas. 
+*/
+export async function getYCoordinateToUploadNewAssets(bluescapeApiParams, functionParams) {
+    let maxY = functionParams.canvasYCoordinate; // To handle the case of empty canvas
+
+    // Get list of elements currently in the Canvas
+    const getElementsInCanvasParams = {
+        'apiEndpoint': `/workspaces/${functionParams.workspaceId}/elements?canvas=${functionParams.canvasId}`,
+        'requestMethod': 'GET',
+        'dataLoad': {}
+    }
+
+    const getElementsInCanvasAnswer = await runRestRequest(bluescapeApiParams, getElementsInCanvasParams)
+
+    const listOfElements = getElementsInCanvasAnswer?.data?.data;
+
+    if (listOfElements) {
+        // We are looking for the highest value of Y, 
+        // then we will use the canvas X (plus a horizontal spacing) to start adding new elements
+        for (let elementToReview of listOfElements) {
+
+            // We need to calculate the bottom Y coordinate of each element: transform Y + boundingbox.height
+            const elementBottomY = elementToReview.transform.y + elementToReview.boundingBox.height;
+
+            if (elementBottomY >= maxY) {
+                maxY = elementBottomY;
+            }
+        }
+
+        let startingY = maxY;
+
+        return startingY
+
+    } else {
+        throw `Error getting list of elements for in Canvas for getYCoordinateToUploadNewAssets : ${getElementsInCanvasAnswer.error}`;
+    }
+
+}
+
+/** 
+    * Returns the values for the REST Request Body to create the asset's zygote
+    * @param {Object} functionParams - Object containing the data for this function: 
+    * @param {('Image'|'Document'|'Video')} functionParams.assetType - Type of the asset to upload
+    * @param {string} functionParams.assetExtension - Extension of the asset to upload
+    * @param {Object} functionParams.assetCreationParams - Parameters for the mutation
+    *  
+    * @returns {Object} functionParams.assetCreationParams - Modified set of parameters, it depends on type of asset to upload 
+*/
+export async function getUploadValuesRest(functionParams) {
+
+    switch (functionParams.assetType) {
+        case 'Image':
+            functionParams.assetCreationParams.imageFormat = functionParams.assetExtension
+            break
+        case 'Document':
+            functionParams.assetCreationParams.documentFormat = functionParams.assetExtension
+            break
+        case 'Video':
+            functionParams.assetCreationParams.videoFormat = functionParams.assetExtension
+            break
+        default:
+            console.error(`Asset type "${functionParams.assetType}" is not recognized, check its name.`)
+    }
+
+    return functionParams.assetCreationParams
+
+}
+
+/** 
+    * Gets the dimensions (width and height) of the asset to upload inside an existing Canvas.
+    * If the asset is wider than the canvas, the asset width is changed to fit within the canvas.
+    * @param {Object} functionParams - Object with parameters to run the function
+    * @param {('URL'|'LOCAL')} functionParams.uploadMethod - Upload method: URL or LOCAL
+    * @param {('Video'|'Image'|'Document')} functionParams.assetType - Type of the asset to upload
+    * @param {Object} functionParams.canvasElement - Object with the properties of the canvas, also stores the next asset insertion (x,y) coordinates
+    * @param {string} functionParams.assetLocation - URL or full path to the asset to upload
+    * @param {string} functionParams.ffprobePath - Path to local install of ffprobe
+    * @param {Object} functionParams.defaultAssetDimensions - Object with the default dimensions
+    * @param {number} functionParams.defaultAssetDimensions.DEFAULT_ASSET_WIDTH - Default width
+    * @param {number} functionParams.defaultAssetDimensions.DEFAULT_ASSET_HEIGHT - Default height
+    *
+    * @return {Object} functionReturnValues - Object with the values to return
+    * @return {number} functionReturnValues.assetWidth - Calculated width of the asset to upload 
+    * @return {number} functionReturnValues.assetHeight - Calculated height of the asset to upload  
+    * @return {string} functionReturnValues.assetFileFullPath - Asset full path
+    * @return {Object} functionReturnValues...values - Parameters passed in 'functionParams'
+*/
+export default async function getAssetDimensionsInsideExistingCanvas(functionParams) {
+
+    let assetWidth;
+    let assetHeight;
+
+    if (functionParams.assetType === 'Video') {
+        try {
+            const probeInfo = await probeVideoDimensions(functionParams.ffprobePath, functionParams.assetLocation);
+            assetWidth = probeInfo.width;
+            assetHeight = probeInfo.height;
+
+        } catch (error) {
+            console.error(`ERROR: Error trying to get dimensions for video. Asset: ${functionParams.assetLocation}`);
+            console.error(error);
+        }
+    } else {
+
+        if (functionParams.uploadMethod === 'LOCAL') {
+            if (functionParams.assetType === 'Image') {
+                const readFileSyncData = fs.readFileSync(functionParams.assetLocation);
+                const fileData = probe.sync(readFileSyncData);
+
+                assetHeight = fileData.height;
+                assetWidth = fileData.width;
+            }
+
+        } else { // URL upload
+
+            if (functionParams.assetType === 'Image') {
+                const fileInUrlData = await probe(functionParams.assetLocation);
+                assetHeight = fileInUrlData.height;
+                assetWidth = fileInUrlData.width;
+            }
+        }
+    }
+
+    // Check if asset will fit in Canvas. If not, resize it to make it fit
+    if (assetWidth > functionParams.canvasElement.canvasInitialWidth - (functionParams.canvasElement.horizontalSpacing * 2)) {
+        // Asset is too wide, change display width
+        const originalWidth = assetWidth;
+        assetWidth = functionParams.canvasElement.canvasInitialWidth - (functionParams.canvasElement.horizontalSpacing * 2);
+
+        // We also need to change height, or the zygote will be a tall and narrow rectangle,
+        //  the asset will be centered on the very tall height within the zygote, this is a waste of available space.
+        const newScale = assetWidth / originalWidth;
+        assetHeight = parseInt(assetHeight * newScale);
+    }
+
+    const functionReturnValues = {
+        'assetFileFullPath': functionParams.assetLocation,
+        'assetWidth': assetWidth ?? functionParams.defaultAssetDimensions.DEFAULT_ASSET_WIDTH,
+        'assetHeight': assetHeight ?? functionParams.defaultAssetDimensions.DEFAULT_ASSET_HEIGHT,
+        ...functionParams
+    }
+
+    return functionReturnValues
 }
