@@ -1,0 +1,16 @@
+{
+    "name": "workspace-listener-subscription",
+    "version": "1.0.0",
+    "description": "Bluescape sample app: listen for workspace events and call a webhook.",
+    "main": "workspace-listener-subscription.js",
+    "author": "Bluescape",
+    "type": "module",
+    "scripts": {},
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.21.1",
+        "graphql": "^15.5.0",
+        "graphql-ws": "^4.2.1",
+        "ws": "^7.4.4"
+    }
+}
