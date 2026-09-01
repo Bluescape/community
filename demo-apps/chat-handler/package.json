@@ -1,0 +1,27 @@
+{
+  "name": "bluescape-chat-handler",
+  "version": "1.0.0",
+  "description": "Bluescape chat message handler for OpenAI",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bluescape",
+    "chat",
+    "handler",
+    "llm"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "dotenv": "^16.3.1",
+    "form-data": "^4.0.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

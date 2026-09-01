@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.env
+.env.local
+.DS_Store
+pm2-logs
+dist
+build
+.git
+.gitignore
+README.md
