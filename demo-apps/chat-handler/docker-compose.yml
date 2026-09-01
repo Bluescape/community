@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  bluescape-chat-handler:
+    build: .
+    container_name: bluescape-chat-handler
+    environment:
+      - NODE_ENV=production
+      - BLUESCAPE_AUTH_MODE=${BLUESCAPE_AUTH_MODE:-}
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - OAUTH_TOKEN_URL=${OAUTH_TOKEN_URL:-https://api.apps.us.bluescape.com/v3/oauth2/token}
+      - OAUTH_AUTHORIZE_URL=${OAUTH_AUTHORIZE_URL:-https://api.apps.us.bluescape.com/v3/oauth2/authorize}
+      - OAUTH_SCOPE=${OAUTH_SCOPE}
+      - JWT_TOKEN=${JWT_TOKEN}
+      - BLUESCAPE_API_URL=${BLUESCAPE_API_URL}
+      - WORKSPACE_ID=${WORKSPACE_ID}
+      - POLL_INTERVAL=${POLL_INTERVAL:-15}
+      - MAX_RETRIES=${MAX_RETRIES:-3}
+      - RETRY_DELAY_MS=${RETRY_DELAY_MS:-1000}
+      - HTTP_TIMEOUT_MS=${HTTP_TIMEOUT_MS:-10000}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - TRIGGER_WORD=${TRIGGER_WORD:-llm}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      - OPENAI_API_MODE=${OPENAI_API_MODE:-responses}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-5.6}
+      - OPENAI_TIMEOUT_MS=${OPENAI_TIMEOUT_MS:-30000}
+      - OPENAI_MAX_OUTPUT_TOKENS=${OPENAI_MAX_OUTPUT_TOKENS:-800}
+      - AI_MAX_ASSET_BYTES=${AI_MAX_ASSET_BYTES:-25000000}
+      - AI_CHAT_RESPONSE_MAX_CHARS=${AI_CHAT_RESPONSE_MAX_CHARS:-3500}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
